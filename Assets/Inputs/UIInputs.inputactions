@@ -1,0 +1,54 @@
+{
+    "name": "UIInputs",
+    "maps": [
+        {
+            "name": "Inputs",
+            "id": "b5980edb-d629-4130-82e7-d5972e5d71ef",
+            "actions": [
+                {
+                    "name": "Pause",
+                    "type": "PassThrough",
+                    "id": "059576cc-9d47-4c33-8f0c-4eccee0b497e",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Reset",
+                    "type": "PassThrough",
+                    "id": "0e213a82-0d46-4cfe-8266-5f2ff3c990fd",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "a4ad51c5-a7ca-4093-a6a6-78d782d1a795",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6fe28087-d91a-4a02-9851-27fc640a87f8",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Reset",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
