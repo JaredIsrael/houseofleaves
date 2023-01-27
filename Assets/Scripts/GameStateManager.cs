@@ -59,11 +59,13 @@ public class GameStateManager : MonoBehaviour
         if (exit)
         {
             exitScreen.SetActive(true);
+
             if (yes)
             { //user selects "Y" to quit game
 #if UNITY_EDITOR
                 UnityEditor.EditorApplication.isPlaying = false;
 #endif
+                Application.Quit();
             }
             if (no)
             { //user selects "N" to return to game
