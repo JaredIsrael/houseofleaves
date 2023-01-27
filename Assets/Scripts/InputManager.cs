@@ -14,6 +14,9 @@ public class InputManager : MonoBehaviour
     private Vector2 mouseInput;
     private bool paused;
     private bool reset;
+    private bool exit;
+    private bool yes;
+    private bool no;
 
     private void Awake()
     {
@@ -27,6 +30,9 @@ public class InputManager : MonoBehaviour
         inputActions.Player.MouseY.performed += ctx => mouseInput.y = ctx.ReadValue<float>();
         UIActions.Inputs.Pause.performed += ctx => paused = ctx.ReadValueAsButton();
         UIActions.Inputs.Reset.performed += ctx => reset = ctx.ReadValueAsButton();
+        UIActions.Inputs.Exit.performed += ctx => exit = ctx.ReadValueAsButton();
+        UIActions.Inputs.Yes.performed += ctx => yes = ctx.ReadValueAsButton();
+        UIActions.Inputs.No.performed += ctx => no = ctx.ReadValueAsButton();
     }
 
     private void Update()
@@ -35,6 +41,7 @@ public class InputManager : MonoBehaviour
         rotator.ReadInput(mouseInput);
         gameStateManager.ReadPauseInput(paused);
         gameStateManager.ReadResetInput(reset);
+        gameStateManager.ReadExitInput(exit, yes, no);
     }
 
     private void OnEnable()

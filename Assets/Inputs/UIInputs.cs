@@ -44,6 +44,33 @@ public partial class @UIInputs : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Exit"",
+                    ""type"": ""Button"",
+                    ""id"": ""42386015-114c-4e18-9f94-992d8ea3dd72"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Yes"",
+                    ""type"": ""Button"",
+                    ""id"": ""dd9d2c5d-7316-43e0-b53d-d15251974e97"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""No"",
+                    ""type"": ""Button"",
+                    ""id"": ""fec2da9b-a2ae-4191-ba32-8c8cf5912e83"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -68,6 +95,39 @@ public partial class @UIInputs : IInputActionCollection2, IDisposable
                     ""action"": ""Reset"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""73330bff-89fd-44bf-8ecd-cd67ecadc89a"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Exit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b9003768-5950-4225-82e4-71901b1422b9"",
+                    ""path"": ""<Keyboard>/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Yes"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ce0f4250-f5d2-43f9-b360-9af580ebc83e"",
+                    ""path"": ""<Keyboard>/n"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""No"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -78,6 +138,9 @@ public partial class @UIInputs : IInputActionCollection2, IDisposable
         m_Inputs = asset.FindActionMap("Inputs", throwIfNotFound: true);
         m_Inputs_Pause = m_Inputs.FindAction("Pause", throwIfNotFound: true);
         m_Inputs_Reset = m_Inputs.FindAction("Reset", throwIfNotFound: true);
+        m_Inputs_Exit = m_Inputs.FindAction("Exit", throwIfNotFound: true);
+        m_Inputs_Yes = m_Inputs.FindAction("Yes", throwIfNotFound: true);
+        m_Inputs_No = m_Inputs.FindAction("No", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -139,12 +202,18 @@ public partial class @UIInputs : IInputActionCollection2, IDisposable
     private IInputsActions m_InputsActionsCallbackInterface;
     private readonly InputAction m_Inputs_Pause;
     private readonly InputAction m_Inputs_Reset;
+    private readonly InputAction m_Inputs_Exit;
+    private readonly InputAction m_Inputs_Yes;
+    private readonly InputAction m_Inputs_No;
     public struct InputsActions
     {
         private @UIInputs m_Wrapper;
         public InputsActions(@UIInputs wrapper) { m_Wrapper = wrapper; }
         public InputAction @Pause => m_Wrapper.m_Inputs_Pause;
         public InputAction @Reset => m_Wrapper.m_Inputs_Reset;
+        public InputAction @Exit => m_Wrapper.m_Inputs_Exit;
+        public InputAction @Yes => m_Wrapper.m_Inputs_Yes;
+        public InputAction @No => m_Wrapper.m_Inputs_No;
         public InputActionMap Get() { return m_Wrapper.m_Inputs; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -160,6 +229,15 @@ public partial class @UIInputs : IInputActionCollection2, IDisposable
                 @Reset.started -= m_Wrapper.m_InputsActionsCallbackInterface.OnReset;
                 @Reset.performed -= m_Wrapper.m_InputsActionsCallbackInterface.OnReset;
                 @Reset.canceled -= m_Wrapper.m_InputsActionsCallbackInterface.OnReset;
+                @Exit.started -= m_Wrapper.m_InputsActionsCallbackInterface.OnExit;
+                @Exit.performed -= m_Wrapper.m_InputsActionsCallbackInterface.OnExit;
+                @Exit.canceled -= m_Wrapper.m_InputsActionsCallbackInterface.OnExit;
+                @Yes.started -= m_Wrapper.m_InputsActionsCallbackInterface.OnYes;
+                @Yes.performed -= m_Wrapper.m_InputsActionsCallbackInterface.OnYes;
+                @Yes.canceled -= m_Wrapper.m_InputsActionsCallbackInterface.OnYes;
+                @No.started -= m_Wrapper.m_InputsActionsCallbackInterface.OnNo;
+                @No.performed -= m_Wrapper.m_InputsActionsCallbackInterface.OnNo;
+                @No.canceled -= m_Wrapper.m_InputsActionsCallbackInterface.OnNo;
             }
             m_Wrapper.m_InputsActionsCallbackInterface = instance;
             if (instance != null)
@@ -170,6 +248,15 @@ public partial class @UIInputs : IInputActionCollection2, IDisposable
                 @Reset.started += instance.OnReset;
                 @Reset.performed += instance.OnReset;
                 @Reset.canceled += instance.OnReset;
+                @Exit.started += instance.OnExit;
+                @Exit.performed += instance.OnExit;
+                @Exit.canceled += instance.OnExit;
+                @Yes.started += instance.OnYes;
+                @Yes.performed += instance.OnYes;
+                @Yes.canceled += instance.OnYes;
+                @No.started += instance.OnNo;
+                @No.performed += instance.OnNo;
+                @No.canceled += instance.OnNo;
             }
         }
     }
@@ -178,5 +265,8 @@ public partial class @UIInputs : IInputActionCollection2, IDisposable
     {
         void OnPause(InputAction.CallbackContext context);
         void OnReset(InputAction.CallbackContext context);
+        void OnExit(InputAction.CallbackContext context);
+        void OnYes(InputAction.CallbackContext context);
+        void OnNo(InputAction.CallbackContext context);
     }
 }
