@@ -15,8 +15,6 @@ public class InputManager : MonoBehaviour
     private bool paused;
     private bool reset;
     private bool exit;
-    private bool yes;
-    private bool no;
 
     private void Awake()
     {
@@ -31,17 +29,14 @@ public class InputManager : MonoBehaviour
         UIActions.Inputs.Pause.performed += ctx => paused = ctx.ReadValueAsButton();
         UIActions.Inputs.Reset.performed += ctx => reset = ctx.ReadValueAsButton();
         UIActions.Inputs.Exit.performed += ctx => exit = ctx.ReadValueAsButton();
-        UIActions.Inputs.Yes.performed += ctx => yes = ctx.ReadValueAsButton();
-        UIActions.Inputs.No.performed += ctx => no = ctx.ReadValueAsButton();
     }
 
     private void Update()
     {
         playerController.ReadInput(keyboardInput);
         rotator.ReadInput(mouseInput);
-        gameStateManager.ReadPauseInput(paused);
+        gameStateManager.ReadPauseInput(paused, exit);
         gameStateManager.ReadResetInput(reset);
-        gameStateManager.ReadExitInput(exit, yes, no);
     }
 
     private void OnEnable()

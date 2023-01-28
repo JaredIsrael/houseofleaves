@@ -6,13 +6,11 @@ using UnityEngine.SceneManagement;
 public class GameStateManager : MonoBehaviour
 {
     [SerializeField] GameObject pauseScreen;
-    [SerializeField] GameObject exitScreen;
     private int pauseHits;
 
     void Start()
     {
         pauseScreen.SetActive(false);
-        exitScreen.SetActive(false);
     }
 
     void Update()
@@ -20,11 +18,15 @@ public class GameStateManager : MonoBehaviour
         
     }
 
-    public void ReadPauseInput(bool paused)
+    public void ReadPauseInput(bool paused, bool exit)
     {
         if (paused)
         {
             pauseHits++;
+        }
+        if (exit)
+        { //user clicks Q to quit game
+            ReadExitInput();
         }
         if (pauseHits % 2 == 1)
         {
@@ -54,23 +56,11 @@ public class GameStateManager : MonoBehaviour
     }
 
     //exit game state
-    public void ReadExitInput(bool exit, bool yes, bool no)
+    public void ReadExitInput()
     {
-        if (exit)
-        {
-            exitScreen.SetActive(true);
-
-            if (yes)
-            { //user selects "Y" to quit game
 #if UNITY_EDITOR
-                UnityEditor.EditorApplication.isPlaying = false;
+        UnityEditor.EditorApplication.isPlaying = false;
 #endif
-                Application.Quit();
-            }
-            if (no)
-            { //user selects "N" to return to game
-                exitScreen.SetActive(false);
-            }
-        }
+        Application.Quit();
     }
 }
