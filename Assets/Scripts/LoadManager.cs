@@ -45,6 +45,7 @@ public class LoadManager : MonoBehaviour
         StartCoroutine(Waiting(sceneName));
     }
     
+    //Chooses random images to display while loading
     IEnumerator DisplayImages()
     {
         int randomImageIndex = Random.Range(0, loadingImages.transform.childCount);
@@ -59,12 +60,14 @@ public class LoadManager : MonoBehaviour
         yield return null;
     }
 
+    //Temporary function to display loading screen longer
     IEnumerator Waiting(string sceneName)
     {
         yield return new WaitForSeconds(7);
         StartCoroutine(Loading(sceneName));
     }
 
+    //Changes the value of the loading slider
     IEnumerator Loading(string sceneName)
     {
         AsyncOperation sceneOp = SceneManager.LoadSceneAsync(sceneName);
