@@ -37,6 +37,11 @@ public class LoadManager : MonoBehaviour
 
    public void LoadSceneBackground(string sceneName)
     {
+        if(audio.isPlaying)
+        {
+            audio.Stop();
+        }
+
         audio.PlayOneShot(startSound, .5f);
         menuCanvas.enabled = false;
         loadingCanvas.enabled = true;
