@@ -8,6 +8,6 @@ public class StartText : MonoBehaviour
     {
         // Not currenlty using loading canvas, too fast!
         // Play a sound and then after a second load game? Use coroutines
-        LoadManager.Instance.LoadSceneBackground("PlayTestArea");
+        LoadManager.Instance.LoadSceneBackground("PlayTestHouse");
     }
 }
