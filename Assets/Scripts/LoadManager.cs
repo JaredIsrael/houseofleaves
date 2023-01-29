@@ -13,6 +13,9 @@ public class LoadManager : MonoBehaviour
     [SerializeField] private Slider loadingBar;
     [SerializeField] private GameObject loadingImages;
 
+    [SerializeField] private AudioSource audio;
+    [SerializeField] private AudioClip startSound;
+
     void Start()
     {
         loadingCanvas.enabled = false;
@@ -34,6 +37,7 @@ public class LoadManager : MonoBehaviour
 
    public void LoadSceneBackground(string sceneName)
     {
+        audio.PlayOneShot(startSound, .5f);
         menuCanvas.enabled = false;
         loadingCanvas.enabled = true;
 
