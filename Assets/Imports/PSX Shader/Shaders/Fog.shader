@@ -9,7 +9,8 @@ Shader "PostEffect/Fog"
     
     CGINCLUDE
         #include "UnityCG.cginc"
-        #include "Assets/Shaders/cginc/voronoi.cginc"
+        #include "Assets/Imports/PSX Shader/Shaders/cginc/voronoi.cginc"
+        
         sampler2D _MainTex;
         sampler2D _CameraDepthTexture;
         
