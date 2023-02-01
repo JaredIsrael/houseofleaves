@@ -1513,12 +1513,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff06fc5bae43d472ea22492a0d70e4ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuCanvas: {fileID: 91262700}
   loadingCanvas: {fileID: 1472957443}
   loadingBar: {fileID: 998702742}
   loadingImages: {fileID: 1113212908}
-  audio: {fileID: 1765695987}
-  startSound: {fileID: 8300000, guid: 8b85ac4cdf28a1646a3a643eabafa950, type: 3}
 --- !u!1 &728382777
 GameObject:
   m_ObjectHideFlags: 0
@@ -2789,6 +2786,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1757d2f5511e4f4e9c4e407c5065d19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  menuCanvas: {fileID: 91262700}
+  audio: {fileID: 1765695987}
+  startSound: {fileID: 8300000, guid: 8b85ac4cdf28a1646a3a643eabafa950, type: 3}
 --- !u!114 &1332141770
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -8,26 +8,22 @@ public class LoadManager : MonoBehaviour
 {
     public static LoadManager Instance;
 
-    [SerializeField] private Canvas menuCanvas;
     [SerializeField] private Canvas loadingCanvas;
     [SerializeField] private Slider loadingBar;
     [SerializeField] private GameObject loadingImages;
 
-    [SerializeField] private AudioSource audio;
-    [SerializeField] private AudioClip startSound;
-
     void Start()
     {
-        loadingCanvas.enabled = false;
-        for(int i = 0; i < loadingImages.transform.childCount; i++)
-        {
-            loadingImages.transform.GetChild(i).gameObject.SetActive(false);
-        }
-
         if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+
+            loadingCanvas.enabled = false;
+            for (int i = 0; i < loadingImages.transform.childCount; i++)
+            {
+                loadingImages.transform.GetChild(i).gameObject.SetActive(false);
+            }
         }
         else
         {
@@ -37,16 +33,9 @@ public class LoadManager : MonoBehaviour
 
    public void LoadSceneBackground(string sceneName)
     {
-        if(audio.isPlaying)
-        {
-            audio.Stop();
-        }
-
-        audio.PlayOneShot(startSound, .5f);
-        menuCanvas.enabled = false;
         loadingCanvas.enabled = true;
 
-        StartCoroutine(DisplayImages());
+        //StartCoroutine(DisplayImages());
         StartCoroutine(Waiting(sceneName));
     }
     
@@ -68,7 +57,7 @@ public class LoadManager : MonoBehaviour
     //Temporary function to display loading screen longer
     IEnumerator Waiting(string sceneName)
     {
-        yield return new WaitForSeconds(7);
+        yield return new WaitForSeconds(5);
         StartCoroutine(Loading(sceneName));
     }
 
