@@ -2,44 +2,59 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+
+Purpose: This class is a singleton that persists between scenes to manage any
+items that can be picked up. It provides a simple method that we can bind to
+our interact button while keeping track of objects that can be picked up. When
+the button is pressed, it picks everything up that it can (this could be changed
+to pickup closest or most recent.) Items should add themselves to it when they
+are available to be picked up (see PickUpSphere.cs)
+
+Author: Jared Israel
+ 
+ */
+
 public class PickUpController : MonoBehaviour
 {
     [SerializeField] Canvas PickUpScreen;
-    
-    private bool canBePickedUp;
-    private bool stopChecking;
+    public static PickUpController Instance;
+
+    private List<Interactable> canBePickedUpList;
+
 
     void Start()
     {
-        PickUpScreen.gameObject.SetActive(false);
-    }
-
-    public bool CanBePickedUp()
-    {
-        return canBePickedUp;
-    }
-
-    public void StopChecking()
-    {
-        gameObject.SetActive(false);
-        PickUpScreen.gameObject.SetActive(false);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
+        if (Instance == null)
         {
-            PickUpScreen.gameObject.SetActive(true);
-            canBePickedUp = true;
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+            // Pickup screen will be reused in different scenes
+            DontDestroyOnLoad(PickUpScreen);
+            canBePickedUpList = new List<Interactable>();
         }
+        else
+        {
+            Destroy(gameObject);
+        }
+        PickUpScreen.gameObject.SetActive(false);
     }
 
-    private void OnTriggerExit(Collider other)
+    public void AddToPickUpList(Interactable item)
     {
-        if (other.gameObject.CompareTag("Player"))
+        canBePickedUpList.Add(item);
+    }
+
+    public void RemoveFromPickupList(Interactable item)
+    {
+        canBePickedUpList.Remove(item);
+    }
+
+    public void TryPickupItems()
+    {
+        foreach(Interactable i in canBePickedUpList)
         {
-            PickUpScreen.gameObject.SetActive(false);
-            canBePickedUp = false;
+            i.InteractWith();
         }
     }
 }
