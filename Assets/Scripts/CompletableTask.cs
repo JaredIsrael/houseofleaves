@@ -17,8 +17,18 @@ Author: Jared Israel
 
 public abstract class CompletableTask : MonoBehaviour
 {
-    // Event for completion
+    // Description of event, usually displayed in to do list
     public string description;
+    /*
+
+    There is probably a better way to do this, but tasks broadcast to a lot of
+    places when they are finished, but some classes like the objectives manager
+    and to-do list manager subscribe to a lot of different task's completion
+    events, so by passing itself with the event (this event will usually be
+    invoked with 'this' as param), the classes that listen to multiple tasks
+    can tell which one was completed.
+
+     */
     public UnityEvent<CompletableTask> TaskCompletedEvent;
 
 }

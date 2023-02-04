@@ -3,6 +3,20 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+/*
+
+Purpose: This singleton class is intended to listen to the objectives manager
+and manage the to do list internals and UI display. It keeps track of what
+objectives the objectives manager says the player is currently doing and
+crosses out items when the objective is complete by subscribing to the task
+completion events. It keeps track of the to do list UI canvas, animating it and
+changing the text to match the current objectives. Both this object and the
+canvas persist between scenes with a DontDestroyOnLoad call.
+
+Author: Jared Israel
+
+ */
+
 public class ToDoListManager : MonoBehaviour
 {
     public static ToDoListManager Instance;
@@ -17,6 +31,15 @@ public class ToDoListManager : MonoBehaviour
     private List<string> currentTasks;
     private bool isListRaised;
 
+
+    /*
+
+    This portion of the initialization logic is done in the start method rather
+    than awake because it needs the Objectives manager to be setup. The OM does
+    its intstantiation in the awake call, so by calling on it in the start method
+    which is always called after awake, we are sure the OM will be setup.
+
+     */
     private void Start()
     {
         isListRaised = false;
@@ -25,6 +48,7 @@ public class ToDoListManager : MonoBehaviour
             text.gameObject.SetActive(false);
         }
         currentTasks = new List<string>();
+        // We just wait for the OM to tell us the player is tracking a new objective
         ObjectivesManager.TaskAddedEvent.AddListener(AddTask);
     }
 
@@ -45,6 +69,7 @@ public class ToDoListManager : MonoBehaviour
     {
         currentTasks.Add("- "+newTask.description);
         RenderObjectives();
+        // Listen for the completion event on the task the OM just told us to track
         newTask.TaskCompletedEvent.AddListener(CompleteTask);
 
     }
@@ -95,6 +120,7 @@ public class ToDoListManager : MonoBehaviour
 
     }
 
+    // Use coroutines in order to animate smoothly without having an update method
     IEnumerator AnimateList(bool up)
     {
         float elapsedTime = 0f;
