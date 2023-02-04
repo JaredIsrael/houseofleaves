@@ -22,7 +22,8 @@ public sealed class StatuePuzzle : CompletableTask
 
     void Start()
     {
-        TaskCompletedEvent = new UnityEvent();
+        this.description = "Pick up statue";
+        TaskCompletedEvent = new UnityEvent<CompletableTask>();
         ObjectivesManager.Instance.AddObjective(this);
         interactable.InteractedWith.AddListener(CompletePuzzle);
     }
@@ -34,8 +35,7 @@ public sealed class StatuePuzzle : CompletableTask
             rm.Move();
             hasMoved = true;
         }
-        // TODO: I don't like this, get objectives manager to listen to the event instead
-        ObjectivesManager.Instance.CompleteObjective(this);
+        TaskCompletedEvent.Invoke(this);
         
     }
 }

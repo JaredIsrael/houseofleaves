@@ -19,6 +19,6 @@ public abstract class CompletableTask : MonoBehaviour
 {
     // Event for completion
     public string description;
-    public UnityEvent TaskCompletedEvent;
+    public UnityEvent<CompletableTask> TaskCompletedEvent;
 
 }

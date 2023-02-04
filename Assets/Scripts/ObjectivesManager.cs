@@ -18,7 +18,6 @@ public class ObjectivesManager : MonoBehaviour
     public static ObjectivesManager Instance;
     public static UnityEvent AllTasksCompletedEvent;
     public static UnityEvent<CompletableTask> TaskAddedEvent;
-
     private List<CompletableTask> currentTasks;
 
     private void Awake()
@@ -40,13 +39,13 @@ public class ObjectivesManager : MonoBehaviour
     public void AddObjective(CompletableTask newTask)
     {
         currentTasks.Add(newTask);
+        newTask.TaskCompletedEvent.AddListener(CompleteObjective);
         TaskAddedEvent.Invoke(newTask);
     }
 
     public void CompleteObjective(CompletableTask completed)
     {
         currentTasks.Remove(completed);
-        completed.TaskCompletedEvent.Invoke();
         if(currentTasks.Count <= 0)
         {
             AllTasksCompletedEvent.Invoke();
