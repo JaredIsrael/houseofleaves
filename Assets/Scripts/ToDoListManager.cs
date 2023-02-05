@@ -30,6 +30,7 @@ public class ToDoListManager : MonoBehaviour
     private AudioSource closeAudio;
     private List<string> currentTasks;
     private bool isListRaised;
+    private bool isAnimating = false;
 
 
     /*
@@ -96,15 +97,19 @@ public class ToDoListManager : MonoBehaviour
 
     public void ToggleList()
     {
-        if (isListRaised)
+        // Don't let the player do this while the animation is in progress!
+        if (!isAnimating)
         {
-            PutDownList();
+            if (isListRaised)
+            {
+                PutDownList();
+            }
+            else
+            {
+                BringUpList();
+            }
+            isListRaised = !isListRaised;
         }
-        else
-        {
-            BringUpList();
-        }
-        isListRaised = !isListRaised;
     }
 
     public void BringUpList()
@@ -128,6 +133,7 @@ public class ToDoListManager : MonoBehaviour
         float duration = 0.4f;
         Vector3 startPos = ToDoListObj.transform.position;
         Vector3 goalPos = startPos;
+        isAnimating = true;
         if (up)
         {
             goalPos += new Vector3(0, 270, 0);
@@ -144,6 +150,7 @@ public class ToDoListManager : MonoBehaviour
             ToDoListObj.transform.position = Vector3.Lerp(startPos, goalPos, percentComplete);
             yield return null;
         }
+        isAnimating = false;
     }
 
 }
