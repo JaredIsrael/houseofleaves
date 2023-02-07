@@ -28,6 +28,7 @@ public class InputManager : MonoBehaviour
         inputActions.Player.MouseY.performed += ctx => mouseInput.y = ctx.ReadValue<float>();
         inputActions.Player.PickUp.performed += ctx => pickUp = ctx.ReadValueAsButton();
         inputActions.Player.PickUp.performed += ctx => PickUpController.Instance.TryPickupItems();
+        inputActions.Player.Objectives.performed += ctx => ToDoListManager.Instance.ToggleList();
         UIActions.Inputs.Pause.performed += ctx => paused = ctx.ReadValueAsButton();
         UIActions.Inputs.Reset.performed += ctx => reset = ctx.ReadValueAsButton();
         UIActions.Inputs.Exit.performed += ctx => exit = ctx.ReadValueAsButton();
