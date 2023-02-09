@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour
     public CharacterController controller;
     public Camera cam;
     private bool canMove = true;
+    [SerializeField]
+    private CameraRotator cr;
 
     public float speed = 0;
 
@@ -36,6 +38,42 @@ public class PlayerController : MonoBehaviour
     public void ReadInput(Vector2 input)
     {
         keyboardInput = input;
+    }
+
+    /*
+
+    These methods are used to move the player smoothly to a point, one has an
+    additional transform the player will look at. You will almost certainly want
+    to call DisableMovement() and LockCamera() before calling this.
+
+     */
+    public void MovePlayerToPointWithLook(Transform playerGoalPosition, Transform cameraLookGoal, float duration)
+    {
+        StartCoroutine(MovePlayerToPositionEnumerator(playerGoalPosition, cameraLookGoal, duration, true));
+    }
+
+    public void MovePlayerToPoint(Transform playerGoalPosition, float duration)
+    {
+        StartCoroutine(MovePlayerToPositionEnumerator(playerGoalPosition, null, duration, false));
+
+    }
+
+    // Use coroutines in order to animate smoothly without having an update method
+    IEnumerator MovePlayerToPositionEnumerator(Transform playerGoalPosition, Transform cameraLookGoal, float duration, bool look)
+    {
+        float elapsedTime = 0f;
+        float percentComplete = 0f;
+        Vector3 startPos = transform.position;
+        Vector3 goalPos = playerGoalPosition.transform.position;
+
+        while (transform.position != goalPos)
+        {
+            elapsedTime += Time.deltaTime;
+            percentComplete = elapsedTime /duration;
+            transform.position = Vector3.Lerp(startPos, goalPos, percentComplete);
+            if(look)cam.transform.LookAt(cameraLookGoal);
+            yield return null;
+        }
     }
 
     /*
@@ -63,6 +101,11 @@ public class PlayerController : MonoBehaviour
     public void EnableCamera()
     {
         cam.gameObject.SetActive(true);
+    }
+
+    public void LockCamera()
+    {
+        cr.DisableCameraMovement();
     }
 
 }

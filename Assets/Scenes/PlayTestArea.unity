@@ -3250,6 +3250,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 1409049519}
   cam: {fileID: 330585545}
+  cr: {fileID: 1409049520}
   speed: 5
 --- !u!143 &1409049519
 CharacterController:
