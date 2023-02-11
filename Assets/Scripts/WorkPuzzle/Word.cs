@@ -2,7 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//try deleting later
+/*
+ * Word class. The purpose of this class is to make the construction of words
+ * more efficient, as well as keep track of their contents. 
+ */
+
+
+//To-do: is this necessary?
 [System.Serializable]
 public class Word
 {
@@ -24,14 +30,13 @@ public class Word
         display.SetText(word);
     }
 
-    /*
-     * Returns the next character/letter of the word being typed.
-     */
+    //Returns the next character/letter of the word being typed.
     public char GetNextChar()
     {
         return word[wordIndex];
     }
 
+    //deletes the chars. from a word as they are being typed
     public void TypeChar()
     {
         wordIndex++;
@@ -39,12 +44,13 @@ public class Word
         display.DeleteChar();
     }
 
+    //Tracks whether a word has been completed using a boolean
     public bool WordComplete()
     {
         bool complete = (wordIndex >= word.Length);
 
         if (complete)
-        {
+        {//deletes word from display
             display.DeleteWord();
         }
 

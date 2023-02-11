@@ -7,6 +7,7 @@ using TMPro;
 public class WordDisplay : MonoBehaviour
 {
     public TextMeshPro text;
+    //speed in which the text will fall down the screen
     private float speed = 10f;
 
     public void SetText(string word)

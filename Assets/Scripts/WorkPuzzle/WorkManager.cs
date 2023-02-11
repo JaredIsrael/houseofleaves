@@ -25,6 +25,10 @@ public class WorkManager : MonoBehaviour
         words.Add(word);
     }
 
+
+    /*
+     * Tracks the characters being typed on words "active" on the screen
+     */
     public void TypeKey(char key)
     {
         if (wordIsActive)

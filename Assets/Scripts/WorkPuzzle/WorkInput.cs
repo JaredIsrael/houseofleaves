@@ -6,7 +6,10 @@ public class WorkInput : MonoBehaviour
 {
     public WorkManager workManager;
 
-    // Update is called once per frame
+    /*
+     * Tracks the characters being clicked on the keyboard using an input string; 
+     * characters are to be passed on to the TypeKey method of WorkManager
+     */
     void Update()
     {
         foreach (char key in Input.inputString)
