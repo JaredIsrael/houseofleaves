@@ -6,8 +6,8 @@ using TMPro;
 
 public class WordDisplay : MonoBehaviour
 {
-    public TextMeshProUGUI text;
-    public float speed = 1f;
+    public TextMeshPro text;
+    public float speed = .015f;
 
     public void SetText(string word)
     {
