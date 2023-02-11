@@ -197,7 +197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39ae831e890394d94999ac49bb46ed68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 4213890739591648386, guid: 35f0fe6c699454c37be62cdb2752b317, type: 3}
+  text: {fileID: 8321281480564874472, guid: 35f0fe6c699454c37be62cdb2752b317, type: 3}
   canvas: {fileID: 661685312}
 --- !u!114 &499988610
 MonoBehaviour:
@@ -302,7 +302,7 @@ RectTransform:
   m_GameObject: {fileID: 661685308}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.025, y: 0.015, z: 0.025}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -480,7 +480,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 8.260135
+  field of view: 43.888775
   orthographic: 0
   orthographic size: 0.9216336
   m_Depth: -1
@@ -506,7 +506,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 730174991}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0, z: -10}
+  m_LocalPosition: {x: 0, y: 5.5, z: -111.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

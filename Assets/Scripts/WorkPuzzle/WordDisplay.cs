@@ -7,7 +7,7 @@ using TMPro;
 public class WordDisplay : MonoBehaviour
 {
     public TextMeshPro text;
-    public float speed = .015f;
+    private float speed = 10f;
 
     public void SetText(string word)
     {

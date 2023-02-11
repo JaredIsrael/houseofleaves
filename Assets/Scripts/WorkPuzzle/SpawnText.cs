@@ -9,7 +9,7 @@ public class SpawnText : MonoBehaviour
 
     public WordDisplay Spawn()
     {
-        Vector3 position = new Vector3(Random.Range(-1f,1f), 1f); 
+        Vector3 position = new Vector3(Random.Range(-50f,50f), 52f); 
 
         GameObject textObject = Instantiate(text, position, Quaternion.identity, canvas);
         WordDisplay display = textObject.GetComponent<WordDisplay>();
