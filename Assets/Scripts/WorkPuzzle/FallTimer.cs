@@ -12,7 +12,7 @@ public class FallTimer : MonoBehaviour
     public WorkManager workManager;
 
     //time between the spawning of each word
-    public float delay = 1.5f;
+    private float delay = 1f;
     private float nextTime = 0f;
 
     private string[] passage;

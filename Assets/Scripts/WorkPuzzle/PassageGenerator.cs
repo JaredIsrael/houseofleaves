@@ -13,8 +13,6 @@ using UnityEngine;
  * contains a method to choose the next word up to type. This is done by keeping
  * track of an index, which is to be reset after the end of the passage has been
  * reached.
- * 
- * Author: Amanda Fleischer
  */
 
 public class PassageGenerator : MonoBehaviour
@@ -22,16 +20,16 @@ public class PassageGenerator : MonoBehaviour
     private static int currentIndex = 0;
 
     private static string[] passage1 = { "According", "to", "all", "known", "laws",
-        "of", "aviation", ",", "there", "is", "no", "way", "that", "a", "bee",
-        "should", "be", "able", "to", "fly", "." };
+        "of", "aviation,", "there", "is", "no", "way", "that", "a", "bee",
+        "should", "be", "able", "to", "fly." };
 
-    private static string[] passage2 = { "Hello", ",", "this", "is", "a", "test",
-        ".", "You", "need", "to", "do", "some", "very", "boring", "work", ".",
-        "Make", "sure", "to", "complete", "your", "to-do", "list", "!" };
+    private static string[] passage2 = { "Hello,", "this", "is", "a", "test.",
+        "You", "need", "to", "do", "some", "very", "boring", "work.",
+        "Make", "sure", "to", "complete", "your", "to-do", "list!" };
 
     private static string[] passage3 = { "My", "name", "is", "Ayumu", "and",
-        "this", "is", "my", "game", "Dream", "Walker", ".", "You", "will",
-        "see", "my", "many", "nightmares", "!" };
+        "this", "is", "my", "game", "Dream", "Walker.", "You", "will",
+        "see", "my", "many", "nightmares!" };
 
     private static string[][] passageList = { passage1, passage2, passage3 };
 
@@ -62,7 +60,8 @@ public class PassageGenerator : MonoBehaviour
         }
         else
         {
-            return "DEAD";
+            //To-do: decide what to do once a full passage has been completed.
+            return "bLaH";
         }
     }
 }

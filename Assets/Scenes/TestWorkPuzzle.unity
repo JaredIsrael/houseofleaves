@@ -212,7 +212,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   workManager: {fileID: 499988607}
-  delay: 1.5
 --- !u!1 &661685308
 GameObject:
   m_ObjectHideFlags: 0
