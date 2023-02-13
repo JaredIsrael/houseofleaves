@@ -15,16 +15,20 @@ public class FallTimer : MonoBehaviour
     private float delay = 1f;
     private float nextTime = 0f;
 
+    //boolean tracks whether or not the user has lost the game 
+    public static bool stop;
+
     private string[] passage;
 
     private void Start()
     {
+        stop = false;
         passage = PassageGenerator.GetRandomPassage();
     }
 
     private void Update()
     {
-        if (Time.time >= nextTime)
+        if (Time.time >= nextTime && !stop)
         {
             workManager.NewWord(passage);
             nextTime = Time.time + delay;

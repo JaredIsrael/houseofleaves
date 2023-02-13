@@ -28,6 +28,19 @@ public class WordDisplay : MonoBehaviour
 
     private void FixedUpdate()
     {
-        transform.Translate(0f, -speed*Time.deltaTime, 0f);
+        if (transform.position.y > -45)
+        {
+            transform.Translate(0f, -speed * Time.deltaTime, 0f);
+        } else
+        {
+            GameObject[] words = GameObject.FindGameObjectsWithTag("Word");
+            //sets the boolean in fall timer to true, as the words have run off the screen
+            FallTimer.stop = true;
+            foreach (GameObject word in words)
+            {
+                Destroy(word);
+            }
+        }
+        
     }
 }
