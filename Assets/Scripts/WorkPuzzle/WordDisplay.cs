@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class WordDisplay : MonoBehaviour
 {
     public TextMeshPro text;
     //speed in which the text will fall down the screen
     private float speed = 10f;
+
+    private TextCollider textCollider;
 
     public void SetText(string word)
     {
@@ -40,6 +43,9 @@ public class WordDisplay : MonoBehaviour
             {
                 Destroy(word);
             }
+            //textCollider.LostGame();
+            PassageGenerator.currentIndex = 0;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
         
     }

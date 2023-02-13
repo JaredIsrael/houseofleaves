@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2592733018016620320}
   - component: {fileID: 1013015108084625455}
   - component: {fileID: 6888902990136176521}
+  - component: {fileID: -8430581486749432991}
   m_Layer: 5
   m_Name: LoseText
   m_TagString: Untagged
@@ -135,3 +136,16 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &-8430581486749432991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2080468625805974394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 295ad1789a1d34c6f8b38956485b2c87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 6888902990136176521}

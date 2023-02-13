@@ -17,7 +17,7 @@ using UnityEngine;
 
 public class PassageGenerator : MonoBehaviour
 {
-    private static int currentIndex = 0;
+    public static int currentIndex = 0;
 
     private static string[] passage1 = { "According", "to", "all", "known", "laws",
         "of", "aviation,", "there", "is", "no", "way", "that", "a", "bee",
