@@ -10,17 +10,22 @@ public class CameraRotator : MonoBehaviour
     private float xAxis, yAxis;
     private float xClamp = 85f;
     private float xRotation = 0f;
+    private bool isDisabled = false;
 
     private void Update()
     {
-        transform.Rotate(Vector3.up, xAxis * Time.deltaTime);
 
-        xRotation -= yAxis;
-        xRotation = Mathf.Clamp(xRotation, -xClamp, xClamp);
-        Vector3 rotation = transform.eulerAngles;
-        rotation.x = xRotation;
+        if (!isDisabled)
+        {
+            transform.Rotate(Vector3.up, xAxis * Time.deltaTime);
 
-        mainCam.eulerAngles = rotation;
+            xRotation -= yAxis;
+            xRotation = Mathf.Clamp(xRotation, -xClamp, xClamp);
+            Vector3 rotation = transform.eulerAngles;
+            rotation.x = xRotation;
+
+            mainCam.eulerAngles = rotation;
+        }
 
     }
 
@@ -28,5 +33,10 @@ public class CameraRotator : MonoBehaviour
     {
         xAxis = mouseInput.x * sensitivityX;
         yAxis = mouseInput.y * sensitivityY;
+    }
+
+    public void DisableCameraMovement()
+    {
+        isDisabled = true;
     }
 }
