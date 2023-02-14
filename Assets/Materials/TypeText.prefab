@@ -187,6 +187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 5352789977371084534}
+  loseText: {fileID: 809961621380351982, guid: 131cba06f290a4581b9d7183d30728d7, type: 3}
 --- !u!54 &-3208053492645269127
 Rigidbody:
   m_ObjectHideFlags: 0

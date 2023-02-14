@@ -9,9 +9,16 @@ public class SpawnText : MonoBehaviour
 
     public WordDisplay Spawn()
     {
-        Vector3 position = new Vector3(Random.Range(-50f,50f), 52f); 
+        GameObject textObject;
+        Vector3 position = new Vector3(Random.Range(-50f,50f), 52f);
 
-        GameObject textObject = Instantiate(text, position, Quaternion.identity, canvas);
+        if (PassageGenerator.level > 1)
+        { //TO-DO: create other level ideas.
+            textObject = Instantiate(text, position, Quaternion.Euler(0,180,0), canvas);
+        } else
+        {
+            textObject = Instantiate(text, position, Quaternion.identity, canvas);
+        }
         WordDisplay display = textObject.GetComponent<WordDisplay>();
 
         return display;

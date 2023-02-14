@@ -34,5 +34,10 @@ public class FallTimer : MonoBehaviour
             nextTime = Time.time + delay;
             delay *= .99f;
         }
+        if (PassageGenerator.levelUp)
+        { //player has completed level, choose another passage to type
+            passage = PassageGenerator.GetRandomPassage();
+            PassageGenerator.levelUp = false;
+        }
     }
 }
