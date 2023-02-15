@@ -25,16 +25,25 @@ public class PlayerController : MonoBehaviour
     public bool cameraHeightChanged = false;
 
     private Vector2 keyboardInput;
+    private float gravity;
 
     void Update()
     {
+        gravity -= 9.81f;
+        if (controller.isGrounded)
+        {
+            gravity = 0;
+        }
+        
         Vector3 movement3D = (transform.right * keyboardInput.x + transform.forward * keyboardInput.y) * speed;
+        movement3D.y = gravity;
+
         if (!canMove)
         {
             movement3D = Vector3.zero;
         }
         controller.Move(movement3D * Time.deltaTime);
-
+        
     }
 
     public void ReadInput(Vector2 input)
