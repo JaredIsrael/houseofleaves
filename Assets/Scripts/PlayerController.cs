@@ -5,10 +5,9 @@ using UnityEngine.InputSystem;
 
 /*
 
-Purpose: This class handles player movement for controller input, disabling movement,
-and camera management
+Purpose: This class handles player movement for given input
 
-Author: 
+Author: Cade Ciccone
  
  */
 
@@ -37,8 +36,8 @@ public class PlayerController : MonoBehaviour
         
         Vector3 movement3D = (transform.right * keyboardInput.x + transform.forward * keyboardInput.y) * speed;
         movement3D.y = gravity;
-
-        if (!canMove)
+        // StopMovement and DisableMovement do the same thing, lets use the same one
+        if (!canMove || !controller.enabled)
         {
             movement3D = Vector3.zero;
         }
@@ -151,5 +150,16 @@ public class PlayerController : MonoBehaviour
     public void LockCamera()
     {
         cr.DisableCameraMovement();
+    }
+    
+    //Needs to be deprecated, DisableMovmenet does the same thing, change all refs to this
+    public void StopMovement()
+    {
+        controller.enabled = false;
+    }
+
+    public void StartMovement()
+    {
+        controller.enabled = true;
     }
 }
