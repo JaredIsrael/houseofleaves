@@ -80,30 +80,29 @@ public class PlayerController : MonoBehaviour
     to call DisableMovement() and LockCamera() before calling this.
 
      */
-    public void MovePlayerToPointWithLook(Transform playerGoalPosition, Transform cameraLookGoal, float duration)
+    public void MovePlayerToPointWithLook(Vector3 playerGoalPosition, Transform cameraLookGoal, float duration)
     {
         StartCoroutine(MovePlayerToPositionEnumerator(playerGoalPosition, cameraLookGoal, duration, true));
     }
 
-    public void MovePlayerToPoint(Transform playerGoalPosition, float duration)
+    public void MovePlayerToPoint(Vector3 playerGoalPosition, float duration)
     {
         StartCoroutine(MovePlayerToPositionEnumerator(playerGoalPosition, null, duration, false));
 
     }
 
     // Use coroutines in order to animate smoothly without having an update method
-    IEnumerator MovePlayerToPositionEnumerator(Transform playerGoalPosition, Transform cameraLookGoal, float duration, bool look)
+    IEnumerator MovePlayerToPositionEnumerator(Vector3 playerGoalPosition, Transform cameraLookGoal, float duration, bool look)
     {
         float elapsedTime = 0f;
         float percentComplete = 0f;
         Vector3 startPos = transform.position;
-        Vector3 goalPos = playerGoalPosition.transform.position;
 
-        while (transform.position != goalPos)
+        while (transform.position != playerGoalPosition)
         {
             elapsedTime += Time.deltaTime;
             percentComplete = elapsedTime /duration;
-            transform.position = Vector3.Lerp(startPos, goalPos, percentComplete);
+            transform.position = Vector3.Lerp(startPos, playerGoalPosition, percentComplete);
             if(look)cam.transform.LookAt(cameraLookGoal);
             yield return null;
         }
