@@ -20,7 +20,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private CameraRotator cr;
 
-    public float speed = 0;
+    public float speed = 7f;
+    public bool crouching = false;
+    public bool cameraHeightChanged = false;
 
     private Vector2 keyboardInput;
 
@@ -40,6 +42,37 @@ public class PlayerController : MonoBehaviour
         keyboardInput = input;
     }
 
+    public void ReadCrouchInput(bool crouchInput)
+    {
+        crouching = crouchInput;
+
+        if (crouching)
+        {
+            speed = 3.5f;
+            controller.height = 1f;
+
+            if(!cameraHeightChanged)
+            {
+                cam.transform.position = cam.transform.position + new Vector3(0, -1, 0);
+                cameraHeightChanged = true;
+            }
+        }
+        else
+        {
+            if(!Physics.Raycast(cam.transform.position, Vector3.up, 1f))
+            {
+                speed = 7f;
+                controller.height = 2f;
+
+                if (cameraHeightChanged)
+                {
+                    cam.transform.position = cam.transform.position + new Vector3(0, 1, 0);
+                    cameraHeightChanged = false;
+                }
+            }
+        }
+    }
+
     /*
 
     These methods are used to move the player smoothly to a point, one has an
@@ -49,28 +82,22 @@ public class PlayerController : MonoBehaviour
      */
     public void MovePlayerToPointWithLook(Transform playerGoalPosition, Transform cameraLookGoal, float duration)
     {
-        StartCoroutine(MovePlayerToPositionEnumerator(playerGoalPosition.position, cameraLookGoal, duration, true));
+        StartCoroutine(MovePlayerToPositionEnumerator(playerGoalPosition, cameraLookGoal, duration, true));
     }
 
     public void MovePlayerToPoint(Transform playerGoalPosition, float duration)
-    {
-        StartCoroutine(MovePlayerToPositionEnumerator(playerGoalPosition.position, null, duration, false));
-
-    }
-    // Override for just a vector
-    public void MovePlayerToPoint(Vector3 playerGoalPosition, float duration)
     {
         StartCoroutine(MovePlayerToPositionEnumerator(playerGoalPosition, null, duration, false));
 
     }
 
     // Use coroutines in order to animate smoothly without having an update method
-    IEnumerator MovePlayerToPositionEnumerator(Vector3 playerGoalPosition, Transform cameraLookGoal, float duration, bool look)
+    IEnumerator MovePlayerToPositionEnumerator(Transform playerGoalPosition, Transform cameraLookGoal, float duration, bool look)
     {
         float elapsedTime = 0f;
         float percentComplete = 0f;
         Vector3 startPos = transform.position;
-        Vector3 goalPos = playerGoalPosition;
+        Vector3 goalPos = playerGoalPosition.transform.position;
 
         while (transform.position != goalPos)
         {
@@ -98,6 +125,10 @@ public class PlayerController : MonoBehaviour
     {
         canMove = false;
     }
+    public void UnLockCamera()
+    {
+        cr.EnableCameraMovment();
+    }
 
     public void DisableCamera()
     {
@@ -113,10 +144,4 @@ public class PlayerController : MonoBehaviour
     {
         cr.DisableCameraMovement();
     }
-
-    public void UnLockCamera()
-    {
-        cr.EnableCameraMovment();
-    }
-
 }
