@@ -49,22 +49,28 @@ public class PlayerController : MonoBehaviour
      */
     public void MovePlayerToPointWithLook(Transform playerGoalPosition, Transform cameraLookGoal, float duration)
     {
-        StartCoroutine(MovePlayerToPositionEnumerator(playerGoalPosition, cameraLookGoal, duration, true));
+        StartCoroutine(MovePlayerToPositionEnumerator(playerGoalPosition.position, cameraLookGoal, duration, true));
     }
 
     public void MovePlayerToPoint(Transform playerGoalPosition, float duration)
+    {
+        StartCoroutine(MovePlayerToPositionEnumerator(playerGoalPosition.position, null, duration, false));
+
+    }
+    // Override for just a vector
+    public void MovePlayerToPoint(Vector3 playerGoalPosition, float duration)
     {
         StartCoroutine(MovePlayerToPositionEnumerator(playerGoalPosition, null, duration, false));
 
     }
 
     // Use coroutines in order to animate smoothly without having an update method
-    IEnumerator MovePlayerToPositionEnumerator(Transform playerGoalPosition, Transform cameraLookGoal, float duration, bool look)
+    IEnumerator MovePlayerToPositionEnumerator(Vector3 playerGoalPosition, Transform cameraLookGoal, float duration, bool look)
     {
         float elapsedTime = 0f;
         float percentComplete = 0f;
         Vector3 startPos = transform.position;
-        Vector3 goalPos = playerGoalPosition.transform.position;
+        Vector3 goalPos = playerGoalPosition;
 
         while (transform.position != goalPos)
         {
@@ -106,6 +112,11 @@ public class PlayerController : MonoBehaviour
     public void LockCamera()
     {
         cr.DisableCameraMovement();
+    }
+
+    public void UnLockCamera()
+    {
+        cr.EnableCameraMovment();
     }
 
 }
