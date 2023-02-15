@@ -33,18 +33,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "PickUp",
-                    "type": "PassThrough",
-                    "id": "d104cce5-db2f-42ef-9741-83db091c4a51",
+                    "name": "Objectives",
+                    "type": "Button",
+                    "id": "6a0101db-dfcd-45ca-bcaa-9aca617235d5",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Objectives",
+                    "name": "PickUp",
                     "type": "Button",
-                    "id": "6a0101db-dfcd-45ca-bcaa-9aca617235d5",
+                    "id": "3d53b0a2-248c-41dc-b01b-943f0f6d74a6",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -140,23 +140,23 @@
                 },
                 {
                     "name": "",
-                    "id": "cf2ed08d-6fb6-4701-b585-30ac09118e68",
-                    "path": "<Keyboard>/f",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "PickUp",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "3f59cff7-b3ce-4542-b69f-317bd7224b65",
                     "path": "<Keyboard>/tab",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Objectives",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d3c2a366-0029-4eb7-b178-5891bbe6940a",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PickUp",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

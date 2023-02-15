@@ -125,6 +125,10 @@ public class PlayerController : MonoBehaviour
     {
         canMove = false;
     }
+    public void UnLockCamera()
+    {
+        cr.EnableCameraMovment();
+    }
 
     public void DisableCamera()
     {

@@ -32,6 +32,12 @@ public class PuzzleTimer : MonoBehaviour
         StartCoroutine(BeginCountDown());
     }
 
+    public void DisableTimer()
+    {
+        StopAllCoroutines();
+        bar.transform.parent.gameObject.SetActive(false);
+    }
+
     IEnumerator BeginCountDown()
     {
         float currentTime = Time.time;
