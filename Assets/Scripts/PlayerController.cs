@@ -20,7 +20,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private CameraRotator cr;
 
-    public float speed = 0;
+    public float speed = 7f;
+    public bool crouching = false;
+    public bool cameraHeightChanged = false;
 
     private Vector2 keyboardInput;
 
@@ -38,6 +40,37 @@ public class PlayerController : MonoBehaviour
     public void ReadInput(Vector2 input)
     {
         keyboardInput = input;
+    }
+
+    public void ReadCrouchInput(bool crouchInput)
+    {
+        crouching = crouchInput;
+
+        if (crouching)
+        {
+            speed = 3.5f;
+            controller.height = 1f;
+
+            if(!cameraHeightChanged)
+            {
+                cam.transform.position = cam.transform.position + new Vector3(0, -1, 0);
+                cameraHeightChanged = true;
+            }
+        }
+        else
+        {
+            if(!Physics.Raycast(cam.transform.position, Vector3.up, 1f))
+            {
+                speed = 7f;
+                controller.height = 2f;
+
+                if (cameraHeightChanged)
+                {
+                    cam.transform.position = cam.transform.position + new Vector3(0, 1, 0);
+                    cameraHeightChanged = false;
+                }
+            }
+        }
     }
 
     /*
@@ -107,5 +140,4 @@ public class PlayerController : MonoBehaviour
     {
         cr.DisableCameraMovement();
     }
-
 }
