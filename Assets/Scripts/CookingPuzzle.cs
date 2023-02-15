@@ -37,6 +37,7 @@ public class CookingPuzzle : CompletableTask
         ObjectivesManager.Instance.AddObjective(this);
         interactable.InteractedWith.AddListener(BeginPuzzle);
         pt.TimeRanOutEvent.AddListener(TimeRunOut);
+        TaskCompletedEvent = new UnityEngine.Events.UnityEvent<CompletableTask>();
     }
 
     private void BeginPuzzle()
