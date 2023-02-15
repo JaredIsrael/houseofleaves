@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 
 Purpose: This class handles player movement for given input
 
-Author: 
+Author: Cade Ciccone
  
  */
 
@@ -24,11 +24,22 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 movement3D = (transform.right * keyboardInput.x + transform.forward * keyboardInput.y) * speed;
 
-        controller.Move(movement3D * Time.deltaTime);
+        if (controller.enabled)
+            controller.Move(movement3D * Time.deltaTime);
     }
 
     public void ReadInput(Vector2 input)
     {
         keyboardInput = input;
+    }
+
+    public void StopMovement()
+    {
+        controller.enabled = false;
+    }
+
+    public void StartMovement()
+    {
+        controller.enabled = true;
     }
 }
