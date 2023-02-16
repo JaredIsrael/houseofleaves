@@ -60,7 +60,7 @@ public partial class @UIInputs : IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""a4ad51c5-a7ca-4093-a6a6-78d782d1a795"",
                     ""path"": ""<Keyboard>/escape"",
-                    ""interactions"": """",
+                    ""interactions"": ""Press(behavior=2)"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Pause"",

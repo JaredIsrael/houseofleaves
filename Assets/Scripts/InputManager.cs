@@ -13,6 +13,7 @@ public class InputManager : MonoBehaviour
     private Vector2 keyboardInput;
     private Vector2 mouseInput;
     private bool crouch;
+    private bool flashlight;
     private bool pickUp;
     private bool paused;
     private bool reset;
@@ -28,6 +29,7 @@ public class InputManager : MonoBehaviour
         inputActions.Player.MouseX.performed += ctx => mouseInput.x = ctx.ReadValue<float>();
         inputActions.Player.MouseY.performed += ctx => mouseInput.y = ctx.ReadValue<float>();
         inputActions.Player.Crouch.performed += ctx => crouch = ctx.ReadValueAsButton();
+        inputActions.Player.Flashlight.performed += ctx => flashlight = ctx.ReadValueAsButton();
         inputActions.Player.PickUp.performed += ctx => pickUp = ctx.ReadValueAsButton();
         inputActions.Player.PickUp.performed += ctx => PickUpController.Instance.TryPickupItems();
         inputActions.Player.Objectives.performed += ctx => ToDoListManager.Instance.ToggleList();
@@ -40,6 +42,7 @@ public class InputManager : MonoBehaviour
     {
         playerController.ReadInput(keyboardInput);
         playerController.ReadCrouchInput(crouch);
+        playerController.ReadFlashlightInput(flashlight);
         rotator.ReadInput(mouseInput);
         gameStateManager.ReadPauseInput(paused, exit);
         gameStateManager.ReadResetInput(reset);

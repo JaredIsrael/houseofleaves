@@ -80,6 +80,15 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": ""Press(behavior=2)"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Flashlight"",
+                    ""type"": ""Button"",
+                    ""id"": ""0b56ba81-d4ed-4bec-b7c7-ecd80d0ee342"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=2)"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -192,6 +201,17 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""action"": ""Crouch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""66965799-2739-4c6e-8e34-2136ccdc2ff6"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Flashlight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -206,6 +226,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         m_Player_PickUp = m_Player.FindAction("PickUp", throwIfNotFound: true);
         m_Player_Objectives = m_Player.FindAction("Objectives", throwIfNotFound: true);
         m_Player_Crouch = m_Player.FindAction("Crouch", throwIfNotFound: true);
+        m_Player_Flashlight = m_Player.FindAction("Flashlight", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -271,6 +292,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_PickUp;
     private readonly InputAction m_Player_Objectives;
     private readonly InputAction m_Player_Crouch;
+    private readonly InputAction m_Player_Flashlight;
     public struct PlayerActions
     {
         private @InputActions m_Wrapper;
@@ -281,6 +303,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         public InputAction @PickUp => m_Wrapper.m_Player_PickUp;
         public InputAction @Objectives => m_Wrapper.m_Player_Objectives;
         public InputAction @Crouch => m_Wrapper.m_Player_Crouch;
+        public InputAction @Flashlight => m_Wrapper.m_Player_Flashlight;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -308,6 +331,9 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 @Crouch.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCrouch;
                 @Crouch.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCrouch;
                 @Crouch.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCrouch;
+                @Flashlight.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFlashlight;
+                @Flashlight.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFlashlight;
+                @Flashlight.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFlashlight;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -330,6 +356,9 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 @Crouch.started += instance.OnCrouch;
                 @Crouch.performed += instance.OnCrouch;
                 @Crouch.canceled += instance.OnCrouch;
+                @Flashlight.started += instance.OnFlashlight;
+                @Flashlight.performed += instance.OnFlashlight;
+                @Flashlight.canceled += instance.OnFlashlight;
             }
         }
     }
@@ -342,5 +371,6 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         void OnPickUp(InputAction.CallbackContext context);
         void OnObjectives(InputAction.CallbackContext context);
         void OnCrouch(InputAction.CallbackContext context);
+        void OnFlashlight(InputAction.CallbackContext context);
     }
 }

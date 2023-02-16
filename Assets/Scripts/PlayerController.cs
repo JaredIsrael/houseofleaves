@@ -17,14 +17,23 @@ public class PlayerController : MonoBehaviour
     public CharacterController controller;
     public Camera cam;
     private bool canMove = true;
-    [SerializeField]
-    private CameraRotator cr;
+    [SerializeField] private CameraRotator cr;
 
     public float speed = 7f;
     public bool crouching = false;
     public bool cameraHeightChanged = false;
 
+    public bool hasFlashlight = false;
+    public bool usingFlashlight = false;
+    public bool previousFlashlightInput = false;
+    [SerializeField] private GameObject flashlight;
+
     private Vector2 keyboardInput;
+
+    private void Awake()
+    {
+        flashlight.SetActive(false);
+    }
 
     void Update()
     {
@@ -71,6 +80,20 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void ReadFlashlightInput(bool flashlightInput)
+    {
+        if(hasFlashlight)
+        {
+            if(!previousFlashlightInput && flashlightInput)
+            {
+                usingFlashlight = !usingFlashlight;
+                flashlight.SetActive(usingFlashlight);
+            }
+        }
+
+        previousFlashlightInput = flashlightInput;
     }
 
     /*
@@ -139,5 +162,10 @@ public class PlayerController : MonoBehaviour
     public void LockCamera()
     {
         cr.DisableCameraMovement();
+    }
+
+    public void UnlockCamera()
+    {
+        cr.EnableCameraMovement();
     }
 }
