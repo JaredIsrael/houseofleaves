@@ -40,7 +40,7 @@ public class CameraRotator : MonoBehaviour
         isDisabled = true;
     }
 
-    public void EnableCameraMovement()
+    public void EnableCameraMovment()
     {
         isDisabled = false;
     }

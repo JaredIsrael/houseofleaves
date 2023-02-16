@@ -5,10 +5,9 @@ using UnityEngine.InputSystem;
 
 /*
 
-Purpose: This class handles player movement for controller input, disabling movement,
-and camera management
+Purpose: This class handles player movement for given input
 
-Author: 
+Author: Cade Ciccone
  
  */
 
@@ -29,6 +28,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject flashlight;
 
     private Vector2 keyboardInput;
+    private float gravity;
 
     private void Awake()
     {
@@ -37,13 +37,21 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        gravity -= 9.81f;
+        if (controller.isGrounded)
+        {
+            gravity = 0;
+        }
+        
         Vector3 movement3D = (transform.right * keyboardInput.x + transform.forward * keyboardInput.y) * speed;
-        if (!canMove)
+        movement3D.y = gravity;
+        // StopMovement and DisableMovement do the same thing, lets use the same one
+        if (!canMove || !controller.enabled)
         {
             movement3D = Vector3.zero;
         }
         controller.Move(movement3D * Time.deltaTime);
-
+        
     }
 
     public void ReadInput(Vector2 input)
@@ -103,30 +111,29 @@ public class PlayerController : MonoBehaviour
     to call DisableMovement() and LockCamera() before calling this.
 
      */
-    public void MovePlayerToPointWithLook(Transform playerGoalPosition, Transform cameraLookGoal, float duration)
+    public void MovePlayerToPointWithLook(Vector3 playerGoalPosition, Transform cameraLookGoal, float duration)
     {
         StartCoroutine(MovePlayerToPositionEnumerator(playerGoalPosition, cameraLookGoal, duration, true));
     }
 
-    public void MovePlayerToPoint(Transform playerGoalPosition, float duration)
+    public void MovePlayerToPoint(Vector3 playerGoalPosition, float duration)
     {
         StartCoroutine(MovePlayerToPositionEnumerator(playerGoalPosition, null, duration, false));
 
     }
 
     // Use coroutines in order to animate smoothly without having an update method
-    IEnumerator MovePlayerToPositionEnumerator(Transform playerGoalPosition, Transform cameraLookGoal, float duration, bool look)
+    IEnumerator MovePlayerToPositionEnumerator(Vector3 playerGoalPosition, Transform cameraLookGoal, float duration, bool look)
     {
         float elapsedTime = 0f;
         float percentComplete = 0f;
         Vector3 startPos = transform.position;
-        Vector3 goalPos = playerGoalPosition.transform.position;
 
-        while (transform.position != goalPos)
+        while (transform.position != playerGoalPosition)
         {
             elapsedTime += Time.deltaTime;
             percentComplete = elapsedTime /duration;
-            transform.position = Vector3.Lerp(startPos, goalPos, percentComplete);
+            transform.position = Vector3.Lerp(startPos, playerGoalPosition, percentComplete);
             if(look)cam.transform.LookAt(cameraLookGoal);
             yield return null;
         }
@@ -148,6 +155,10 @@ public class PlayerController : MonoBehaviour
     {
         canMove = false;
     }
+    public void UnLockCamera()
+    {
+        cr.EnableCameraMovment();
+    }
 
     public void DisableCamera()
     {
@@ -167,5 +178,16 @@ public class PlayerController : MonoBehaviour
     public void UnlockCamera()
     {
         cr.EnableCameraMovement();
+    }
+    
+    //Needs to be deprecated, DisableMovmenet does the same thing, change all refs to this
+    public void StopMovement()
+    {
+        controller.enabled = false;
+    }
+
+    public void StartMovement()
+    {
+        controller.enabled = true;
     }
 }
