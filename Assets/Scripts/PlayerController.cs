@@ -5,10 +5,9 @@ using UnityEngine.InputSystem;
 
 /*
 
-Purpose: This class handles player movement for controller input, disabling movement,
-and camera management
+Purpose: This class handles player movement for given input
 
-Author: 
+Author: Cade Ciccone
  
  */
 
@@ -20,24 +19,66 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private CameraRotator cr;
 
-    public float speed = 0;
+    public float speed = 7f;
+    public bool crouching = false;
+    public bool cameraHeightChanged = false;
 
     private Vector2 keyboardInput;
+    private float gravity;
 
     void Update()
     {
+        gravity -= 9.81f;
+        if (controller.isGrounded)
+        {
+            gravity = 0;
+        }
+        
         Vector3 movement3D = (transform.right * keyboardInput.x + transform.forward * keyboardInput.y) * speed;
-        if (!canMove)
+        movement3D.y = gravity;
+        // StopMovement and DisableMovement do the same thing, lets use the same one
+        if (!canMove || !controller.enabled)
         {
             movement3D = Vector3.zero;
         }
         controller.Move(movement3D * Time.deltaTime);
-
+        
     }
 
     public void ReadInput(Vector2 input)
     {
         keyboardInput = input;
+    }
+
+    public void ReadCrouchInput(bool crouchInput)
+    {
+        crouching = crouchInput;
+
+        if (crouching)
+        {
+            speed = 3.5f;
+            controller.height = 1f;
+
+            if(!cameraHeightChanged)
+            {
+                cam.transform.position = cam.transform.position + new Vector3(0, -1, 0);
+                cameraHeightChanged = true;
+            }
+        }
+        else
+        {
+            if(!Physics.Raycast(cam.transform.position, Vector3.up, 1f))
+            {
+                speed = 7f;
+                controller.height = 2f;
+
+                if (cameraHeightChanged)
+                {
+                    cam.transform.position = cam.transform.position + new Vector3(0, 1, 0);
+                    cameraHeightChanged = false;
+                }
+            }
+        }
     }
 
     /*
@@ -47,17 +88,11 @@ public class PlayerController : MonoBehaviour
     to call DisableMovement() and LockCamera() before calling this.
 
      */
-    public void MovePlayerToPointWithLook(Transform playerGoalPosition, Transform cameraLookGoal, float duration)
+    public void MovePlayerToPointWithLook(Vector3 playerGoalPosition, Transform cameraLookGoal, float duration)
     {
-        StartCoroutine(MovePlayerToPositionEnumerator(playerGoalPosition.position, cameraLookGoal, duration, true));
+        StartCoroutine(MovePlayerToPositionEnumerator(playerGoalPosition, cameraLookGoal, duration, true));
     }
 
-    public void MovePlayerToPoint(Transform playerGoalPosition, float duration)
-    {
-        StartCoroutine(MovePlayerToPositionEnumerator(playerGoalPosition.position, null, duration, false));
-
-    }
-    // Override for just a vector
     public void MovePlayerToPoint(Vector3 playerGoalPosition, float duration)
     {
         StartCoroutine(MovePlayerToPositionEnumerator(playerGoalPosition, null, duration, false));
@@ -70,13 +105,12 @@ public class PlayerController : MonoBehaviour
         float elapsedTime = 0f;
         float percentComplete = 0f;
         Vector3 startPos = transform.position;
-        Vector3 goalPos = playerGoalPosition;
 
-        while (transform.position != goalPos)
+        while (transform.position != playerGoalPosition)
         {
             elapsedTime += Time.deltaTime;
             percentComplete = elapsedTime /duration;
-            transform.position = Vector3.Lerp(startPos, goalPos, percentComplete);
+            transform.position = Vector3.Lerp(startPos, playerGoalPosition, percentComplete);
             if(look)cam.transform.LookAt(cameraLookGoal);
             yield return null;
         }
@@ -98,6 +132,10 @@ public class PlayerController : MonoBehaviour
     {
         canMove = false;
     }
+    public void UnLockCamera()
+    {
+        cr.EnableCameraMovment();
+    }
 
     public void DisableCamera()
     {
@@ -113,10 +151,15 @@ public class PlayerController : MonoBehaviour
     {
         cr.DisableCameraMovement();
     }
-
-    public void UnLockCamera()
+    
+    //Needs to be deprecated, DisableMovmenet does the same thing, change all refs to this
+    public void StopMovement()
     {
-        cr.EnableCameraMovment();
+        controller.enabled = false;
     }
 
+    public void StartMovement()
+    {
+        controller.enabled = true;
+    }
 }

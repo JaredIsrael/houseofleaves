@@ -47,7 +47,7 @@ public class CookingPuzzle : CompletableTask
         initialPlayerPosition = pc.gameObject.transform.position;
         pc.LockCamera();
         pc.DisableMovement();
-        pc.MovePlayerToPointWithLook(playerPosition, lookPosition, TRANSITION_DURATION);
+        pc.MovePlayerToPointWithLook(playerPosition.position, lookPosition, TRANSITION_DURATION);
         StartCoroutine(TrackKnife());
     }
 

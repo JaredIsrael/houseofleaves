@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PickUp
   - Table
+  - Word
   layers:
   - Default
   - TransparentFX

@@ -35,7 +35,7 @@ public class LaundryPuzzleInteractable : PickUpSphere
             pc.DisableMovement();
             pc.LockCamera();
             //StartCoroutine(MovePlayerToPosition(pc.gameObject, pc.cam));
-            pc.MovePlayerToPointWithLook(puzzlePlayerPos, puzzleCameraPos, TRANSITION_DURATION);
+            pc.MovePlayerToPointWithLook(puzzlePlayerPos.position, puzzleCameraPos, TRANSITION_DURATION);
             this.InteractedWith.Invoke();
         }
 
