@@ -36,6 +36,9 @@ public class FallTimer : MonoBehaviour
             delay *= .99f;
         }
         */
+
+        //TO-DO: one passage per session. Instead, level up, then game is complete.
+        //Store the current level so the player can start next level on the next day. 
         if (PassageGenerator.levelUp)
         { //player has completed level, choose another passage to type
             passage = PassageGenerator.GetRandomPassage();
@@ -43,19 +46,14 @@ public class FallTimer : MonoBehaviour
         }
     }
 
-    public void StartWork()
-    {
-        StartCoroutine(GenerateWord());
-    }
-
     public IEnumerator GenerateWord()
     {
-        if (Time.time >= nextTime && !stop)
+        while (Time.time >= nextTime)
         {
             workManager.NewWord(passage);
             nextTime = Time.time + delay;
             delay *= .99f;
+            yield return null;
         }
-        yield return null;
     }
 }

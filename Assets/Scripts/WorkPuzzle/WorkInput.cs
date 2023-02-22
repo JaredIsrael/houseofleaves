@@ -12,9 +12,20 @@ public class WorkInput : MonoBehaviour
      */
     void Update()
     {
+        /*foreach (char key in Input.inputString)
+        {
+            workManager.TypeKey(key);
+        }*/
+    }
+
+    public IEnumerator KeyTracking()
+    {
+        //is this called every frame, like update?
+
         foreach (char key in Input.inputString)
         {
             workManager.TypeKey(key);
+            yield return null;
         }
     }
 }
