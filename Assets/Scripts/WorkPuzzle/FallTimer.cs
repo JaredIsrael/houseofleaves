@@ -28,16 +28,34 @@ public class FallTimer : MonoBehaviour
 
     private void Update()
     {
+        /*
         if (Time.time >= nextTime && !stop)
         {
             workManager.NewWord(passage);
             nextTime = Time.time + delay;
             delay *= .99f;
         }
+        */
         if (PassageGenerator.levelUp)
         { //player has completed level, choose another passage to type
             passage = PassageGenerator.GetRandomPassage();
             PassageGenerator.levelUp = false;
         }
+    }
+
+    public void StartWork()
+    {
+        StartCoroutine(GenerateWord());
+    }
+
+    public IEnumerator GenerateWord()
+    {
+        if (Time.time >= nextTime && !stop)
+        {
+            workManager.NewWord(passage);
+            nextTime = Time.time + delay;
+            delay *= .99f;
+        }
+        yield return null;
     }
 }
