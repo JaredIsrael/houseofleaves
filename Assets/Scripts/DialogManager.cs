@@ -116,7 +116,7 @@ public class DialogManager : MonoBehaviour
 
     }
 
-    public void SlowDisplayBinaryQuestionLines(BinaryQuestionLines bqLines, DialogChoiceFunc left, DialogChoiceFunc right)
+    public void DisplayBinaryQuestionLines(BinaryQuestionLines bqLines, DialogChoiceFunc left, DialogChoiceFunc right)
     {
         if (panelFade != null)
         {

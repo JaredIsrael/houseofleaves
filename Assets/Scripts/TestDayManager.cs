@@ -14,7 +14,7 @@ public class TestDayManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        DialogManager.Instance.SlowDisplayBinaryQuestionLines(WakeUpQuestion, OnLeft, OnRight);
+        DialogManager.Instance.DisplayBinaryQuestionLines(WakeUpQuestion, OnLeft, OnRight);
     }
 
     public void OnLeft()
@@ -23,7 +23,7 @@ public class TestDayManager : MonoBehaviour
     }
     public void OnRight()
     {
-        DialogManager.Instance.SlowDisplayBinaryQuestionLines(questions2, OnLeftNoOp, OnRightNoOp);
+        DialogManager.Instance.DisplayBinaryQuestionLines(questions2, OnLeftNoOp, OnRightNoOp);
     }
 
     public void OnLeftNoOp()
