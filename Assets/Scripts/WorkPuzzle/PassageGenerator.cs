@@ -20,6 +20,8 @@ public class PassageGenerator : MonoBehaviour
     public static int currentIndex = 0;
     public static int level = 1;
     public static bool levelUp = false;
+    private static string nextWord;
+    private FallTimer fallTimer;
 
     private static string[] passage1 = { "According", "to", "all", "known", "laws",
         "of", "aviation,", "there", "is", "no", "way", "that", "a", "bee",
@@ -34,6 +36,9 @@ public class PassageGenerator : MonoBehaviour
         "see", "my", "many", "nightmares!" };
 
     private static string[][] passageList = { passage1, passage2, passage3 };
+
+    //TO-DO: fill in with relevant passages that fit the days of the story.
+    // no longer choose at random, passage # corresponds to the day.
 
     /*
      * This method chooses a random passage from the above list. This is the 
@@ -55,17 +60,20 @@ public class PassageGenerator : MonoBehaviour
     {
         if (currentIndex < passage.Length)
         {
-            string nextWord = passage[currentIndex];
+            nextWord = passage[currentIndex];
             currentIndex++;
 
-            return nextWord;
+            //return nextWord;
         }
         else
         {//user has typed full passage, switch to next level
             level++;
             currentIndex = 0;
             levelUp = true;
-            return "loading...";
+            //TO-DO: stop displaying words to screen
+            //StopCoroutine(fallTimer.GenerateWords()); does not work
         }
+
+        return nextWord;
     }
 }
