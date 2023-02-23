@@ -572,6 +572,8 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         m_Player_MouseX = m_Player.FindAction("MouseX", throwIfNotFound: true);
         m_Player_MouseY = m_Player.FindAction("MouseY", throwIfNotFound: true);
         m_Player_Objectives = m_Player.FindAction("Objectives", throwIfNotFound: true);
+        m_Player_PickUp = m_Player.FindAction("PickUp", throwIfNotFound: true);
+        m_Player_Crouch = m_Player.FindAction("Crouch", throwIfNotFound: true);
         // Piano
         m_Piano = asset.FindActionMap("Piano", throwIfNotFound: true);
         m_Piano_C3 = m_Piano.FindAction("C3", throwIfNotFound: true);
@@ -592,8 +594,6 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         m_Piano_DS4 = m_Piano.FindAction("DS4", throwIfNotFound: true);
         m_Piano_E4 = m_Piano.FindAction("E4", throwIfNotFound: true);
         m_Piano_F4 = m_Piano.FindAction("F4", throwIfNotFound: true);
-        m_Player_PickUp = m_Player.FindAction("PickUp", throwIfNotFound: true);
-        m_Player_Crouch = m_Player.FindAction("Crouch", throwIfNotFound: true);
     }
 
     public void Dispose()
