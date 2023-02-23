@@ -71,7 +71,14 @@ public class DialogManager : MonoBehaviour
 
     public void DisplayMonologLines(MonologLines monologLines)
     {
-        dialogPanel.gameObject.SetActive(true);
+        if (panelFade != null)
+        {
+            StopCoroutine(panelFade);
+        }
+        else
+        {
+            StartCoroutine(ChangePanelVisibility(true));
+        }
         if (monologLines.lines.Length <= 0) return;
         StartCoroutine(ChangePanelVisibility(true));
         StartCoroutine(SlowDisplayMonolog(monologLines.lines));
@@ -112,7 +119,7 @@ public class DialogManager : MonoBehaviour
         }
         doneDisplayingText = true;
         toggleSound.Play();
-        dialogPanel.gameObject.SetActive(false);
+        StartCoroutine(ChangePanelVisibility(false));
 
     }
 
