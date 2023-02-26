@@ -64,7 +64,7 @@ public class WordDisplay : MonoBehaviour
             else if (word.transform.position.y <= -45)
             {
                 //could i now just do this to get the words to stop generating?
-                StopCoroutine(fallTimer.GenerateWord());
+                StopCoroutine(GameObject.Find("WorkManager").GetComponent<FallTimer>().GenerateWord());
                 FallTimer.stop = true;
                 foreach (GameObject deadWord in words)
                 {

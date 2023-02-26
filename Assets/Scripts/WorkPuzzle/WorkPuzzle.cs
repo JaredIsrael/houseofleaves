@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public sealed class WorkPuzzle : CompletableTask
 {
     [SerializeField]
     private StatuePuzzleInteractable interactable;
+
+    [SerializeField]
+    private GameObject workCanvas;
 
     FallTimer fallTimer;
     WorkInput workInput;
@@ -18,18 +22,22 @@ public sealed class WorkPuzzle : CompletableTask
         TaskCompletedEvent = new UnityEvent<CompletableTask>();
         ObjectivesManager.Instance.AddObjective(this);
         interactable.InteractedWith.AddListener(BeginPuzzle);
+        workCanvas.SetActive(false);
     }
 
     void BeginPuzzle()
     {
 
         Debug.Log("WORK WORK WORK");
+
+        workCanvas.SetActive(true);
+
         //starts the coroutine GenerateWord(), words begin falling
-        //StartCoroutine(fallTimer.GenerateWord());
+        StartCoroutine(GameObject.Find("WorkManager").GetComponent<FallTimer>().GenerateWord());
 
         //does this belong here? starts the coroutine that tracks the input user
         //is typing. or can it be put within the generate word coroutine maybe?
-        //StartCoroutine(workInput.KeyTracking());
+        StartCoroutine(GameObject.Find("WorkManager").GetComponent<WorkInput>().KeyTracking());
     }
 
 }
