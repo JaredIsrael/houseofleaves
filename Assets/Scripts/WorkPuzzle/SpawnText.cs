@@ -7,13 +7,14 @@ public class SpawnText : MonoBehaviour
 {
     public GameObject text;
     public Transform canvas;
+    public GameObject workCanvas;
 
     public WordDisplay Spawn()
     {
         GameObject textObject;
-        Vector3 position = new Vector3(Random.Range(-50f,50f), 52f);
+        Vector3 position = new Vector3(Random.Range(90f, 900f), 500f);
 
-        if (PassageGenerator.level % 2 == 0)
+        if (PassageGenerator.level > 1)
         { //TO-DO: create other level ideas.
             textObject = Instantiate(text, position, Quaternion.Euler(0,180,0), canvas);
         } else
@@ -36,14 +37,11 @@ public class SpawnText : MonoBehaviour
                 PassageGenerator.levelUp = false;
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
-
-            if (Input.GetKeyDown(KeyCode.Escape))
+            //TO-DO: can not use escape key...change this
+            if (Input.GetKeyDown(KeyCode.Delete))
             {
-#if UNITY_EDITOR
-                UnityEditor.EditorApplication.isPlaying = false;
-#endif
-                Application.Quit();
-
+                Destroy(GameObject.Find("LoseText(Clone)"));
+                workCanvas.SetActive(false);
             }
         }
     }

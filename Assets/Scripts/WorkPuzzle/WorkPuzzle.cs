@@ -31,7 +31,6 @@ public sealed class WorkPuzzle : CompletableTask
         Debug.Log("WORK WORK WORK");
 
         workCanvas.SetActive(true);
-
         //starts the coroutine GenerateWord(), words begin falling
         StartCoroutine(GameObject.Find("WorkManager").GetComponent<FallTimer>().GenerateWord());
 

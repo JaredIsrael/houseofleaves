@@ -13,7 +13,7 @@ public class FallTimer : MonoBehaviour
 
     //time between the spawning of each word
     private float delay = 1f;
-    private float nextTime = 0f;
+    //private float nextTime = 0f;
 
     //boolean tracks whether or not the user has lost the game 
     public static bool stop;
@@ -48,12 +48,15 @@ public class FallTimer : MonoBehaviour
 
     public IEnumerator GenerateWord()
     {
-        while (Time.time >= nextTime)
+        while (true)
         {
-            workManager.NewWord(passage);
-            nextTime = Time.time + delay;
-            delay *= .99f;
-            yield return null;
+            yield return new WaitForSeconds(delay);
+            if (!stop)
+            {
+                workManager.NewWord(passage);
+                //nextTime = Time.time + delay;
+                delay *= .99f;
+            }
         }
     }
 }

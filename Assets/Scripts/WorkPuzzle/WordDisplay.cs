@@ -6,7 +6,7 @@ using TMPro;
 
 public class WordDisplay : MonoBehaviour
 {
-    public TextMeshPro text;
+    public TextMeshProUGUI text;
     public GameObject loseText;
     //speed in which the text will fall down the screen
     private float speed = 10f;
@@ -16,7 +16,7 @@ public class WordDisplay : MonoBehaviour
     //list of words on the screen
     public GameObject[] words;
 
-    public SpawnText spawnText;
+    //public SpawnText spawnText;
 
     public void SetText(string word)
     {
@@ -54,14 +54,15 @@ public class WordDisplay : MonoBehaviour
             Instantiate(loseText);
         }
         */
+        
         words = GameObject.FindGameObjectsWithTag("Word");
         foreach(GameObject word in words)
         {
-            if (word.transform.position.y > -45)
+            if (word.transform.position.y > 0)
             {
                 word.transform.Translate(0f, -speed * Time.deltaTime, 0f);
             }
-            else if (word.transform.position.y <= -45)
+            else if (word.transform.position.y <= 0)
             {
                 //could i now just do this to get the words to stop generating?
                 StopCoroutine(GameObject.Find("WorkManager").GetComponent<FallTimer>().GenerateWord());
@@ -72,6 +73,7 @@ public class WordDisplay : MonoBehaviour
                 }
                 Instantiate(loseText);
             }
+            break;
         }
     }
 }
