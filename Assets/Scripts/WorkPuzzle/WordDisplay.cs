@@ -9,14 +9,12 @@ public class WordDisplay : MonoBehaviour
     public TextMeshProUGUI text;
     public GameObject loseText;
     //speed in which the text will fall down the screen
-    private float speed = 10f;
+    private float speed = 100f;
 
     private FallTimer fallTimer;
 
     //list of words on the screen
     public GameObject[] words;
-
-    //public SpawnText spawnText;
 
     public void SetText(string word)
     {
@@ -36,13 +34,13 @@ public class WordDisplay : MonoBehaviour
 
     //TO-DO: keep track of a list of words in the Update rather than each having
     //their own update.
-    private void FixedUpdate()
+    private void Update()
     {
-        /*
-        if (transform.position.y > -45)
+        
+        if (transform.position.y > 0)
         {
             transform.Translate(0f, -speed * Time.deltaTime, 0f);
-        } else if (transform.position.y <= -45)
+        } else if (transform.position.y <= 0)
         {
             GameObject[] words = GameObject.FindGameObjectsWithTag("Word");
             //sets the boolean in fall timer to true, as the words have run off the screen
@@ -51,10 +49,11 @@ public class WordDisplay : MonoBehaviour
             {
                 Destroy(word);
             }
+            //TO-DO: figure out why this wont appear in game mode
             Instantiate(loseText);
         }
-        */
         
+        /*
         words = GameObject.FindGameObjectsWithTag("Word");
         foreach(GameObject word in words)
         {
@@ -71,9 +70,9 @@ public class WordDisplay : MonoBehaviour
                 {
                     Destroy(deadWord);
                 }
-                Instantiate(loseText);
+                Instantiate(loseText,GameObject.Find("WorkCanvas").transform);
             }
             break;
-        }
+        }*/
     }
 }

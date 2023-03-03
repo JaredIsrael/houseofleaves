@@ -63,7 +63,7 @@ public class PassageGenerator : MonoBehaviour
             nextWord = passage[currentIndex];
             currentIndex++;
 
-            //return nextWord;
+            return nextWord;
         }
         else
         {//user has typed full passage, switch to next level
@@ -72,8 +72,8 @@ public class PassageGenerator : MonoBehaviour
             levelUp = true;
             //TO-DO: stop displaying words to screen
             //StopCoroutine(fallTimer.GenerateWords()); does not work
-        }
 
-        return nextWord;
+            return "done";
+        }
     }
 }

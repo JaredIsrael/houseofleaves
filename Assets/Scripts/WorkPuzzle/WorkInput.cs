@@ -20,8 +20,8 @@ public class WorkInput : MonoBehaviour
 
     public IEnumerator KeyTracking()
     {
-        //is this called every frame, like update?
-
+        //TO-DO: how to get this called every frame, like update?
+        //tried while true, but unity crashed
         foreach (char key in Input.inputString)
         {
             workManager.TypeKey(key);

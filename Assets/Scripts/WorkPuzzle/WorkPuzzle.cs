@@ -36,7 +36,7 @@ public sealed class WorkPuzzle : CompletableTask
 
         //does this belong here? starts the coroutine that tracks the input user
         //is typing. or can it be put within the generate word coroutine maybe?
-        StartCoroutine(GameObject.Find("WorkManager").GetComponent<WorkInput>().KeyTracking());
+        //StartCoroutine(GameObject.Find("WorkManager").GetComponent<WorkInput>().KeyTracking());
     }
 
 }
