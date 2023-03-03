@@ -8,11 +8,9 @@ public class InputManager : MonoBehaviour
 {
     [SerializeField] CameraRotator rotator;
     [SerializeField] GameStateManager gameStateManager;
-    [SerializeField] PianoController pianoController;
 
-    public static PlayerController playerController;
-    public static InputActions inputActions;
-    public static event Action<InputActionMap> actionMapChange;
+    public PlayerController playerController;
+    public InputActions inputActions;
 
     private UIInputs UIActions;
     private Vector2 keyboardInput;
@@ -42,16 +40,6 @@ public class InputManager : MonoBehaviour
         UIActions.Inputs.Reset.performed += ctx => reset = ctx.ReadValueAsButton();
         UIActions.Inputs.Exit.performed += ctx => exit = ctx.ReadValueAsButton();
 
-        ToggleActionMap(inputActions.Player);
-    }
-
-    public static void ToggleActionMap(InputActionMap actionMap)
-    {
-        if (actionMap.enabled)
-            return;
-        inputActions.Disable();
-        actionMapChange?.Invoke(actionMap);
-        actionMap.Enable();
     }
 
     private void Update()
@@ -80,13 +68,13 @@ public class InputManager : MonoBehaviour
         return inputActions;
     }
 
-    public static void StopPlayerMovement()
+    public void StopPlayerMovement()
     {
-        playerController.StopMovement();
+        playerController.EnableMovement();
     }
 
-    public static void StartPlayerMovement()
+    public void StartPlayerMovement()
     {
-        playerController.StartMovement();
+        playerController.DisableMovement();
     }
 }

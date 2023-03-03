@@ -132,6 +132,7 @@ public class PlayerController : MonoBehaviour
     {
         canMove = false;
     }
+
     public void UnLockCamera()
     {
         cr.EnableCameraMovment();
@@ -150,16 +151,5 @@ public class PlayerController : MonoBehaviour
     public void LockCamera()
     {
         cr.DisableCameraMovement();
-    }
-    
-    //Needs to be deprecated, DisableMovmenet does the same thing, change all refs to this
-    public void StopMovement()
-    {
-        controller.enabled = false;
-    }
-
-    public void StartMovement()
-    {
-        controller.enabled = true;
     }
 }
