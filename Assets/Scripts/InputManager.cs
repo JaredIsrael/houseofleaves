@@ -17,6 +17,7 @@ public class InputManager : MonoBehaviour
     private UIInputs UIActions;
     private Vector2 keyboardInput;
     private Vector2 mouseInput;
+    private bool crouch;
     private bool pickUp;
     private bool paused;
     private bool reset;
@@ -33,12 +34,10 @@ public class InputManager : MonoBehaviour
         inputActions.Player.Move.performed += ctx => keyboardInput = ctx.ReadValue<Vector2>();
         inputActions.Player.MouseX.performed += ctx => mouseInput.x = ctx.ReadValue<float>();
         inputActions.Player.MouseY.performed += ctx => mouseInput.y = ctx.ReadValue<float>();
-        //Pick up contexts
+        inputActions.Player.Crouch.performed += ctx => crouch = ctx.ReadValueAsButton();
         inputActions.Player.PickUp.performed += ctx => pickUp = ctx.ReadValueAsButton();
-        inputActions.Player.PickUp.performed += ctx => PickUpController.Instance.TryPickupItems();
-        //Objective contexts
-        inputActions.Player.Objectives.performed += ctx => ToDoListManager.Instance.ToggleList();
-        //UI contexts
+        inputActions.Player.PickUp.started += ctx => PickUpController.Instance.TryPickupItems();
+        inputActions.Player.Objectives.started += ctx => ToDoListManager.Instance.ToggleList();
         UIActions.Inputs.Pause.performed += ctx => paused = ctx.ReadValueAsButton();
         UIActions.Inputs.Reset.performed += ctx => reset = ctx.ReadValueAsButton();
         UIActions.Inputs.Exit.performed += ctx => exit = ctx.ReadValueAsButton();
@@ -58,6 +57,7 @@ public class InputManager : MonoBehaviour
     private void Update()
     {
         playerController.ReadInput(keyboardInput);
+        playerController.ReadCrouchInput(crouch);
         rotator.ReadInput(mouseInput);
         gameStateManager.ReadPauseInput(paused, exit);
         gameStateManager.ReadResetInput(reset);
