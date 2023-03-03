@@ -3,6 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/*
+ 
+Purpose: This script controls and maintains the state of the game, that is,
+whether the game is play or pause mode, quitting, stuff like that. Not related
+to mechanics.
+
+Author: 
+
+ */
+
 public class GameStateManager : MonoBehaviour
 {
     [SerializeField] GameObject pauseScreen;
@@ -11,11 +21,6 @@ public class GameStateManager : MonoBehaviour
     void Start()
     {
         pauseScreen.SetActive(false);
-    }
-
-    void Update()
-    {
-        
     }
 
     public void ReadPauseInput(bool paused, bool exit)
