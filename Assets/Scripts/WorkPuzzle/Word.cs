@@ -7,8 +7,6 @@ using UnityEngine;
  * more efficient, as well as keep track of their contents. 
  */
 
-
-//To-do: is this necessary?
 [System.Serializable]
 public class Word
 {

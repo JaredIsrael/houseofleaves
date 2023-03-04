@@ -11,10 +11,8 @@ public class WordDisplay : MonoBehaviour
     //speed in which the text will fall down the screen
     private float speed = 100f;
 
-    private FallTimer fallTimer;
-
     //list of words on the screen
-    public GameObject[] words;
+    //public GameObject[] words;
 
     public void SetText(string word)
     {
@@ -32,8 +30,6 @@ public class WordDisplay : MonoBehaviour
         Destroy(gameObject);
     }
 
-    //TO-DO: keep track of a list of words in the Update rather than each having
-    //their own update.
     private void Update()
     {
         
@@ -52,7 +48,9 @@ public class WordDisplay : MonoBehaviour
             //TO-DO: figure out why this wont appear in game mode
             Instantiate(loseText);
         }
-        
+
+        //TO-DO: keep track of a list of words in the Update rather than each having
+        //their own update.
         /*
         words = GameObject.FindGameObjectsWithTag("Word");
         foreach(GameObject word in words)

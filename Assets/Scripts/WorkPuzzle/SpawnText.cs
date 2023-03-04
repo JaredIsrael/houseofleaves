@@ -14,7 +14,7 @@ public class SpawnText : MonoBehaviour
         GameObject textObject;
         Vector3 position = new Vector3(Random.Range(90f, 900f), 500f);
 
-        if (PassageGenerator.level > 1)
+        if (PassageGenerator.level % 2 == 0)
         { //TO-DO: create other level ideas.
             textObject = Instantiate(text, position, Quaternion.Euler(0,180,0), canvas);
         } else
@@ -28,6 +28,7 @@ public class SpawnText : MonoBehaviour
 
     private void Update()
     {
+        //TO-DO: diable input controls so input string is only used
         if (FallTimer.stop)
         {
             //TO-DO: get "return" key to restart game
@@ -37,11 +38,11 @@ public class SpawnText : MonoBehaviour
                 PassageGenerator.levelUp = false;
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
-            //TO-DO: can not use escape key...change this
-            if (Input.GetKeyDown(KeyCode.Delete))
+            
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
-                Destroy(GameObject.Find("LoseText(Clone)"));
-                workCanvas.SetActive(false);
+                //Destroy(GameObject.Find("LoseText(Clone)"));
+                //workCanvas.SetActive(false);
             }
         }
     }

@@ -12,12 +12,14 @@ public class WorkInput : MonoBehaviour
      */
     void Update()
     {
-        /*foreach (char key in Input.inputString)
+        foreach (char key in Input.inputString)
         {
             workManager.TypeKey(key);
-        }*/
+        }
     }
 
+    //Turn this update into coroutine so it can start/stop easily
+    /*
     public IEnumerator KeyTracking()
     {
         //TO-DO: how to get this called every frame, like update?
@@ -28,4 +30,5 @@ public class WorkInput : MonoBehaviour
             yield return null;
         }
     }
+    */
 }
