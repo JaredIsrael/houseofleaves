@@ -47,6 +47,7 @@ public class WordDisplay : MonoBehaviour
             }
             //TO-DO: figure out why this wont appear in game mode
             Instantiate(loseText);
+            ProgressHandler.value = 0f;
         }
 
         //TO-DO: keep track of a list of words in the Update rather than each having

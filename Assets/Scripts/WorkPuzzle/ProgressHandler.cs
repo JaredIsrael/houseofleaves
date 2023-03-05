@@ -11,7 +11,6 @@ using UnityEngine.UI;
 public class ProgressHandler : MonoBehaviour
 {
     public Slider slider;
-    //public Text percentage_txt;
 
     public static float value;
 
@@ -31,7 +30,6 @@ public class ProgressHandler : MonoBehaviour
     void UpdateSlider(float value)
     {
         slider.value = value;
-        //percentage_txt.text = slider.value.ToString();
     }
 
 }
