@@ -30,6 +30,9 @@ public sealed class WorkPuzzle : CompletableTask
 
         Debug.Log("WORK WORK WORK");
 
+        //Disables input actions for player movement while game is active
+        InputManager.inputActions.Disable();
+
         //workCanvas.SetActive(true);
         //starts the coroutine GenerateWord(), words begin falling
         //StartCoroutine(GameObject.Find("WorkManager").GetComponent<FallTimer>().GenerateWord());

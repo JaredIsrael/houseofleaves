@@ -22,6 +22,7 @@ public class WorkManager : MonoBehaviour
     public void Start()
     {
         completeCount = 0;
+        sliderBar.GetComponent<Image>().color = Color.green;
         increment = 1.0f / FallTimer.passage.Length;
     }
 
