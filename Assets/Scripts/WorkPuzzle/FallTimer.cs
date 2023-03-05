@@ -18,7 +18,7 @@ public class FallTimer : MonoBehaviour
     //boolean tracks whether or not the user has lost the game 
     public static bool stop;
 
-    private string[] passage;
+    public static string[] passage;
 
     private void Start()
     {

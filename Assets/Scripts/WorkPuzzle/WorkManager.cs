@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WorkManager : MonoBehaviour
 {
@@ -11,6 +12,18 @@ public class WorkManager : MonoBehaviour
     private Word activeWord;
 
     public SpawnText spawnText;
+
+    public GameObject sliderBar;
+
+    float increment;
+
+    public static int completeCount;
+
+    public void Start()
+    {
+        completeCount = 0;
+        increment = 1.0f / FallTimer.passage.Length;
+    }
 
     /*
      * Creates a new word using the words from the randomly selected passage, 
@@ -34,25 +47,38 @@ public class WorkManager : MonoBehaviour
         if (wordIsActive)
         {
             if (activeWord.GetNextChar() == key)
-            {
+            {//progress bar is green is correct letter typed
+                sliderBar.GetComponent<Image>().color = Color.green;
                 activeWord.TypeChar();
+            }
+            else
+            {//slider goes red to represent mistyped key
+                sliderBar.GetComponent<Image>().color = Color.red;
             }
         } else
         {
             foreach (Word word in words)
             {
                 if (word.GetNextChar() == key)
-                {
+                {//progress bar is green is correct letter typed
+                    sliderBar.GetComponent<Image>().color = Color.green;
                     activeWord = word;
                     wordIsActive = true;
                     word.TypeChar();
                     break;
                 }
+                else
+                {//slider goes red to represent mistyped key
+                    sliderBar.GetComponent<Image>().color = Color.red;
+                }
             }
         }
 
+        //word has finished being typed, can be removed from list of words
         if (wordIsActive && activeWord.WordComplete())
-        { //word has finished being typed, can be removed from list of words
+        {
+            //a completed word means incrementing the progress bar, done here
+            ProgressHandler.value += increment;
             wordIsActive = false;
             words.Remove(activeWord);
         }
