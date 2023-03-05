@@ -13,9 +13,11 @@ public class PianoStarter : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             pianoCanvas.gameObject.SetActive(true);
-            inputManager.StopPlayerMovement();
-            inputManager.inputActions.Disable();
+            inputManager.TogglePlayerMovement();
+            pianoController.SetUpContexts();
             pianoController.inputActions.Enable();
+            inputManager.inputActions.Disable();
+            inputManager.DeleteContexts();
         }
     }
 
@@ -26,15 +28,31 @@ public class PianoStarter : MonoBehaviour
             pianoCanvas.gameObject.SetActive(false);
             pianoController.inputActions.Disable();
             inputManager.inputActions.Enable();
-            inputManager.StartPlayerMovement();
+            inputManager.TogglePlayerMovement();
         }
     }
 
     public void Quit()
     {
+        foreach (BoxCollider collider in gameObject.GetComponents<BoxCollider>())
+        {
+            if (collider.isTrigger)
+            {
+                collider.enabled = false;
+                StartCoroutine(WaitToEnable(5, collider));
+            }
+        }
         pianoCanvas.gameObject.SetActive(false);
+        pianoController.DeleteContexts();
         pianoController.inputActions.Disable();
         inputManager.inputActions.Enable();
-        inputManager.StartPlayerMovement();
+        inputManager.SetUpContexts();
+        inputManager.TogglePlayerMovement();
+    }
+
+    private IEnumerator WaitToEnable(float waitTime, BoxCollider collider)
+    {
+        yield return new WaitForSeconds(waitTime);
+        collider.enabled = true;
     }
 }
