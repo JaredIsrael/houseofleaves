@@ -12,7 +12,7 @@ public class FallTimer : MonoBehaviour
     public WorkManager workManager;
 
     //time between the spawning of each word
-    private float delay = 2f;
+    private float delay = 1f;
     private float nextTime = 0f;
 
     //boolean tracks whether or not the user has lost the game 
@@ -44,14 +44,14 @@ public class FallTimer : MonoBehaviour
             PassageGenerator.levelUp = false;
         }
     }
-
+    
     //turned first part of update into coroutine
     public IEnumerator GenerateWord()
     {
         while (true)
         {
             yield return new WaitForFixedUpdate();
-            if(Time.time >= nextTime)
+            if(Time.time >= nextTime && !stop)
             {
                 workManager.NewWord(passage);
                 nextTime = Time.time + delay;

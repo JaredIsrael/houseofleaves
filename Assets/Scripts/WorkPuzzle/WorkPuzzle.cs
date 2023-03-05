@@ -12,8 +12,7 @@ public sealed class WorkPuzzle : CompletableTask
     [SerializeField]
     private GameObject workCanvas;
 
-    FallTimer fallTimer;
-    WorkInput workInput;
+    public static Coroutine wordFall;
 
     void Start()
     {
@@ -30,17 +29,19 @@ public sealed class WorkPuzzle : CompletableTask
 
         Debug.Log("WORK WORK WORK");
 
-        //Disables input actions for player movement while game is active
+        //TO-DO: Disable input/UI actions for player movement while game is active
         InputManager.inputActions.Disable();
-
+       
         //set the canvas of the work game active
         workCanvas.SetActive(true);
 
         //starts the coroutine GenerateWord(), game starts as words begin falling
-        StartCoroutine(GameObject.Find("WorkManager").GetComponent<FallTimer>().GenerateWord());
+        wordFall = StartCoroutine(GameObject.Find("WorkManager").GetComponent<FallTimer>().GenerateWord());
 
         //starts the coroutine that tracks the input user is typing
         //StartCoroutine(GameObject.Find("WorkManager").GetComponent<WorkInput>().KeyTracking());
     }
+
+    
 
 }

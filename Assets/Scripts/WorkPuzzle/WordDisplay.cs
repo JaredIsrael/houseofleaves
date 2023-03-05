@@ -9,10 +9,10 @@ public class WordDisplay : MonoBehaviour
     public TextMeshProUGUI text;
     public GameObject loseText;
     //speed in which the text will fall down the screen
-    private float speed = 100f;
+    private float speed = 30f;
 
     //list of words on the screen
-    //public GameObject[] words;
+    public GameObject[] words;
 
     public void SetText(string word)
     {
@@ -32,7 +32,6 @@ public class WordDisplay : MonoBehaviour
 
     private void Update()
     {
-        
         if (transform.position.y > 0)
         {
             transform.Translate(0f, -speed * Time.deltaTime, 0f);
@@ -41,6 +40,10 @@ public class WordDisplay : MonoBehaviour
             GameObject[] words = GameObject.FindGameObjectsWithTag("Word");
             //sets the boolean in fall timer to true, as the words have run off the screen
             FallTimer.stop = true;
+
+            //stops running the coroutine that generates words on screen
+            //StopCoroutine(WorkPuzzle.wordFall);
+            //Debug.Log("STOP STOP");
             foreach (GameObject word in words)
             {
                 Destroy(word);
@@ -49,16 +52,16 @@ public class WordDisplay : MonoBehaviour
             Instantiate(loseText);
             ProgressHandler.value = 0f;
         }
-
-        //TO-DO: keep track of a list of words in the Update rather than each having
-        //their own update.
         /*
+        //This works, just not as smoothly: keep track of a list of words in the
+        //Update rather than each having their own update.
         words = GameObject.FindGameObjectsWithTag("Word");
         foreach(GameObject word in words)
         {
             if (word.transform.position.y > 0)
             {
                 word.transform.Translate(0f, -speed * Time.deltaTime, 0f);
+                
             }
             else if (word.transform.position.y <= 0)
             {
@@ -71,7 +74,6 @@ public class WordDisplay : MonoBehaviour
                 }
                 Instantiate(loseText,GameObject.Find("WorkCanvas").transform);
             }
-            break;
         }*/
     }
 }
