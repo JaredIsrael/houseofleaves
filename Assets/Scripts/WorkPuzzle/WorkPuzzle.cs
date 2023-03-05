@@ -33,12 +33,13 @@ public sealed class WorkPuzzle : CompletableTask
         //Disables input actions for player movement while game is active
         InputManager.inputActions.Disable();
 
-        //workCanvas.SetActive(true);
-        //starts the coroutine GenerateWord(), words begin falling
-        //StartCoroutine(GameObject.Find("WorkManager").GetComponent<FallTimer>().GenerateWord());
+        //set the canvas of the work game active
+        workCanvas.SetActive(true);
 
-        //does this belong here? starts the coroutine that tracks the input user
-        //is typing. or can it be put within the generate word coroutine maybe?
+        //starts the coroutine GenerateWord(), game starts as words begin falling
+        StartCoroutine(GameObject.Find("WorkManager").GetComponent<FallTimer>().GenerateWord());
+
+        //starts the coroutine that tracks the input user is typing
         //StartCoroutine(GameObject.Find("WorkManager").GetComponent<WorkInput>().KeyTracking());
     }
 

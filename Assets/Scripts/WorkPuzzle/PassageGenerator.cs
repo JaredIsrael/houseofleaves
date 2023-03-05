@@ -70,8 +70,9 @@ public class PassageGenerator : MonoBehaviour
             level++;
             currentIndex = 0;
             levelUp = true;
+
             //TO-DO: stop displaying words to screen
-            //StopCoroutine(fallTimer.GenerateWords()); does not work
+            //StopCoroutine(GameObject.Find("WorkManager").GetComponent<FallTimer>().GenerateWord());
 
             return "done";
         }

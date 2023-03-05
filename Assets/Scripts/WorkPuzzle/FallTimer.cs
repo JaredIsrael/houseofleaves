@@ -27,13 +27,14 @@ public class FallTimer : MonoBehaviour
     }
 
     private void Update()
-    {
+    {/*
         if (Time.time >= nextTime && !stop)
         {
             workManager.NewWord(passage);
             nextTime = Time.time + delay;
             delay *= .99f;
         }
+        */
 
         //TO-DO: one passage per session. Instead, level up, then game is complete.
         //Store the current level so the player can start next level on the next day. 
@@ -44,20 +45,19 @@ public class FallTimer : MonoBehaviour
         }
     }
 
-    //TO-DO: turn update into coroutine
-    /*
+    //turned first part of update into coroutine
     public IEnumerator GenerateWord()
     {
         while (true)
         {
-            if (!stop)
+            yield return new WaitForFixedUpdate();
+            if(Time.time >= nextTime)
             {
                 workManager.NewWord(passage);
-                Debug.Log("New word");
+                nextTime = Time.time + delay;
                 delay *= .99f;
-                yield return new WaitForSecondsRealtime(delay);
             }
         }
     }
-    */
+   
 }
