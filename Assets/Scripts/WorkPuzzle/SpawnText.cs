@@ -28,21 +28,28 @@ public class SpawnText : MonoBehaviour
 
     private void Update()
     {
-        //TO-DO: diable input controls so input string is only used
         if (FallTimer.stop)
         {
-            //TO-DO: get "return" key to restart game
+            //TO-DO: get "return" to restart game after losing
             if (Input.GetKeyDown(KeyCode.Return))
             {
+                Destroy(GameObject.Find("LoseText(Clone)"));
+
                 PassageGenerator.currentIndex = 0;
                 PassageGenerator.levelUp = false;
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                FallTimer.stop = false;
             }
-            
-            if (Input.GetKeyDown(KeyCode.Escape))
+
+            //"delete" to quit the game after losing
+            if (Input.GetKeyDown(KeyCode.Delete))
             {
-                //Destroy(GameObject.Find("LoseText(Clone)"));
-                //workCanvas.SetActive(false);
+                Destroy(GameObject.Find("LoseText(Clone)"));
+
+                InputManager.inputActions.Enable();
+
+                PassageGenerator.currentIndex = 0;
+                PassageGenerator.levelUp = false;
+                workCanvas.SetActive(false);
             }
         }
     }

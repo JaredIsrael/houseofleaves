@@ -23,9 +23,11 @@ public class PassageGenerator : MonoBehaviour
     private static string nextWord;
     private FallTimer fallTimer;
 
-    private static string[] passage1 = { "According", "to", "all", "known", "laws",
-        "of", "aviation,", "there", "is", "no", "way", "that", "a", "bee",
-        "should", "be", "able", "to", "fly." };
+    private static string[] passage1 = { "Today", "is", "our", "first", "day",
+        "of", "work.", "I've", "noticed" , "there", "are", "some", "strange",
+        "things","happening", "in", "this","house.", "It", "could", "all", "just",
+        "be", "in", "my", "head,", "but", "things", "don't", "seem", "right", "since",
+        "that", "day..." };
 
     private static string[] passage2 = { "Hello,", "this", "is", "a", "test.",
         "You", "need", "to", "do", "some", "very", "boring", "work.",
@@ -70,8 +72,8 @@ public class PassageGenerator : MonoBehaviour
             currentIndex = 0;
             levelUp = true;
 
-            //TO-DO: stop displaying words to screen
-            //StopCoroutine(GameObject.Find("WorkManager").GetComponent<FallTimer>().GenerateWord());
+            //stop the coroutine from generating words on the screen
+            FallTimer.stop = true;
 
             return "done";
         }
