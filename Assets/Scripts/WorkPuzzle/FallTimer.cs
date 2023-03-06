@@ -23,7 +23,7 @@ public class FallTimer : MonoBehaviour
     private void Start()
     {
         stop = false;
-        passage = PassageGenerator.GetRandomPassage();
+        passage = PassageGenerator.GetPassage();
     }
 
     private void Update()
@@ -40,7 +40,7 @@ public class FallTimer : MonoBehaviour
         //Store the current level so the player can start next level on the next day. 
         if (PassageGenerator.levelUp)
         { //player has completed level, choose another passage to type
-            passage = PassageGenerator.GetRandomPassage();
+            passage = PassageGenerator.GetPassage();
             PassageGenerator.levelUp = false;
         }
     }

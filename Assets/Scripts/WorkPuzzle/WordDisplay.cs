@@ -9,7 +9,7 @@ public class WordDisplay : MonoBehaviour
     public TextMeshProUGUI text;
     public GameObject loseText;
     //speed in which the text will fall down the screen
-    private float speed = 30f;
+    private float speed = 100f;
 
     //list of words on the screen
     public GameObject[] words;
@@ -44,6 +44,7 @@ public class WordDisplay : MonoBehaviour
             //stops running the coroutine that generates words on screen
             //StopCoroutine(WorkPuzzle.wordFall);
             //Debug.Log("STOP STOP");
+
             foreach (GameObject word in words)
             {
                 Destroy(word);

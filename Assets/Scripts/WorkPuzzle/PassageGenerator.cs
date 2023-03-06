@@ -44,13 +44,12 @@ public class PassageGenerator : MonoBehaviour
      * This method chooses a random passage from the above list. This is the 
      * passage that the user will have to type during the game.
      */
-    public static string[] GetRandomPassage()
+    public static string[] GetPassage()
     {
-        //chooses a random index from the list of passages
-        int index = Random.Range(0, passageList.Length);
-        string[] randomPassage = passageList[index];
+        //chooses passage from the list that corresponds to the level
+        string[] passage = passageList[level-1];
 
-        return randomPassage;
+        return passage;
     }
 
     /*
