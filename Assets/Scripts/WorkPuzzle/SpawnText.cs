@@ -40,8 +40,8 @@ public class SpawnText : MonoBehaviour
                 FallTimer.stop = false;
             }
 
-            //"delete" to quit the game after losing
-            if (Input.GetKeyDown(KeyCode.Delete))
+            //"escape" to quit the game after losing
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
                 Destroy(GameObject.Find("LoseText(Clone)"));
 
