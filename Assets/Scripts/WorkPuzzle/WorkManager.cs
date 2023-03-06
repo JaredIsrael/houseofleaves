@@ -17,11 +17,8 @@ public class WorkManager : MonoBehaviour
 
     float increment;
 
-    public static int completeCount;
-
     public void Start()
     {
-        completeCount = 0;
         sliderBar.GetComponent<Image>().color = Color.green;
         increment = 1.0f / FallTimer.passage.Length;
     }

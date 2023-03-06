@@ -14,7 +14,8 @@ public class InputManager : MonoBehaviour
     public static InputActions inputActions;
     public static event Action<InputActionMap> actionMapChange;
 
-    private UIInputs UIActions;
+    //changed this to public static from private
+    public static UIInputs UIActions;
     private Vector2 keyboardInput;
     private Vector2 mouseInput;
     private bool crouch;

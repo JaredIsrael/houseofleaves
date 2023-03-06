@@ -41,10 +41,6 @@ public class WordDisplay : MonoBehaviour
             //sets the boolean in fall timer to true, as the words have run off the screen
             FallTimer.stop = true;
 
-            //stops running the coroutine that generates words on screen
-            //StopCoroutine(WorkPuzzle.wordFall);
-            //Debug.Log("STOP STOP");
-
             foreach (GameObject word in words)
             {
                 Destroy(word);

@@ -46,6 +46,7 @@ public class SpawnText : MonoBehaviour
                 Destroy(GameObject.Find("LoseText(Clone)"));
 
                 InputManager.inputActions.Enable();
+                InputManager.UIActions.Enable();
 
                 PassageGenerator.currentIndex = 0;
                 PassageGenerator.levelUp = false;

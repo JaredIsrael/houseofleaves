@@ -12,7 +12,7 @@ public sealed class WorkPuzzle : CompletableTask
     [SerializeField]
     private GameObject workCanvas;
 
-    public static Coroutine wordFall;
+    public Coroutine wordFall;
 
     void Start()
     {
@@ -26,11 +26,9 @@ public sealed class WorkPuzzle : CompletableTask
 
     void BeginPuzzle()
     {
-
-        Debug.Log("WORK WORK WORK");
-
-        //TO-DO: Disable input/UI actions for player movement while game is active
+        //TO-DO: enable/disable the UI input actions
         InputManager.inputActions.Disable();
+        InputManager.UIActions.Disable();
        
         //set the canvas of the work game active
         workCanvas.SetActive(true);
