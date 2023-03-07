@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public sealed class WorkPuzzle : CompletableTask
 {
     [SerializeField]
-    private StatuePuzzleInteractable interactable;
+    private WorkPuzzleInteractable interactable;
 
     [SerializeField]
     private GameObject workCanvas;

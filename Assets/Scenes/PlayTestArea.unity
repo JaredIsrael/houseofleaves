@@ -1499,8 +1499,9 @@ MonoBehaviour:
   TaskCompletedEvent:
     m_PersistentCalls:
       m_Calls: []
-  interactable: {fileID: 728372601}
+  interactable: {fileID: 0}
   workCanvas: {fileID: 233326295}
+  loseText: {fileID: 254719299}
 --- !u!4 &618435654
 Transform:
   m_ObjectHideFlags: 0
@@ -1569,7 +1570,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2143291473}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &728372601
+--- !u!114 &728372606
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1578,7 +1579,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 728372596}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 721128ea84b3a47b6b318718c1bc6d70, type: 3}
+  m_Script: {fileID: 11500000, guid: 4a698118d01eb47eb8b7c92d16601fc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   CanInteractEnterEvent:
