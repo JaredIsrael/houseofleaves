@@ -23,11 +23,15 @@ public class PassageGenerator : MonoBehaviour
     private static string nextWord;
     private FallTimer fallTimer;
 
+    
     private static string[] passage1 = { "Today", "is", "our", "first", "day",
         "of", "work.", "I've", "noticed" , "there", "are", "some", "strange",
         "things","happening", "in", "this","house.", "It", "could", "all", "just",
         "be", "in", "my", "head,", "but", "things", "don't", "seem", "right", "since",
         "that", "day..." };
+    
+
+    //private static string[] passage1 = { "Just", "four", "words", "here" };
 
     private static string[] passage2 = { "Hello,", "this", "is", "a", "test.",
         "You", "need", "to", "do", "some", "very", "boring", "work.",
