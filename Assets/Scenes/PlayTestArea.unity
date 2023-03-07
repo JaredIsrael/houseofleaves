@@ -1499,7 +1499,7 @@ MonoBehaviour:
   TaskCompletedEvent:
     m_PersistentCalls:
       m_Calls: []
-  interactable: {fileID: 0}
+  interactable: {fileID: 728372606}
   workCanvas: {fileID: 233326295}
   loseText: {fileID: 254719299}
 --- !u!4 &618435654
