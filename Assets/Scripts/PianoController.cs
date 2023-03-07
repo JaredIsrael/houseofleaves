@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,163 +6,198 @@ using UnityEngine.InputSystem;
 
 public class PianoController : MonoBehaviour
 {
-    public AudioSource pianoSource;
+    public AudioSource[] pianoSources;
     public AudioClip[] noteClips;
+    [HideInInspector]
+    public PianoActions inputActions;
 
-    /*public void EnableActions()
+    private void Awake()
     {
-        InputManager.ToggleActionMap(InputManager.inputActions.Piano);
-        InputManager.inputActions.Piano.C3.performed += ctx => PlayC3();
-        InputManager.inputActions.Piano.CS3.performed += ctx => PlayCS3();
-        InputManager.inputActions.Piano.D3.performed += ctx => PlayD3();
-        InputManager.inputActions.Piano.DS3.performed += ctx => PlayDS3();
-        InputManager.inputActions.Piano.E3.performed += ctx => PlayE3();
-        InputManager.inputActions.Piano.F3.performed += ctx => PlayF3();
-        InputManager.inputActions.Piano.FS3.performed += ctx => PlayFS3();
-        InputManager.inputActions.Piano.G3.performed += ctx => PlayG3();
-        InputManager.inputActions.Piano.GS3.performed += ctx => PlayGS3();
-        InputManager.inputActions.Piano.A3.performed += ctx => PlayA3();
-        InputManager.inputActions.Piano.AS3.performed += ctx => PlayAS3();
-        InputManager.inputActions.Piano.B3.performed += ctx => PlayB3();
-        InputManager.inputActions.Piano.C4.performed += ctx => PlayC4();
-        InputManager.inputActions.Piano.CS4.performed += ctx => PlayCS4();
-        InputManager.inputActions.Piano.D4.performed += ctx => PlayD4();
-        InputManager.inputActions.Piano.DS4.performed += ctx => PlayDS4();
-        InputManager.inputActions.Piano.E4.performed += ctx => PlayE4();
-        InputManager.inputActions.Piano.F4.performed += ctx => PlayF4();
-        InputManager.StopPlayerMovement();
+        inputActions = new PianoActions();
     }
 
-    public void DisableActions()
+
+    public void SetUpContexts()
     {
-        InputManager.ToggleActionMap(InputManager.inputActions.Player);
-        InputManager.inputActions.Piano.C3.performed -= ctx => PlayC3();
-        InputManager.inputActions.Piano.CS3.performed -= ctx => PlayCS3();
-        InputManager.inputActions.Piano.D3.performed -= ctx => PlayD3();
-        InputManager.inputActions.Piano.DS3.performed -= ctx => PlayDS3();
-        InputManager.inputActions.Piano.E3.performed -= ctx => PlayE3();
-        InputManager.inputActions.Piano.F3.performed -= ctx => PlayF3();
-        InputManager.inputActions.Piano.FS3.performed -= ctx => PlayFS3();
-        InputManager.inputActions.Piano.G3.performed -= ctx => PlayG3();
-        InputManager.inputActions.Piano.GS3.performed -= ctx => PlayGS3();
-        InputManager.inputActions.Piano.A3.performed -= ctx => PlayA3();
-        InputManager.inputActions.Piano.AS3.performed -= ctx => PlayAS3();
-        InputManager.inputActions.Piano.B3.performed -= ctx => PlayB3();
-        InputManager.inputActions.Piano.C4.performed -= ctx => PlayC4();
-        InputManager.inputActions.Piano.CS4.performed -= ctx => PlayCS4();
-        InputManager.inputActions.Piano.D4.performed -= ctx => PlayD4();
-        InputManager.inputActions.Piano.DS4.performed -= ctx => PlayDS4();
-        InputManager.inputActions.Piano.E4.performed -= ctx => PlayE4();
-        InputManager.inputActions.Piano.F4.performed -= ctx => PlayF4();
-        InputManager.StartPlayerMovement();
-    }*/
+        inputActions.Play.C3.performed += ctx => PlayC3();
+        inputActions.Play.CS3.performed += ctx => PlayCS3();
+        inputActions.Play.D3.performed += ctx => PlayD3();
+        inputActions.Play.DS3.performed += ctx => PlayDS3();
+        inputActions.Play.E3.performed += ctx => PlayE3();
+        inputActions.Play.F3.performed += ctx => PlayF3();
+        inputActions.Play.FS3.performed += ctx => PlayFS3();
+        inputActions.Play.G3.performed += ctx => PlayG3();
+        inputActions.Play.GS3.performed += ctx => PlayGS3();
+        inputActions.Play.A3.performed += ctx => PlayA3();
+        inputActions.Play.AS3.performed += ctx => PlayAS3();
+        inputActions.Play.B3.performed += ctx => PlayB3();
+        inputActions.Play.C4.performed += ctx => PlayC4();
+        inputActions.Play.CS4.performed += ctx => PlayCS4();
+        inputActions.Play.D4.performed += ctx => PlayD4();
+        inputActions.Play.DS4.performed += ctx => PlayDS4();
+        inputActions.Play.E4.performed += ctx => PlayE4();
+        inputActions.Play.F4.performed += ctx => PlayF4();
+    }
+
+    public void DeleteContexts()
+    {
+        inputActions.Play.C3.performed -= ctx => PlayC3();
+        inputActions.Play.CS3.performed -= ctx => PlayCS3();
+        inputActions.Play.D3.performed -= ctx => PlayD3();
+        inputActions.Play.DS3.performed -= ctx => PlayDS3();
+        inputActions.Play.E3.performed -= ctx => PlayE3();
+        inputActions.Play.F3.performed -= ctx => PlayF3();
+        inputActions.Play.FS3.performed -= ctx => PlayFS3();
+        inputActions.Play.G3.performed -= ctx => PlayG3();
+        inputActions.Play.GS3.performed -= ctx => PlayGS3();
+        inputActions.Play.A3.performed -= ctx => PlayA3();
+        inputActions.Play.AS3.performed -= ctx => PlayAS3();
+        inputActions.Play.B3.performed -= ctx => PlayB3();
+        inputActions.Play.C4.performed -= ctx => PlayC4();
+        inputActions.Play.CS4.performed -= ctx => PlayCS4();
+        inputActions.Play.D4.performed -= ctx => PlayD4();
+        inputActions.Play.DS4.performed -= ctx => PlayDS4();
+        inputActions.Play.E4.performed -= ctx => PlayE4();
+        inputActions.Play.F4.performed -= ctx => PlayF4();
+    }
 
     public void PlayC3()
     {
-        pianoSource.clip = noteClips[0];
-        pianoSource.Play();
+        int index = FindAvailableSource();
+        pianoSources[index].clip = noteClips[0];
+        pianoSources[index].Play();
     }
 
     public void PlayCS3()
     {
-        pianoSource.clip = noteClips[1];
-        pianoSource.Play();
+        int index = FindAvailableSource();
+        pianoSources[index].clip = noteClips[1];
+        pianoSources[index].Play();
     }
 
     public void PlayD3()
     {
-        pianoSource.clip = noteClips[2];
-        pianoSource.Play();
+        int index = FindAvailableSource();
+        pianoSources[index].clip = noteClips[2];
+        pianoSources[index].Play();
     }
 
     public void PlayDS3()
     {
-        pianoSource.clip = noteClips[3];
-        pianoSource.Play();
+        int index = FindAvailableSource();
+        pianoSources[index].clip = noteClips[3];
+        pianoSources[index].Play();
     }
 
     public void PlayE3()
     {
-        pianoSource.clip = noteClips[4];
-        pianoSource.Play();
+        int index = FindAvailableSource();
+        pianoSources[index].clip = noteClips[4];
+        pianoSources[index].Play();
     }
 
     public void PlayF3()
     {
-        pianoSource.clip = noteClips[5];
-        pianoSource.Play();
+        int index = FindAvailableSource();
+        pianoSources[index].clip = noteClips[5];
+        pianoSources[index].Play();
     }
 
     public void PlayFS3()
     {
-        pianoSource.clip = noteClips[6];
-        pianoSource.Play();
+        int index = FindAvailableSource();
+        pianoSources[index].clip = noteClips[6];
+        pianoSources[index].Play();
     }
 
     public void PlayG3()
     {
-        pianoSource.clip = noteClips[7];
-        pianoSource.Play();
+        int index = FindAvailableSource();
+        pianoSources[index].clip = noteClips[7];
+        pianoSources[index].Play();
     }
 
     public void PlayGS3()
     {
-        pianoSource.clip = noteClips[8];
-        pianoSource.Play();
+        int index = FindAvailableSource();
+        pianoSources[index].clip = noteClips[8];
+        pianoSources[index].Play();
     }
 
     public void PlayA3()
     {
-        pianoSource.clip = noteClips[9];
-        pianoSource.Play();
+        int index = FindAvailableSource();
+        pianoSources[index].clip = noteClips[9];
+        pianoSources[index].Play();
     }
 
     public void PlayAS3()
     {
-        pianoSource.clip = noteClips[10];
-        pianoSource.Play();
+        int index = FindAvailableSource();
+        pianoSources[index].clip = noteClips[10];
+        pianoSources[index].Play();
     }
 
     public void PlayB3()
     {
-        pianoSource.clip = noteClips[11];
-        pianoSource.Play();
+        int index = FindAvailableSource();
+        pianoSources[index].clip = noteClips[11];
+        pianoSources[index].Play();
     }
 
     public void PlayC4()
     {
-        pianoSource.clip = noteClips[12];
-        pianoSource.Play();
+        int index = FindAvailableSource();
+        pianoSources[index].clip = noteClips[12];
+        pianoSources[index].Play();
     }
 
     public void PlayCS4()
     {
-        pianoSource.clip = noteClips[13];
-        pianoSource.Play();
+        int index = FindAvailableSource();
+        pianoSources[index].clip = noteClips[13];
+        pianoSources[index].Play();
     }
 
     public void PlayD4()
     {
-        pianoSource.clip = noteClips[14];
-        pianoSource.Play();
+        int index = FindAvailableSource();
+        pianoSources[index].clip = noteClips[14];
+        pianoSources[index].Play();
     }
 
     public void PlayDS4()
     {
-        pianoSource.clip = noteClips[15];
-        pianoSource.Play();
+        int index = FindAvailableSource();
+        pianoSources[index].clip = noteClips[15];
+        pianoSources[index].Play();
     }
 
     public void PlayE4()
     {
-        pianoSource.clip = noteClips[16];
-        pianoSource.Play();
+        int index = FindAvailableSource();
+        pianoSources[index].clip = noteClips[16];
+        pianoSources[index].Play();
     }
 
     public void PlayF4()
     {
-        pianoSource.clip = noteClips[17];
-        pianoSource.Play();
+        int index = FindAvailableSource();
+        pianoSources[index].clip = noteClips[17];
+        pianoSources[index].Play();
+    }
+
+    private int FindAvailableSource()
+    {
+        int available = 0;
+        for (int i = 0; i < pianoSources.Length; i++) {
+            if (!pianoSources[i].isPlaying)
+            {
+                available = i;
+                break;
+            }
+        }
+        return available;
     }
 
 }
