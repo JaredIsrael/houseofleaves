@@ -8,7 +8,7 @@ public class SpawnText : MonoBehaviour
     public GameObject text;
     public Transform canvas;
     public GameObject workCanvas;
-
+    public GameObject loseText;
     public WordDisplay Spawn()
     {
         GameObject textObject;
@@ -30,10 +30,12 @@ public class SpawnText : MonoBehaviour
     {
         if (FallTimer.stop)
         {
+            loseText.SetActive(true);
+
             //TO-DO: get "return" to restart game after losing
             if (Input.GetKeyDown(KeyCode.Return))
             {
-                Destroy(GameObject.Find("LoseText(Clone)"));
+                loseText.SetActive(false);
 
                 //reset variables
                 PassageGenerator.currentIndex = 0;
@@ -44,7 +46,7 @@ public class SpawnText : MonoBehaviour
             //"escape" to quit the game after losing
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                Destroy(GameObject.Find("LoseText(Clone)"));
+                loseText.SetActive(false);
 
                 //game over, enable user input
                 InputManager.inputActions.Enable();
@@ -53,6 +55,9 @@ public class SpawnText : MonoBehaviour
                 //reset variables
                 PassageGenerator.currentIndex = 0;
                 PassageGenerator.levelUp = false;
+
+                WorkManager.words.Clear();
+
                 workCanvas.SetActive(false);
             }
         }

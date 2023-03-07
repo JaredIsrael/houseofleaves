@@ -10,16 +10,18 @@ public class WorkInput : MonoBehaviour
      * Tracks the characters being clicked on the keyboard using an input string; 
      * characters are to be passed on to the TypeKey method of WorkManager
      */
-    /*
     void Update()
     {
-        foreach (char key in Input.inputString)
-        {
-            workManager.TypeKey(key);
+        if (!WorkPuzzle.gameOver)
+        {//only tracks input string when game is in progress
+            foreach (char key in Input.inputString)
+            {
+                workManager.TypeKey(key);
+            }
         }
     }
-    */
 
+    /*
     //TO-DO: Turn this update into coroutine so it can start/stop easily
     public IEnumerator KeyTracking()
     {
@@ -32,5 +34,6 @@ public class WorkInput : MonoBehaviour
             yield return null;
         }
     }
+    */
     
 }

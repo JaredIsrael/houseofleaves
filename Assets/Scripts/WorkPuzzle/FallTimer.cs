@@ -12,8 +12,8 @@ public class FallTimer : MonoBehaviour
     public WorkManager workManager;
 
     //time between the spawning of each word
-    private float delay = 1f;
-    private float nextTime = 0f;
+    public static float delay = 1f;
+    public static float nextTime = 0f;
 
     //boolean tracks whether or not the user has lost the game 
     public static bool stop;

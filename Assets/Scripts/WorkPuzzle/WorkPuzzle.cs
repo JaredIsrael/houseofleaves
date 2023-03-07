@@ -20,7 +20,6 @@ public sealed class WorkPuzzle : CompletableTask
     void Start()
     {
         //creates CompleteableTask for the work mini-game
-        gameOver = false;
         this.description = "Type up work";
         TaskCompletedEvent = new UnityEvent<CompletableTask>();
         ObjectivesManager.Instance.AddObjective(this);
@@ -36,11 +35,17 @@ public sealed class WorkPuzzle : CompletableTask
         //set the canvas of the work game active
         workCanvas.SetActive(true);
 
+        //set all necessary variables
+        FallTimer.stop = false; 
+        FallTimer.delay = 1f;
+        FallTimer.nextTime = 0f;
+        gameOver = false;
+
         //starts the coroutine GenerateWord(), game starts as words begin falling
         wordFall = StartCoroutine(GameObject.Find("WorkManager").GetComponent<FallTimer>().GenerateWord());
 
         //starts the coroutine that tracks the input user is typing
-        input = StartCoroutine(GameObject.Find("WorkManager").GetComponent<WorkInput>().KeyTracking());
+        //input = StartCoroutine(GameObject.Find("WorkManager").GetComponent<WorkInput>().KeyTracking());
     }
 
     private void Update()
@@ -48,9 +53,12 @@ public sealed class WorkPuzzle : CompletableTask
         if (gameOver)
         {//game is complete
             TaskCompletedEvent.Invoke(this);
+
             StopCoroutine(wordFall);
-            StopCoroutine(input);
+            //StopCoroutine(input);
+
             workCanvas.SetActive(false);
+
             InputManager.inputActions.Enable();
             InputManager.UIActions.Enable();
         }

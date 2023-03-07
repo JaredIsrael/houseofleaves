@@ -7,7 +7,6 @@ using TMPro;
 public class WordDisplay : MonoBehaviour
 {
     public TextMeshProUGUI text;
-    public GameObject loseText;
     //speed in which the text will fall down the screen
     private float speed = 50f;
 
@@ -15,6 +14,7 @@ public class WordDisplay : MonoBehaviour
     public GameObject[] words;
 
     WorkManager workManager;
+    SpawnText spawnText;
 
     public void SetText(string word)
     {
@@ -48,13 +48,13 @@ public class WordDisplay : MonoBehaviour
             {
                 Destroy(word);
             }
-            //TO-DO: figure out why this wont appear in game mode
-            Instantiate(loseText);
             ProgressHandler.value = 0f;
         }
+
+        // The following keeps track of a list of words rather than each word having
+        // its own update. It works, but definitely not as smooth. Needs work.
+
         /*
-        //This works, just not as smoothly: keep track of a list of words in the
-        //Update rather than each having their own update.
         words = GameObject.FindGameObjectsWithTag("Word");
         foreach(GameObject word in words)
         {

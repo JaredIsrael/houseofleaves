@@ -27,10 +27,16 @@ public class WorkManager : MonoBehaviour
      */
     public void NewWord(string[] passage)
     {
-        WordDisplay display = spawnText.Spawn();
+        string newWord = PassageGenerator.GetNextWord(passage);
 
-        Word word = new Word(PassageGenerator.GetNextWord(passage), display);
-        words.Add(word);
+        if (!newWord.Equals("COMPLETE"))
+        {
+            WordDisplay display = spawnText.Spawn();
+            Word word = new Word(newWord, display);
+            words.Add(word);
+        }
+
+        //Word word = new Word(PassageGenerator.GetNextWord(passage), display);
     }
 
 
@@ -46,6 +52,10 @@ public class WorkManager : MonoBehaviour
                 sliderBar.GetComponent<Image>().color = Color.green;
                 activeWord.TypeChar();
             }
+            else
+            {
+                sliderBar.GetComponent<Image>().color = Color.red;
+            }
         } else
         {
             foreach (Word word in words)
@@ -57,6 +67,10 @@ public class WorkManager : MonoBehaviour
                     wordIsActive = true;
                     word.TypeChar();
                     break;
+                }
+                else
+                {
+                    sliderBar.GetComponent<Image>().color = Color.red;
                 }
             }
         }
@@ -70,10 +84,18 @@ public class WorkManager : MonoBehaviour
             words.Remove(activeWord);
 
             //all words in passage have been typed
-            if (words.Count < 1)
+            if (words.Count < 1 && PassageGenerator.currentIndex >= FallTimer.passage.Length)
             {
+                //stop the coroutine from generating words on the screen
+                FallTimer.stop = true;
+
                 //Invoke task complete
                 WorkPuzzle.gameOver = true;
+
+                //TO-DO: this is where user levels up
+                PassageGenerator.level++;
+                PassageGenerator.currentIndex = 0;
+                PassageGenerator.levelUp = true;
             }
         }
     }

@@ -68,14 +68,9 @@ public class PassageGenerator : MonoBehaviour
         }
         else
         {//user has typed full passage, switch to next level
-            level++;
-            currentIndex = 0;
-            levelUp = true;
 
-            //stop the coroutine from generating words on the screen
-            FallTimer.stop = true;
-
-            return "fix";
+            //completed code, should not be added to words list
+            return "COMPLETE";
         }
     }
 }
