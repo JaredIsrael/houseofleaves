@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class WorkManager : MonoBehaviour
 {
-    public List<Word> words;
+    public static List<Word> words;
     string[] passage;
 
     private bool wordIsActive;
@@ -15,12 +15,10 @@ public class WorkManager : MonoBehaviour
 
     public GameObject sliderBar;
 
-    float increment;
-
     public void Start()
     {
+        words = new List<Word>();
         sliderBar.GetComponent<Image>().color = Color.green;
-        increment = 1.0f / FallTimer.passage.Length;
     }
 
     /*
@@ -32,7 +30,6 @@ public class WorkManager : MonoBehaviour
         WordDisplay display = spawnText.Spawn();
 
         Word word = new Word(PassageGenerator.GetNextWord(passage), display);
-        Debug.Log(word.word);
         words.Add(word);
     }
 
@@ -49,10 +46,6 @@ public class WorkManager : MonoBehaviour
                 sliderBar.GetComponent<Image>().color = Color.green;
                 activeWord.TypeChar();
             }
-            else
-            {//slider goes red to represent mistyped key
-                sliderBar.GetComponent<Image>().color = Color.red;
-            }
         } else
         {
             foreach (Word word in words)
@@ -65,10 +58,6 @@ public class WorkManager : MonoBehaviour
                     word.TypeChar();
                     break;
                 }
-                else
-                {//slider goes red to represent mistyped key
-                    sliderBar.GetComponent<Image>().color = Color.red;
-                }
             }
         }
 
@@ -76,10 +65,16 @@ public class WorkManager : MonoBehaviour
         if (wordIsActive && activeWord.WordComplete())
         {
             //a completed word means incrementing the progress bar, done here
-            ProgressHandler.value += increment;
+            ProgressHandler.value += (1.0f / FallTimer.passage.Length);
             wordIsActive = false;
             words.Remove(activeWord);
+
+            //all words in passage have been typed
+            if (words.Count < 1)
+            {
+                //Invoke task complete
+                WorkPuzzle.gameOver = true;
+            }
         }
     }
-
 }

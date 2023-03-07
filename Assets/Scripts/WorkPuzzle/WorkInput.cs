@@ -10,6 +10,7 @@ public class WorkInput : MonoBehaviour
      * Tracks the characters being clicked on the keyboard using an input string; 
      * characters are to be passed on to the TypeKey method of WorkManager
      */
+    /*
     void Update()
     {
         foreach (char key in Input.inputString)
@@ -17,18 +18,19 @@ public class WorkInput : MonoBehaviour
             workManager.TypeKey(key);
         }
     }
+    */
 
     //TO-DO: Turn this update into coroutine so it can start/stop easily
-    /*
     public IEnumerator KeyTracking()
     {
-        //TO-DO: how to get this called every frame, like update?
-        //tried while true, but unity crashed
-        foreach (char key in Input.inputString)
+        while (true)
         {
-            workManager.TypeKey(key);
+            foreach (char key in Input.inputString)
+            {
+                workManager.TypeKey(key);
+            }
             yield return null;
         }
     }
-    */
+    
 }

@@ -75,7 +75,7 @@ public class PassageGenerator : MonoBehaviour
             //stop the coroutine from generating words on the screen
             FallTimer.stop = true;
 
-            return "done";
+            return "fix";
         }
     }
 }

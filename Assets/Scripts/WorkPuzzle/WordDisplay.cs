@@ -9,10 +9,12 @@ public class WordDisplay : MonoBehaviour
     public TextMeshProUGUI text;
     public GameObject loseText;
     //speed in which the text will fall down the screen
-    private float speed = 100f;
+    private float speed = 50f;
 
     //list of words on the screen
     public GameObject[] words;
+
+    WorkManager workManager;
 
     public void SetText(string word)
     {
@@ -40,6 +42,7 @@ public class WordDisplay : MonoBehaviour
             GameObject[] words = GameObject.FindGameObjectsWithTag("Word");
             //sets the boolean in fall timer to true, as the words have run off the screen
             FallTimer.stop = true;
+            WorkManager.words.Clear();
 
             foreach (GameObject word in words)
             {

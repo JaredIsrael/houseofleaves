@@ -35,6 +35,7 @@ public class SpawnText : MonoBehaviour
             {
                 Destroy(GameObject.Find("LoseText(Clone)"));
 
+                //reset variables
                 PassageGenerator.currentIndex = 0;
                 PassageGenerator.levelUp = false;
                 FallTimer.stop = false;
@@ -45,9 +46,11 @@ public class SpawnText : MonoBehaviour
             {
                 Destroy(GameObject.Find("LoseText(Clone)"));
 
+                //game over, enable user input
                 InputManager.inputActions.Enable();
                 InputManager.UIActions.Enable();
 
+                //reset variables
                 PassageGenerator.currentIndex = 0;
                 PassageGenerator.levelUp = false;
                 workCanvas.SetActive(false);
