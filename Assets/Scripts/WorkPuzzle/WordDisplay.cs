@@ -14,9 +14,6 @@ public class WordDisplay : MonoBehaviour
     //list of words on the screen
     public GameObject[] words;
 
-    WorkManager workManager;
-    SpawnText spawnText;
-
     public void SetText(string word)
     {
         text.text = word;

@@ -12,6 +12,9 @@ public sealed class WorkPuzzle : CompletableTask
     [SerializeField]
     private GameObject workCanvas;
 
+    [SerializeField]
+    private GameObject loseText;
+
     public Coroutine wordFall;
     public Coroutine input;
 
@@ -34,6 +37,7 @@ public sealed class WorkPuzzle : CompletableTask
        
         //set the canvas of the work game active
         workCanvas.SetActive(true);
+        loseText.SetActive(false);
 
         //set all necessary variables
         FallTimer.stop = false; 

@@ -12,7 +12,7 @@ public class Word
 {
     public string word;
 
-    private int wordIndex;
+    public int wordIndex;
 
     private WordDisplay display;
 
@@ -49,9 +49,15 @@ public class Word
 
         if (complete)
         {//deletes word from display
+            wordIndex = 0;
             display.DeleteWord();
         }
 
         return complete;
     }
+
+    public void WordReset() {
+        wordIndex = 0;
+    }
+
 }

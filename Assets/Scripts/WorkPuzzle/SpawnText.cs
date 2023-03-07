@@ -42,6 +42,7 @@ public class SpawnText : MonoBehaviour
                 PassageGenerator.currentIndex = 0;
                 PassageGenerator.levelUp = false;
                 FallTimer.stop = false;
+                WorkPuzzle.gameOver = false;
             }
 
             //"escape" to quit the game after losing

@@ -35,8 +35,6 @@ public class WorkManager : MonoBehaviour
             Word word = new Word(newWord, display);
             words.Add(word);
         }
-
-        //Word word = new Word(PassageGenerator.GetNextWord(passage), display);
     }
 
 
@@ -47,6 +45,11 @@ public class WorkManager : MonoBehaviour
     {
         if (wordIsActive)
         {
+            if (FallTimer.stop)
+            {
+                Debug.Log("here");
+                activeWord.wordIndex = 0;
+            }
             if (activeWord.GetNextChar() == key)
             {//progress bar is green is correct letter typed
                 sliderBar.GetComponent<Image>().color = Color.green;
