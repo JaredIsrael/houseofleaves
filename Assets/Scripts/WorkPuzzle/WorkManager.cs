@@ -18,7 +18,7 @@ public class WorkManager : MonoBehaviour
     public void Start()
     {
         words = new List<Word>();
-        sliderBar.GetComponent<Image>().color = Color.green;
+        sliderBar.GetComponent<Image>().color = Color.clear;
     }
 
     /*
