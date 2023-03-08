@@ -12,9 +12,28 @@ public class WorkInput : MonoBehaviour
      */
     void Update()
     {
-        foreach (char key in Input.inputString)
-        {
-            workManager.TypeKey(key);
+        if (!WorkPuzzle.gameOver)
+        {//only tracks input string when game is in progress
+            foreach (char key in Input.inputString)
+            {
+                workManager.TypeKey(key);
+            }
         }
     }
+
+    /*
+    //TO-DO: Turn this update into coroutine so it can start/stop easily
+    public IEnumerator KeyTracking()
+    {
+        while (true)
+        {
+            foreach (char key in Input.inputString)
+            {
+                workManager.TypeKey(key);
+            }
+            yield return null;
+        }
+    }
+    */
+    
 }
