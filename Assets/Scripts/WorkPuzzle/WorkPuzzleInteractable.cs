@@ -6,6 +6,7 @@ public class WorkPuzzleInteractable : PickUpSphere
 {
     public override void InteractWith()
     {
+        Debug.Log("MWokring");
         InteractedWith.Invoke();
     }
 }
