@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class SpawnText : MonoBehaviour
 {
     public GameObject text;
+    [SerializeField]
+    private InputManager im;
     public Transform canvas;
     public GameObject workCanvas;
     public GameObject loseText;
@@ -51,7 +53,7 @@ public class SpawnText : MonoBehaviour
                 loseText.SetActive(false);
 
                 //game over, enable user input
-                InputManager.inputActions.Enable();
+                im.inputActions.Enable();
                 InputManager.UIActions.Enable();
 
                 //reset variables

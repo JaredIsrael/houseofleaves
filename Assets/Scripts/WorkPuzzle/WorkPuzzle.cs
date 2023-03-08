@@ -8,6 +8,8 @@ public sealed class WorkPuzzle : CompletableTask
 {
     [SerializeField]
     private WorkPuzzleInteractable interactable;
+    [SerializeField]
+    private InputManager im;
 
     [SerializeField]
     private GameObject workCanvas;
@@ -32,7 +34,7 @@ public sealed class WorkPuzzle : CompletableTask
     void BeginPuzzle()
     {
         //TO-DO: enable/disable the UI input actions
-        InputManager.inputActions.Disable();
+        im.inputActions.Disable();
         InputManager.UIActions.Disable();
        
         //set the canvas of the work game active
@@ -63,7 +65,7 @@ public sealed class WorkPuzzle : CompletableTask
 
             workCanvas.SetActive(false);
 
-            InputManager.inputActions.Enable();
+            im.inputActions.Enable();
             InputManager.UIActions.Enable();
         }
     }

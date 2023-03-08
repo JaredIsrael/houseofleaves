@@ -1500,6 +1500,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactable: {fileID: 728372606}
+  im: {fileID: 1409049521}
   workCanvas: {fileID: 233326295}
   loseText: {fileID: 254719299}
 --- !u!4 &618435654
@@ -3935,6 +3936,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 1409049519}
   cam: {fileID: 330585545}
+  canMove: 1
   cr: {fileID: 1409049520}
   speed: 5
   crouching: 0
@@ -3986,7 +3988,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotator: {fileID: 1409049520}
   gameStateManager: {fileID: 1394397705}
-  pianoController: {fileID: 0}
+  playerController: {fileID: 0}
 --- !u!54 &1409049522
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4382,6 +4384,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 5102631874732955101, guid: 5a871afab70c34aea97a8e982f35826c, type: 3}
+  im: {fileID: 1409049521}
   canvas: {fileID: 233326299}
   workCanvas: {fileID: 233326295}
   loseText: {fileID: 254719299}
