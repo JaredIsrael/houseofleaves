@@ -17,6 +17,6 @@ public class StartText : MonoBehaviour
 
         audio.PlayOneShot(startSound, .5f);
         menuCanvas.enabled = false;
-        LoadManager.Instance.LoadSceneBackground("PlayTestArea");
+        LoadManager.Instance.LoadSceneBackground("HouseConcept");
     }
 }
