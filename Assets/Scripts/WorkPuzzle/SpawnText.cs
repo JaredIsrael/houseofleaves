@@ -7,11 +7,13 @@ public class SpawnText : MonoBehaviour
 {
     public GameObject text;
     public Transform canvas;
-
+    public GameObject workCanvas;
+    public GameObject loseText;
     public WordDisplay Spawn()
     {
         GameObject textObject;
-        Vector3 position = new Vector3(Random.Range(-50f,50f), 52f);
+        //Vector3 position = new Vector3(Random.Range(90f, 900f), 500f);
+        Vector3 position = new Vector3(Random.Range(90f, Screen.width-90f), Screen.height);
 
         if (PassageGenerator.level % 2 == 0)
         { //TO-DO: create other level ideas.
@@ -29,21 +31,36 @@ public class SpawnText : MonoBehaviour
     {
         if (FallTimer.stop)
         {
-            //TO-DO: get "return" key to restart game
+            loseText.SetActive(true);
+
+            //TO-DO: get "return" to restart game after losing
             if (Input.GetKeyDown(KeyCode.Return))
             {
+                loseText.SetActive(false);
+
+                //reset variables
                 PassageGenerator.currentIndex = 0;
                 PassageGenerator.levelUp = false;
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                FallTimer.stop = false;
+                WorkPuzzle.gameOver = false;
             }
 
+            //"escape" to quit the game after losing
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-#if UNITY_EDITOR
-                UnityEditor.EditorApplication.isPlaying = false;
-#endif
-                Application.Quit();
+                loseText.SetActive(false);
 
+                //game over, enable user input
+                InputManager.inputActions.Enable();
+                InputManager.UIActions.Enable();
+
+                //reset variables
+                PassageGenerator.currentIndex = 0;
+                PassageGenerator.levelUp = false;
+
+                WorkManager.words.Clear();
+
+                workCanvas.SetActive(false);
             }
         }
     }

@@ -32,13 +32,19 @@ public class LaundryPuzzle : CompletableTask
     [SerializeField]
     private PlayerController pc;
 
+
+    private void Awake()
+    {
+        TaskCompletedEvent = new UnityEngine.Events.UnityEvent<CompletableTask>();
+
+    }
+
     void Start()
     {
         this.description = "Sort the laundry";
         ObjectivesManager.Instance.AddObjective(this);
         interactable.InteractedWith.AddListener(BeginPuzzle);
         pt.TimeRanOutEvent.AddListener(TimeRunOut);
-        TaskCompletedEvent = new UnityEngine.Events.UnityEvent<CompletableTask>();
     }
 
     void BeginPuzzle()

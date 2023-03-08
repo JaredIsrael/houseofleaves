@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
 {
     public CharacterController controller;
     public Camera cam;
-    private bool canMove = true;
+    public bool canMove = true;
     [SerializeField]
     private CameraRotator cr;
 
@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
         Vector3 movement3D = (transform.right * keyboardInput.x + transform.forward * keyboardInput.y) * speed;
         movement3D.y = gravity;
         // StopMovement and DisableMovement do the same thing, lets use the same one
-        if (!canMove || !controller.enabled)
+        if (!canMove)
         {
             movement3D = Vector3.zero;
         }
@@ -123,15 +123,11 @@ public class PlayerController : MonoBehaviour
     disable easier (UI icon?) Can easily be reworked later if need be
 
      */
-    public void EnableMovement()
+    public void ToggleMovement()
     {
-        canMove = true;
+        canMove = !canMove;
     }
 
-    public void DisableMovement()
-    {
-        canMove = false;
-    }
     public void UnLockCamera()
     {
         cr.EnableCameraMovment();
@@ -150,16 +146,5 @@ public class PlayerController : MonoBehaviour
     public void LockCamera()
     {
         cr.DisableCameraMovement();
-    }
-    
-    //Needs to be deprecated, DisableMovmenet does the same thing, change all refs to this
-    public void StopMovement()
-    {
-        controller.enabled = false;
-    }
-
-    public void StartMovement()
-    {
-        controller.enabled = true;
     }
 }
