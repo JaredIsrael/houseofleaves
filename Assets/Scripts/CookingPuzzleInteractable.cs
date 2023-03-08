@@ -14,9 +14,14 @@ Author: Jared Israel
 
 public class CookingPuzzleInteractable : PickUpSphere
 {
+    private bool interactedWith = false;
     public override void InteractWith()
     {
-        Debug.Log("Puzzle interacte");
-        InteractedWith.Invoke();
+        if (!interactedWith)
+        {
+            Debug.Log("Puzzle interacte");
+            InteractedWith.Invoke();
+            interactedWith = true;
+        }
     }
 }
