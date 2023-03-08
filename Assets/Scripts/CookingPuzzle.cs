@@ -26,18 +26,10 @@ public class CookingPuzzle : CompletableTask
     [SerializeField]
     private PlayerController pc;
     private float TRANSITION_DURATION = 1f;
-    private float SLICE_DURATION = 1f;
     [SerializeField]
     private GameObject knife;
     private bool completed = false;
     private Vector3 initialPlayerPosition;
-
-    private Coroutine trackingCoroutine;
-
-    private void Awake()
-    {
-        TaskCompletedEvent = new UnityEngine.Events.UnityEvent<CompletableTask>();
-    }
 
     void Start()
     {
@@ -45,28 +37,27 @@ public class CookingPuzzle : CompletableTask
         ObjectivesManager.Instance.AddObjective(this);
         interactable.InteractedWith.AddListener(BeginPuzzle);
         pt.TimeRanOutEvent.AddListener(TimeRunOut);
+        TaskCompletedEvent = new UnityEngine.Events.UnityEvent<CompletableTask>();
     }
 
     private void BeginPuzzle()
     {
+        Debug.Log("runngi");
         // TaskCompletedEvent.Invoke(this);
         initialPlayerPosition = pc.gameObject.transform.position;
         pc.LockCamera();
-        pc.ToggleMovement();
+        pc.DisableMovement();
         pc.MovePlayerToPointWithLook(playerPosition.position, lookPosition, TRANSITION_DURATION);
-        knife.transform.Rotate(new Vector3(-90, 0, 0));
-        trackingCoroutine = StartCoroutine(TrackKnife());
+        StartCoroutine(TrackKnife());
     }
 
     IEnumerator TrackKnife()
     {
+        Debug.Log("Tracking ");
+        knife.transform.Rotate(new Vector3(-90, 0, 0));
         while (!completed)
         {
-            if (Input.GetMouseButtonDown(0))
-            {
-                SliceKnife();
-            }
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetMouseButton(0))
             {
                 completed = true;
                 CompletePuzzle();
@@ -80,32 +71,6 @@ public class CookingPuzzle : CompletableTask
 
     }
 
-    private void SliceKnife()
-    {
-        StartCoroutine(MoveKnifeDown(SLICE_DURATION));
-    }
-
-    // Use coroutines in order to animate smoothly without having an update method
-    IEnumerator MoveKnifeDown(float duration)
-    {
-        StopCoroutine(trackingCoroutine);
-        float elapsedTime = 0f;
-        float percentComplete = 0f;
-        Vector3 startPos = knife.transform.position;
-        Vector3 goalPosition = knife.transform.position - new Vector3(0, 0.2f, 0);
-
-        while (knife.transform.position != goalPosition && elapsedTime<2f)
-        {
-            elapsedTime += Time.deltaTime;
-            percentComplete = elapsedTime / duration;
-            knife.transform.position = Vector3.Slerp(startPos, goalPosition, percentComplete);
-            yield return null;
-        }
-        knife.transform.position = startPos;
-
-        trackingCoroutine = StartCoroutine(TrackKnife());
-    }
-
     private Vector3 GetNewKnifePos()
     {
         RaycastHit hit;
@@ -116,7 +81,7 @@ public class CookingPuzzle : CompletableTask
             Transform objectHit = hit.transform;
             if (objectHit.gameObject.tag == "Table")
             {
-                return hit.point+new Vector3(0,0.1f,0);
+                return hit.point;
             }
         }
         return knife.transform.position;
@@ -127,7 +92,7 @@ public class CookingPuzzle : CompletableTask
         TaskCompletedEvent.Invoke(this);
         pt.DisableTimer();
         pc.MovePlayerToPoint(initialPlayerPosition, TRANSITION_DURATION);
-        pc.ToggleMovement();
+        pc.EnableMovement();
         pc.UnLockCamera();
     }
 

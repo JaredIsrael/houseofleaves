@@ -32,7 +32,7 @@ public class LaundryPuzzleInteractable : PickUpSphere
         {
             hasBeenInteractedWith = true;
             initialPos = pc.gameObject.transform.position;
-            pc.ToggleMovement();
+            pc.DisableMovement();
             pc.LockCamera();
             //StartCoroutine(MovePlayerToPosition(pc.gameObject, pc.cam));
             pc.MovePlayerToPointWithLook(puzzlePlayerPos.position, puzzleCameraPos, TRANSITION_DURATION);
@@ -45,7 +45,7 @@ public class LaundryPuzzleInteractable : PickUpSphere
     public void MoveBackToInitialPosition()
     {
         pc.MovePlayerToPoint(initialPos, TRANSITION_DURATION);
-        pc.ToggleMovement();
+        pc.EnableMovement();
         pc.UnLockCamera();
     }
 }

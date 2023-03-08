@@ -20,18 +20,10 @@ public class PassageGenerator : MonoBehaviour
     public static int currentIndex = 0;
     public static int level = 1;
     public static bool levelUp = false;
-    private static string nextWord;
-    private FallTimer fallTimer;
 
-    
-    private static string[] passage1 = { "Today", "is", "our", "first", "day",
-        "of", "work.", "I've", "noticed" , "there", "are", "some", "strange",
-        "things","happening", "in", "this","house.", "It", "could", "all", "just",
-        "be", "in", "my", "head,", "but", "things", "don't", "seem", "right", "since",
-        "that", "day..." };
-    
-
-    //private static string[] passage1 = { "Just", "four", "words", "here" };
+    private static string[] passage1 = { "According", "to", "all", "known", "laws",
+        "of", "aviation,", "there", "is", "no", "way", "that", "a", "bee",
+        "should", "be", "able", "to", "fly." };
 
     private static string[] passage2 = { "Hello,", "this", "is", "a", "test.",
         "You", "need", "to", "do", "some", "very", "boring", "work.",
@@ -43,19 +35,17 @@ public class PassageGenerator : MonoBehaviour
 
     private static string[][] passageList = { passage1, passage2, passage3 };
 
-    //TO-DO: fill in with relevant passages that fit the days of the story.
-    // no longer choose at random, passage # corresponds to the day.
-
     /*
      * This method chooses a random passage from the above list. This is the 
      * passage that the user will have to type during the game.
      */
-    public static string[] GetPassage()
+    public static string[] GetRandomPassage()
     {
-        //chooses passage from the list that corresponds to the level
-        string[] passage = passageList[level-1];
+        //chooses a random index from the list of passages
+        int index = Random.Range(0, passageList.Length);
+        string[] randomPassage = passageList[index];
 
-        return passage;
+        return randomPassage;
     }
 
     /*
@@ -65,16 +55,17 @@ public class PassageGenerator : MonoBehaviour
     {
         if (currentIndex < passage.Length)
         {
-            nextWord = passage[currentIndex];
+            string nextWord = passage[currentIndex];
             currentIndex++;
 
             return nextWord;
         }
         else
         {//user has typed full passage, switch to next level
-
-            //completed code, should not be added to words list
-            return "COMPLETE";
+            level++;
+            currentIndex = 0;
+            levelUp = true;
+            return "loading...";
         }
     }
 }

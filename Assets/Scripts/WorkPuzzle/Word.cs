@@ -7,12 +7,14 @@ using UnityEngine;
  * more efficient, as well as keep track of their contents. 
  */
 
+
+//To-do: is this necessary?
 [System.Serializable]
 public class Word
 {
     public string word;
 
-    public int wordIndex;
+    private int wordIndex;
 
     private WordDisplay display;
 
@@ -49,15 +51,9 @@ public class Word
 
         if (complete)
         {//deletes word from display
-            wordIndex = 0;
             display.DeleteWord();
         }
 
         return complete;
     }
-
-    public void WordReset() {
-        wordIndex = 0;
-    }
-
 }

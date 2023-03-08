@@ -61,5 +61,3 @@ crashlytics-build.properties
 # User settings, might break things lmao
 /[Uu]ser[Ss]ettings/
 
-# iCloud files
-*.iCloud

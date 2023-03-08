@@ -14,7 +14,7 @@ public class TestDayManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       // DialogManager.Instance.DisplayBinaryQuestionLines(WakeUpQuestion, OnLeft, OnRight);
+        DialogManager.Instance.DisplayBinaryQuestionLines(WakeUpQuestion, OnLeft, OnRight);
     }
 
     public void OnLeft()

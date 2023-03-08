@@ -8,12 +8,13 @@ public class InputManager : MonoBehaviour
 {
     [SerializeField] CameraRotator rotator;
     [SerializeField] GameStateManager gameStateManager;
+    [SerializeField] PianoController pianoController;
 
-    public PlayerController playerController;
-    public InputActions inputActions;
+    public static PlayerController playerController;
+    public static InputActions inputActions;
+    public static event Action<InputActionMap> actionMapChange;
 
-    //changed this to public static from private
-    public static UIInputs UIActions;
+    private UIInputs UIActions;
     private Vector2 keyboardInput;
     private Vector2 mouseInput;
     private bool crouch;
@@ -29,7 +30,28 @@ public class InputManager : MonoBehaviour
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         paused = false;
 
-        SetUpContexts();
+        //Movement contexts
+        inputActions.Player.Move.performed += ctx => keyboardInput = ctx.ReadValue<Vector2>();
+        inputActions.Player.MouseX.performed += ctx => mouseInput.x = ctx.ReadValue<float>();
+        inputActions.Player.MouseY.performed += ctx => mouseInput.y = ctx.ReadValue<float>();
+        inputActions.Player.Crouch.performed += ctx => crouch = ctx.ReadValueAsButton();
+        inputActions.Player.PickUp.performed += ctx => pickUp = ctx.ReadValueAsButton();
+        inputActions.Player.PickUp.started += ctx => PickUpController.Instance.TryPickupItems();
+        inputActions.Player.Objectives.started += ctx => ToDoListManager.Instance.ToggleList();
+        UIActions.Inputs.Pause.performed += ctx => paused = ctx.ReadValueAsButton();
+        UIActions.Inputs.Reset.performed += ctx => reset = ctx.ReadValueAsButton();
+        UIActions.Inputs.Exit.performed += ctx => exit = ctx.ReadValueAsButton();
+
+        ToggleActionMap(inputActions.Player);
+    }
+
+    public static void ToggleActionMap(InputActionMap actionMap)
+    {
+        if (actionMap.enabled)
+            return;
+        inputActions.Disable();
+        actionMapChange?.Invoke(actionMap);
+        actionMap.Enable();
     }
 
     private void Update()
@@ -52,44 +74,19 @@ public class InputManager : MonoBehaviour
         inputActions.Disable();
         UIActions.Disable();
     }
-
-    public void SetUpContexts()
-    {
-        //Movement contexts
-        inputActions.Player.Move.performed += ctx => keyboardInput = ctx.ReadValue<Vector2>();
-        inputActions.Player.MouseX.performed += ctx => mouseInput.x = ctx.ReadValue<float>();
-        inputActions.Player.MouseY.performed += ctx => mouseInput.y = ctx.ReadValue<float>();
-        inputActions.Player.Crouch.performed += ctx => crouch = ctx.ReadValueAsButton();
-        inputActions.Player.PickUp.performed += ctx => pickUp = ctx.ReadValueAsButton();
-        inputActions.Player.PickUp.started += ctx => PickUpController.Instance.TryPickupItems();
-        inputActions.Player.Objectives.started += ctx => ToDoListManager.Instance.ToggleList();
-        UIActions.Inputs.Pause.performed += ctx => paused = ctx.ReadValueAsButton();
-        UIActions.Inputs.Reset.performed += ctx => reset = ctx.ReadValueAsButton();
-        UIActions.Inputs.Exit.performed += ctx => exit = ctx.ReadValueAsButton();
-    }
-
-    public void DeleteContexts()
-    {
-        //Movement contexts
-        inputActions.Player.Move.performed -= ctx => keyboardInput = ctx.ReadValue<Vector2>();
-        inputActions.Player.MouseX.performed -= ctx => mouseInput.x = ctx.ReadValue<float>();
-        inputActions.Player.MouseY.performed -= ctx => mouseInput.y = ctx.ReadValue<float>();
-        inputActions.Player.Crouch.performed -= ctx => crouch = ctx.ReadValueAsButton();
-        inputActions.Player.PickUp.performed -= ctx => pickUp = ctx.ReadValueAsButton();
-        inputActions.Player.PickUp.started -= ctx => PickUpController.Instance.TryPickupItems();
-        inputActions.Player.Objectives.started -= ctx => ToDoListManager.Instance.ToggleList();
-        UIActions.Inputs.Pause.performed -= ctx => paused = ctx.ReadValueAsButton();
-        UIActions.Inputs.Reset.performed -= ctx => reset = ctx.ReadValueAsButton();
-        UIActions.Inputs.Exit.performed -= ctx => exit = ctx.ReadValueAsButton();
-    }
     
     public InputActions GetInputActions()
     {
         return inputActions;
     }
 
-    public void TogglePlayerMovement()
+    public static void StopPlayerMovement()
     {
-        playerController.ToggleMovement();
+        playerController.StopMovement();
+    }
+
+    public static void StartPlayerMovement()
+    {
+        playerController.StartMovement();
     }
 }
