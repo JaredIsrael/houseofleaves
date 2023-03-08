@@ -38,7 +38,6 @@ public class LaundryPuzzle : CompletableTask
         ObjectivesManager.Instance.AddObjective(this);
         interactable.InteractedWith.AddListener(BeginPuzzle);
         pt.TimeRanOutEvent.AddListener(TimeRunOut);
-        TaskCompletedEvent = new UnityEngine.Events.UnityEvent<CompletableTask>();
     }
 
     void BeginPuzzle()

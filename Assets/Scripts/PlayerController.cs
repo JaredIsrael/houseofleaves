@@ -15,10 +15,8 @@ public class PlayerController : MonoBehaviour
 {
     public CharacterController controller;
     public Camera cam;
-
     private bool canMove = true;
     [SerializeField] private CameraRotator cr;
-
 
     public float speed = 7f;
     public bool crouching = false;
@@ -48,7 +46,7 @@ public class PlayerController : MonoBehaviour
         Vector3 movement3D = (transform.right * keyboardInput.x + transform.forward * keyboardInput.y) * speed;
         movement3D.y = gravity;
         // StopMovement and DisableMovement do the same thing, lets use the same one
-        if (!canMove)
+        if (!canMove || !controller.enabled)
         {
             movement3D = Vector3.zero;
         }
@@ -148,11 +146,15 @@ public class PlayerController : MonoBehaviour
     disable easier (UI icon?) Can easily be reworked later if need be
 
      */
-    public void ToggleMovement()
+    public void EnableMovement()
     {
-        canMove = !canMove;
+        canMove = true;
     }
 
+    public void DisableMovement()
+    {
+        canMove = false;
+    }
     public void UnLockCamera()
     {
         cr.EnableCameraMovement();
@@ -188,5 +190,4 @@ public class PlayerController : MonoBehaviour
     {
         controller.enabled = true;
     }
-
 }

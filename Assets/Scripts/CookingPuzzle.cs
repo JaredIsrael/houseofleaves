@@ -37,7 +37,6 @@ public class CookingPuzzle : CompletableTask
         ObjectivesManager.Instance.AddObjective(this);
         interactable.InteractedWith.AddListener(BeginPuzzle);
         pt.TimeRanOutEvent.AddListener(TimeRunOut);
-        TaskCompletedEvent = new UnityEngine.Events.UnityEvent<CompletableTask>();
     }
 
     private void BeginPuzzle()
@@ -46,7 +45,7 @@ public class CookingPuzzle : CompletableTask
         // TaskCompletedEvent.Invoke(this);
         initialPlayerPosition = pc.gameObject.transform.position;
         pc.LockCamera();
-        pc.ToggleMovement();
+        pc.DisableMovement();
         pc.MovePlayerToPointWithLook(playerPosition.position, lookPosition, TRANSITION_DURATION);
         StartCoroutine(TrackKnife());
     }
@@ -92,7 +91,7 @@ public class CookingPuzzle : CompletableTask
         TaskCompletedEvent.Invoke(this);
         pt.DisableTimer();
         pc.MovePlayerToPoint(initialPlayerPosition, TRANSITION_DURATION);
-        pc.ToggleMovement();
+        pc.EnableMovement();
         pc.UnLockCamera();
     }
 
