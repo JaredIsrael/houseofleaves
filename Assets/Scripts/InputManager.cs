@@ -12,7 +12,8 @@ public class InputManager : MonoBehaviour
     public PlayerController playerController;
     public InputActions inputActions;
 
-    private UIInputs UIActions;
+    //changed this to public static from private
+    public static UIInputs UIActions;
     private Vector2 keyboardInput;
     private Vector2 mouseInput;
     private bool crouch;
