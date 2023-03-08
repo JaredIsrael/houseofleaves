@@ -27,6 +27,9 @@ public class PlayerController : MonoBehaviour
     public bool previousFlashlightInput = false;
     [SerializeField] private GameObject flashlight;
 
+    public int throwableObjects = 0;
+    public bool previousThrowableObjectInput = false;
+
     private Vector2 keyboardInput;
     private float gravity;
 
@@ -102,6 +105,24 @@ public class PlayerController : MonoBehaviour
         }
 
         previousFlashlightInput = flashlightInput;
+    }
+
+    public void ReadThrowableObjectInput(bool throwableObjectInput)
+    {
+        if(throwableObjectInput && !previousThrowableObjectInput)
+        {
+            if(throwableObjects > 0)
+            {
+                Debug.Log("Throw Object");
+                throwableObjects--;
+            }
+            previousThrowableObjectInput = true;
+        }  
+        else if(!throwableObjectInput && previousThrowableObjectInput)
+        {
+            previousThrowableObjectInput = false;
+        }
+
     }
 
     /*
