@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72ecc1baa12584f64b7b50911e90bbff, type: 3}
+  m_Name: AyamuMorning1
+  m_EditorClassIdentifier: 
+  lines:
+  - "Not enough time in the day\u2026"
+  - I need to get moving.
+  - ...
+  - "Yeah, anytime now\u2026"
+  - ...
+  - Ok then, something small to get me moving in the right direction.
+  - "Just clean the room a little\u2026"
