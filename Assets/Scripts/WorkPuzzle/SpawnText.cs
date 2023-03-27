@@ -14,8 +14,7 @@ public class SpawnText : MonoBehaviour
     public WordDisplay Spawn()
     {
         GameObject textObject;
-        //Vector3 position = new Vector3(Random.Range(90f, 900f), 500f);
-        Vector3 position = new Vector3(Random.Range(90f, Screen.width-90f), Screen.height);
+        Vector3 position = new Vector3(Random.Range(80f, Screen.width-80f), Screen.height);
 
         if (PassageGenerator.level % 2 == 0)
         { //TO-DO: create other level ideas.
