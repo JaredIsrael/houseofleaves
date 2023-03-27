@@ -45,11 +45,6 @@ public class WorkManager : MonoBehaviour
     {
         if (wordIsActive)
         {
-            if (FallTimer.stop)
-            {
-                Debug.Log("here");
-                activeWord.wordIndex = 0;
-            }
             if (activeWord.GetNextChar() == key)
             {//progress bar is green is correct letter typed
                 sliderBar.GetComponent<Image>().color = Color.green;
@@ -100,6 +95,10 @@ public class WorkManager : MonoBehaviour
                 PassageGenerator.currentIndex = 0;
                 PassageGenerator.levelUp = true;
             }
+        } else if (!activeWord.WordComplete() && FallTimer.stop)
+        {
+            activeWord.WordReset();
+            wordIsActive = false;
         }
     }
 }
