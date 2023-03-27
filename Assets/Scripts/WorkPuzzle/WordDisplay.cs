@@ -9,7 +9,7 @@ public class WordDisplay : MonoBehaviour
 {
     public TextMeshProUGUI text;
     //speed in which the text will fall down the screen
-    private float speed = 50f;
+    private float speed = .15f * Screen.height;
 
     //list of words on the screen
     public GameObject[] words;
