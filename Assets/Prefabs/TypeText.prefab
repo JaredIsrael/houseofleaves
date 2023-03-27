@@ -150,4 +150,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 2886766866720477244}
   words: []
-  LoseText: {fileID: 809961621380351982, guid: 131cba06f290a4581b9d7183d30728d7, type: 3}

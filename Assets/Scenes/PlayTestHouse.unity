@@ -1721,7 +1721,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 1409049519}
   cam: {fileID: 330585545}
+  canMove: 1
+  cr: {fileID: 0}
   speed: 5
+  crouching: 0
+  cameraHeightChanged: 0
 --- !u!143 &1409049519
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1768,8 +1772,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotator: {fileID: 1409049520}
-  playerController: {fileID: 1409049518}
   gameStateManager: {fileID: 1394397705}
+  playerController: {fileID: 1409049518}
 --- !u!1 &1478231795
 GameObject:
   m_ObjectHideFlags: 0

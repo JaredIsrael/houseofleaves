@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731689, g: 0.13414702, b: 0.1210784, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2257,7 +2257,8 @@ MonoBehaviour:
   m_fontAsset: {fileID: 11400000, guid: b02dd793b1d9e42aa9aefb285bd15da1, type: 2}
   m_sharedMaterial: {fileID: -6155368756329788604, guid: b02dd793b1d9e42aa9aefb285bd15da1,
     type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: -6155368756329788604, guid: b02dd793b1d9e42aa9aefb285bd15da1, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -3573,7 +3574,8 @@ MonoBehaviour:
   m_fontAsset: {fileID: 11400000, guid: b02dd793b1d9e42aa9aefb285bd15da1, type: 2}
   m_sharedMaterial: {fileID: -6155368756329788604, guid: b02dd793b1d9e42aa9aefb285bd15da1,
     type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: -6155368756329788604, guid: b02dd793b1d9e42aa9aefb285bd15da1, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -5172,7 +5174,8 @@ MonoBehaviour:
   m_fontAsset: {fileID: 11400000, guid: b02dd793b1d9e42aa9aefb285bd15da1, type: 2}
   m_sharedMaterial: {fileID: -6155368756329788604, guid: b02dd793b1d9e42aa9aefb285bd15da1,
     type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: -6155368756329788604, guid: b02dd793b1d9e42aa9aefb285bd15da1, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -6280,7 +6283,8 @@ MonoBehaviour:
   m_fontAsset: {fileID: 11400000, guid: b02dd793b1d9e42aa9aefb285bd15da1, type: 2}
   m_sharedMaterial: {fileID: -6155368756329788604, guid: b02dd793b1d9e42aa9aefb285bd15da1,
     type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: -6155368756329788604, guid: b02dd793b1d9e42aa9aefb285bd15da1, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -6674,7 +6678,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotator: {fileID: 1657275125}
   gameStateManager: {fileID: 773236286}
-  pianoController: {fileID: 0}
+  playerController: {fileID: 0}
 --- !u!114 &1657275125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6722,6 +6726,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 1657275126}
   cam: {fileID: 13083423}
+  canMove: 1
   cr: {fileID: 1657275125}
   speed: 5
   crouching: 0
@@ -8024,7 +8029,8 @@ MonoBehaviour:
   m_fontAsset: {fileID: 11400000, guid: b02dd793b1d9e42aa9aefb285bd15da1, type: 2}
   m_sharedMaterial: {fileID: -6155368756329788604, guid: b02dd793b1d9e42aa9aefb285bd15da1,
     type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: -6155368756329788604, guid: b02dd793b1d9e42aa9aefb285bd15da1, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -8298,7 +8304,8 @@ MonoBehaviour:
   m_fontAsset: {fileID: 11400000, guid: b02dd793b1d9e42aa9aefb285bd15da1, type: 2}
   m_sharedMaterial: {fileID: -6155368756329788604, guid: b02dd793b1d9e42aa9aefb285bd15da1,
     type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: -6155368756329788604, guid: b02dd793b1d9e42aa9aefb285bd15da1, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
