@@ -64,6 +64,7 @@ public sealed class WorkPuzzle : CompletableTask
             //StopCoroutine(input);
 
             workCanvas.SetActive(false);
+            WorkManager.wordIsActive = false;
 
             im.inputActions.Enable();
             InputManager.UIActions.Enable();
