@@ -14,6 +14,8 @@ public class WordDisplay : MonoBehaviour
     //list of words on the screen
     public GameObject[] words;
 
+    private WorkManager workManager;
+
     public void SetText(string word)
     {
         text.text = word;
@@ -40,6 +42,10 @@ public class WordDisplay : MonoBehaviour
             GameObject[] words = GameObject.FindGameObjectsWithTag("Word");
             //sets the boolean in fall timer to true, as the words have run off the screen
             FallTimer.stop = true;
+
+            //reset the active words index to 0
+            WorkManager.activeWord.WordReset();
+
             WorkManager.words.Clear();
 
             foreach (GameObject word in words)

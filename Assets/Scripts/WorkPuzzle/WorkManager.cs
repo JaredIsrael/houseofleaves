@@ -8,8 +8,8 @@ public class WorkManager : MonoBehaviour
     public static List<Word> words;
     string[] passage;
 
-    private bool wordIsActive;
-    private Word activeWord;
+    public static bool wordIsActive;
+    public static Word activeWord;
 
     public SpawnText spawnText;
 
@@ -95,10 +95,6 @@ public class WorkManager : MonoBehaviour
                 PassageGenerator.currentIndex = 0;
                 PassageGenerator.levelUp = true;
             }
-        } else if (!activeWord.WordComplete() && FallTimer.stop)
-        {
-            activeWord.WordReset();
-            wordIsActive = false;
         }
     }
 }
