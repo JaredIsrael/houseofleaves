@@ -56,8 +56,11 @@ public class Word
         return complete;
     }
 
+    //resets the index of words if game ends before completed
     public void WordReset() {
+        Debug.Log("Reset Index");
         wordIndex = 0;
+        WorkManager.wordIsActive = false;
     }
 
 }
