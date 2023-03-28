@@ -15,9 +15,12 @@ public class WorkManager : MonoBehaviour
 
     public GameObject sliderBar;
 
+    private AudioSource clickSource;
+
     public void Start()
     {
         words = new List<Word>();
+        clickSource = GetComponent<AudioSource>();
         sliderBar.GetComponent<Image>().color = Color.clear;
     }
 
@@ -49,6 +52,7 @@ public class WorkManager : MonoBehaviour
             {//progress bar is green is correct letter typed
                 sliderBar.GetComponent<Image>().color = Color.green;
                 activeWord.TypeChar();
+                clickSource.Play();
             }
             else
             {
@@ -64,6 +68,7 @@ public class WorkManager : MonoBehaviour
                     activeWord = word;
                     wordIsActive = true;
                     word.TypeChar();
+                    clickSource.Play();
                     break;
                 }
                 else
