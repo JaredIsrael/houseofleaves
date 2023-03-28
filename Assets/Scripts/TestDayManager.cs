@@ -18,23 +18,16 @@ public class TestDayManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // DialogManager.Instance.DisplayBinaryQuestionLines(WakeUpQuestion, OnLeft, OnRight);
+        //DialogManager.Instance.DisplayMonologLines(monoLines);
         StartCoroutine(FadeInFromBlack());
     }
 
     private IEnumerator FadeInFromBlack()
     {
-        bool delayed = false;
         blackScreen.gameObject.SetActive(true);
         float startTime = Time.time;
         while(Time.time-startTime < FADE_TIME)
         {
-            //figure this out
-            //if (!delayed)
-            //{
-            //    yield return new WaitForSeconds(1f);
-            //    delayed = true;
-            //}
             Color screenColor = blackScreen.color;
             screenColor.a = 1-((Time.time - startTime) / FADE_TIME);
             blackScreen.color = screenColor;

@@ -80,6 +80,7 @@ public class DialogManager : MonoBehaviour
             StartCoroutine(ChangePanelVisibility(true));
         }
         if (monologLines.lines.Length <= 0) return;
+        dialogPanel.gameObject.SetActive(true);
         StartCoroutine(ChangePanelVisibility(true));
         StartCoroutine(SlowDisplayMonolog(monologLines.lines));
     }
