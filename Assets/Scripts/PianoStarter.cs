@@ -6,6 +6,7 @@ public class PianoStarter : MonoBehaviour
 {
     [SerializeField] Canvas pianoCanvas;
     [SerializeField] PianoController pianoController;
+    
     [SerializeField] InputManager inputManager;
 
     private void OnTriggerStay(Collider other)
@@ -18,17 +19,7 @@ public class PianoStarter : MonoBehaviour
             pianoController.inputActions.Enable();
             inputManager.inputActions.Disable();
             inputManager.DeleteContexts();
-        }
-    }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            pianoCanvas.gameObject.SetActive(false);
-            pianoController.inputActions.Disable();
-            inputManager.inputActions.Enable();
-            inputManager.TogglePlayerMovement();
         }
     }
 
