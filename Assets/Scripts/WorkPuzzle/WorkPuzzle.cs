@@ -36,7 +36,7 @@ public sealed class WorkPuzzle : CompletableTask
         //TO-DO: enable/disable the UI input actions
         im.inputActions.Disable();
         InputManager.UIActions.Disable();
-       
+
         //set the canvas of the work game active
         workCanvas.SetActive(true);
         loseText.SetActive(false);
