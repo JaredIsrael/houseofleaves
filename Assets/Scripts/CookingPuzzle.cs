@@ -25,14 +25,36 @@ public class CookingPuzzle : CompletableTask
     private Transform playerPosition;
     [SerializeField]
     private PlayerController pc;
-    private float TRANSITION_DURATION = 1f;
-    private float SLICE_DURATION = 1f;
+    private const float TRANSITION_DURATION = 1f;
+    private const float SLICE_DURATION = 1.0f;
+    private const float PUZZLE_TIME_LIMIT = 20f;
+    private const float CUT_DELAY = 1.0f;
     [SerializeField]
     private GameObject knife;
     private bool completed = false;
     private Vector3 initialPlayerPosition;
 
+    [SerializeField]
+    private Transform defaultKnifePos;
+    [SerializeField]
+    private Transform activeKnifePos;
+    [SerializeField]
+    private Transform leftIngredientPos;
+    [SerializeField]
+    private Transform rightIngredientPos;
+
     private Coroutine trackingCoroutine;
+    [SerializeField]
+    private MonologLines tastyLines;
+    [SerializeField]
+    private MonologLines failedLines;
+    [SerializeField]
+    private AudioSource sliceSource;
+    private bool failed;
+
+    [SerializeField]
+    private List<CookingIngredient> ingredients;
+    private int currentIngredient;
 
     private void Awake()
     {
@@ -55,7 +77,42 @@ public class CookingPuzzle : CompletableTask
         pc.ToggleMovement();
         pc.MovePlayerToPointWithLook(playerPosition.position, lookPosition, TRANSITION_DURATION);
         knife.transform.Rotate(new Vector3(-90, 0, 0));
+        currentIngredient = 0;
         trackingCoroutine = StartCoroutine(TrackKnife());
+        knife.transform.position = activeKnifePos.position;
+        StartCoroutine(AnimationDelay());
+        failed = false;
+    }
+
+    private IEnumerator AnimationDelay()
+    {
+        yield return new WaitForSeconds(CUT_DELAY);
+        if (currentIngredient > 0)
+        {
+            if (ingredients[currentIngredient-1] != null && ingredients[currentIngredient - 1].GetComponentInChildren<CookingIngredient>().target != null)
+            {
+                Debug.Log("FIALEd");
+                ingredients[currentIngredient-1].gameObject.SetActive(false);
+                failed = true;
+            }
+        }
+        if(currentIngredient >= ingredients.Count)
+        {
+            CompletePuzzle();
+        }
+        else
+        {
+            AnimateCurrentIngredient();
+        }
+    }
+
+    private void AnimateCurrentIngredient()
+    {
+        CookingIngredient ingredient = ingredients[currentIngredient];
+        ingredient.ShowTarget(true);
+        ingredient.transform.position = leftIngredientPos.position;
+        ingredient.transform.rotation = Quaternion.Euler(0, 180, 0);
+        ingredient.MoveToPosition(rightIngredientPos);
     }
 
     IEnumerator TrackKnife()
@@ -64,24 +121,24 @@ public class CookingPuzzle : CompletableTask
         {
             if (Input.GetMouseButtonDown(0))
             {
+                ingredients[currentIngredient].StopAnimating();
                 SliceKnife();
+                currentIngredient++;
             }
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                completed = true;
-                CompletePuzzle();
-            }
-            Vector3 newKnifePos = GetNewKnifePos();
-            knife.transform.position = newKnifePos;
 
             yield return null;
         }
         knife.transform.Rotate(new Vector3(90, 0, 0));
+        knife.transform.position = defaultKnifePos.position;
 
     }
 
     private void SliceKnife()
     {
+        float dist = Vector3.Distance(knife.transform.position, ingredients[currentIngredient].target.transform.position);
+        Debug.Log("Distance = " + dist);
+
+        sliceSource.Play();
         StartCoroutine(MoveKnifeDown(SLICE_DURATION));
     }
 
@@ -104,6 +161,7 @@ public class CookingPuzzle : CompletableTask
         knife.transform.position = startPos;
 
         trackingCoroutine = StartCoroutine(TrackKnife());
+        StartCoroutine(AnimationDelay());
     }
 
     private Vector3 GetNewKnifePos()
@@ -124,11 +182,20 @@ public class CookingPuzzle : CompletableTask
 
     private void CompletePuzzle()
     {
+        completed = true;
         TaskCompletedEvent.Invoke(this);
-        pt.DisableTimer();
         pc.MovePlayerToPoint(initialPlayerPosition, TRANSITION_DURATION);
         pc.ToggleMovement();
         pc.UnLockCamera();
+        if (failed)
+        {
+            DialogManager.Instance.DisplayMonologLines(failedLines);
+        }
+        else
+        {
+            DialogManager.Instance.DisplayMonologLines(tastyLines);
+
+        }
     }
 
     private void TimeRunOut()

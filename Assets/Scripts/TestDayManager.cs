@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TestDayManager : MonoBehaviour
 {
@@ -10,11 +11,29 @@ public class TestDayManager : MonoBehaviour
     private MonologLines monoLines;
     [SerializeField]
     private BinaryQuestionLines questions2;
+    [SerializeField]
+    private Image blackScreen;
+    private float FADE_TIME = 2.5f;
     //public DialogSet dia
     // Start is called before the first frame update
     void Start()
     {
-       // DialogManager.Instance.DisplayBinaryQuestionLines(WakeUpQuestion, OnLeft, OnRight);
+        //DialogManager.Instance.DisplayMonologLines(monoLines);
+        StartCoroutine(FadeInFromBlack());
+    }
+
+    private IEnumerator FadeInFromBlack()
+    {
+        blackScreen.gameObject.SetActive(true);
+        float startTime = Time.time;
+        while(Time.time-startTime < FADE_TIME)
+        {
+            Color screenColor = blackScreen.color;
+            screenColor.a = 1-((Time.time - startTime) / FADE_TIME);
+            blackScreen.color = screenColor;
+            yield return null;
+        }
+        blackScreen.gameObject.SetActive(false);
     }
 
     public void OnLeft()

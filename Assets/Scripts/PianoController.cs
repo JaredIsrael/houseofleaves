@@ -7,13 +7,14 @@ using UnityEngine.InputSystem;
 public class PianoController : MonoBehaviour
 {
     public AudioSource[] pianoSources;
-    public AudioClip[] noteClips;
     [HideInInspector]
     public PianoActions inputActions;
+    private ArrayList playedNotes;
 
     private void Awake()
     {
         inputActions = new PianoActions();
+        playedNotes = new ArrayList();
     }
 
 
@@ -63,141 +64,131 @@ public class PianoController : MonoBehaviour
 
     public void PlayC3()
     {
-        int index = FindAvailableSource();
-        pianoSources[index].clip = noteClips[0];
-        pianoSources[index].Play();
+        pianoSources[0].Play();
+        playedNotes.Add("C3");
     }
 
     public void PlayCS3()
     {
-        int index = FindAvailableSource();
-        pianoSources[index].clip = noteClips[1];
-        pianoSources[index].Play();
+        pianoSources[1].Play();
+        playedNotes.Add("CS3");
     }
 
     public void PlayD3()
     {
-        int index = FindAvailableSource();
-        pianoSources[index].clip = noteClips[2];
-        pianoSources[index].Play();
+        pianoSources[2].Play();
+        playedNotes.Add("D3");
     }
 
     public void PlayDS3()
     {
-        int index = FindAvailableSource();
-        pianoSources[index].clip = noteClips[3];
-        pianoSources[index].Play();
+        pianoSources[3].Play();
+        playedNotes.Add("DS3");
     }
 
     public void PlayE3()
     {
-        int index = FindAvailableSource();
-        pianoSources[index].clip = noteClips[4];
-        pianoSources[index].Play();
+        pianoSources[4].Play();
+        playedNotes.Add("E3");
     }
 
     public void PlayF3()
     {
-        int index = FindAvailableSource();
-        pianoSources[index].clip = noteClips[5];
-        pianoSources[index].Play();
+        pianoSources[5].Play();
+        playedNotes.Add("F3");
     }
 
     public void PlayFS3()
     {
-        int index = FindAvailableSource();
-        pianoSources[index].clip = noteClips[6];
-        pianoSources[index].Play();
+        pianoSources[6].Play();
+        playedNotes.Add("FS3");
     }
 
     public void PlayG3()
     {
-        int index = FindAvailableSource();
-        pianoSources[index].clip = noteClips[7];
-        pianoSources[index].Play();
+        pianoSources[7].Play();
+        playedNotes.Add("G3");
     }
 
     public void PlayGS3()
     {
-        int index = FindAvailableSource();
-        pianoSources[index].clip = noteClips[8];
-        pianoSources[index].Play();
+        pianoSources[8].Play();
+        playedNotes.Add("GS3");
     }
 
     public void PlayA3()
     {
-        int index = FindAvailableSource();
-        pianoSources[index].clip = noteClips[9];
-        pianoSources[index].Play();
+        pianoSources[9].Play();
+        playedNotes.Add("A3");
     }
 
     public void PlayAS3()
     {
-        int index = FindAvailableSource();
-        pianoSources[index].clip = noteClips[10];
-        pianoSources[index].Play();
+        pianoSources[10].Play();
+        playedNotes.Add("AS3");
     }
 
     public void PlayB3()
     {
-        int index = FindAvailableSource();
-        pianoSources[index].clip = noteClips[11];
-        pianoSources[index].Play();
+        pianoSources[11].Play();
+        playedNotes.Add("B3");
     }
 
     public void PlayC4()
     {
-        int index = FindAvailableSource();
-        pianoSources[index].clip = noteClips[12];
-        pianoSources[index].Play();
+        pianoSources[12].Play();
+        playedNotes.Add("C4");
     }
 
     public void PlayCS4()
     {
-        int index = FindAvailableSource();
-        pianoSources[index].clip = noteClips[13];
-        pianoSources[index].Play();
+        pianoSources[13].Play();
+        playedNotes.Add("CS4");
     }
 
     public void PlayD4()
     {
-        int index = FindAvailableSource();
-        pianoSources[index].clip = noteClips[14];
-        pianoSources[index].Play();
+        pianoSources[14].Play();
+        playedNotes.Add("D4");
     }
 
     public void PlayDS4()
     {
-        int index = FindAvailableSource();
-        pianoSources[index].clip = noteClips[15];
-        pianoSources[index].Play();
+        pianoSources[15].Play();
+        playedNotes.Add("DS4");
     }
 
     public void PlayE4()
     {
-        int index = FindAvailableSource();
-        pianoSources[index].clip = noteClips[16];
-        pianoSources[index].Play();
+        pianoSources[16].Play();
+        playedNotes.Add("E4");
     }
 
     public void PlayF4()
     {
-        int index = FindAvailableSource();
-        pianoSources[index].clip = noteClips[17];
-        pianoSources[index].Play();
+        pianoSources[17].Play();
+        playedNotes.Add("F4");
     }
 
-    private int FindAvailableSource()
+    public bool CheckForCorrectInputs(string[] notes)
     {
-        int available = 0;
-        for (int i = 0; i < pianoSources.Length; i++) {
-            if (!pianoSources[i].isPlaying)
+        bool correct = false;
+        if (playedNotes.Count < 2)
+        {
+            return correct;
+        } 
+        foreach (string note in notes)
+        {
+            if (note.Equals(playedNotes[playedNotes.Count - 1]) || note.Equals(playedNotes[playedNotes.Count - 2]))
             {
-                available = i;
-                break;
+                correct = true;
+            } else
+            {
+                correct = false;
             }
+
         }
-        return available;
+        return correct;
     }
 
 }
