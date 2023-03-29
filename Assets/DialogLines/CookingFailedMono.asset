@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72ecc1baa12584f64b7b50911e90bbff, type: 3}
   m_Name: CookingFailedMono
   m_EditorClassIdentifier: 
-  lines: []
+  lines:
+  - Ugh, I couldn't even cut these right... I can't eat this.
