@@ -2978,6 +2978,7 @@ MonoBehaviour:
   leftIngredientPos: {fileID: 1075866092}
   rightIngredientPos: {fileID: 2096723969}
   tastyLines: {fileID: 11400000, guid: f3f518f4d4aab4ca19627493db1c7101, type: 2}
+  failedLines: {fileID: 11400000, guid: f0b112390b5a14afe8286489aaceb52b, type: 2}
   sliceSource: {fileID: 887759453}
   ingredients:
   - {fileID: 350663006}
