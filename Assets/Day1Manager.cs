@@ -15,7 +15,7 @@ Author: Jared Israel
 public class Day1Manager: MonoBehaviour
 {
     [SerializeField]
-    private BinaryQuestionLines WakeUpQuestion;
+    private MonologLines WakeUpMonologue;
     [SerializeField]
     private MonologLines monoLines;
     [SerializeField]
@@ -25,25 +25,8 @@ public class Day1Manager: MonoBehaviour
     void Start()
     {
         //DialogManager.Instance.DisplayBinaryQuestionLines(WakeUpQuestion, OnLeft, OnRight);
-        DialogManager.Instance.DisplayMonologLines(monoLines);
+        DialogManager.Instance.DisplayMonologLines(WakeUpMonologue);
     }
 
-    public void OnLeft()
-    {
-        DialogManager.Instance.DisplayMonologLines(monoLines);
-    }
-    public void OnRight()
-    {
-        DialogManager.Instance.DisplayBinaryQuestionLines(questions2, OnLeftNoOp, OnRightNoOp);
-    }
-
-    public void OnLeftNoOp()
-    {
-        Debug.Log("Left was clicked!");
-    }
-
-    public void OnRightNoOp()
-    {
-        Debug.Log("Right was clicked!");
-    }
+    
 }
