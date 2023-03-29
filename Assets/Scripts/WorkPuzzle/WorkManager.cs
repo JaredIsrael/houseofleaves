@@ -8,16 +8,19 @@ public class WorkManager : MonoBehaviour
     public static List<Word> words;
     string[] passage;
 
-    private bool wordIsActive;
-    private Word activeWord;
+    public static bool wordIsActive;
+    public static Word activeWord;
 
     public SpawnText spawnText;
 
     public GameObject sliderBar;
 
+    private AudioSource clickSource;
+
     public void Start()
     {
         words = new List<Word>();
+        clickSource = GetComponent<AudioSource>();
         sliderBar.GetComponent<Image>().color = Color.clear;
     }
 
@@ -45,15 +48,11 @@ public class WorkManager : MonoBehaviour
     {
         if (wordIsActive)
         {
-            if (FallTimer.stop)
-            {
-                Debug.Log("here");
-                activeWord.wordIndex = 0;
-            }
             if (activeWord.GetNextChar() == key)
             {//progress bar is green is correct letter typed
                 sliderBar.GetComponent<Image>().color = Color.green;
                 activeWord.TypeChar();
+                clickSource.Play();
             }
             else
             {
@@ -69,6 +68,7 @@ public class WorkManager : MonoBehaviour
                     activeWord = word;
                     wordIsActive = true;
                     word.TypeChar();
+                    clickSource.Play();
                     break;
                 }
                 else
