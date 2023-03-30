@@ -24,8 +24,8 @@ public class Day1Manager: MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //DialogManager.Instance.DisplayBinaryQuestionLines(WakeUpQuestion, OnLeft, OnRight);
-        DialogManager.Instance.DisplayMonologLines(monoLines);
+        DialogManager.Instance.DisplayBinaryQuestionLines(WakeUpQuestion, OnLeft, OnRight);
+        //DialogManager.Instance.DisplayMonologLines(monoLines);
     }
 
     public void OnLeft()
