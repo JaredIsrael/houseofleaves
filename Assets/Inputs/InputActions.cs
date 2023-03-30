@@ -89,6 +89,15 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": ""Press(behavior=2)"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ThrowObject"",
+                    ""type"": ""Button"",
+                    ""id"": ""c5e154e4-c1a8-45bd-b59e-5e5011156a81"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=2)"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -210,6 +219,17 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Flashlight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""724fb07e-33a5-4f32-b5ca-34ddb75035f6"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ThrowObject"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -592,6 +612,10 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         m_Player_MouseX = m_Player.FindAction("MouseX", throwIfNotFound: true);
         m_Player_MouseY = m_Player.FindAction("MouseY", throwIfNotFound: true);
         m_Player_Objectives = m_Player.FindAction("Objectives", throwIfNotFound: true);
+        m_Player_PickUp = m_Player.FindAction("PickUp", throwIfNotFound: true);
+        m_Player_Crouch = m_Player.FindAction("Crouch", throwIfNotFound: true);
+        m_Player_Flashlight = m_Player.FindAction("Flashlight", throwIfNotFound: true);
+        m_Player_ThrowObject = m_Player.FindAction("ThrowObject", throwIfNotFound: true);
         // Piano
         m_Piano = asset.FindActionMap("Piano", throwIfNotFound: true);
         m_Piano_C3 = m_Piano.FindAction("C3", throwIfNotFound: true);
@@ -612,9 +636,6 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         m_Piano_DS4 = m_Piano.FindAction("DS4", throwIfNotFound: true);
         m_Piano_E4 = m_Piano.FindAction("E4", throwIfNotFound: true);
         m_Piano_F4 = m_Piano.FindAction("F4", throwIfNotFound: true);
-        m_Player_PickUp = m_Player.FindAction("PickUp", throwIfNotFound: true);
-        m_Player_Crouch = m_Player.FindAction("Crouch", throwIfNotFound: true);
-        m_Player_Flashlight = m_Player.FindAction("Flashlight", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -681,6 +702,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_PickUp;
     private readonly InputAction m_Player_Crouch;
     private readonly InputAction m_Player_Flashlight;
+    private readonly InputAction m_Player_ThrowObject;
     public struct PlayerActions
     {
         private @InputActions m_Wrapper;
@@ -692,6 +714,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         public InputAction @PickUp => m_Wrapper.m_Player_PickUp;
         public InputAction @Crouch => m_Wrapper.m_Player_Crouch;
         public InputAction @Flashlight => m_Wrapper.m_Player_Flashlight;
+        public InputAction @ThrowObject => m_Wrapper.m_Player_ThrowObject;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -722,6 +745,9 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 @Flashlight.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFlashlight;
                 @Flashlight.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFlashlight;
                 @Flashlight.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFlashlight;
+                @ThrowObject.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnThrowObject;
+                @ThrowObject.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnThrowObject;
+                @ThrowObject.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnThrowObject;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -747,6 +773,9 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 @Flashlight.started += instance.OnFlashlight;
                 @Flashlight.performed += instance.OnFlashlight;
                 @Flashlight.canceled += instance.OnFlashlight;
+                @ThrowObject.started += instance.OnThrowObject;
+                @ThrowObject.performed += instance.OnThrowObject;
+                @ThrowObject.canceled += instance.OnThrowObject;
             }
         }
     }
@@ -929,6 +958,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         void OnPickUp(InputAction.CallbackContext context);
         void OnCrouch(InputAction.CallbackContext context);
         void OnFlashlight(InputAction.CallbackContext context);
+        void OnThrowObject(InputAction.CallbackContext context);
     }
     public interface IPianoActions
     {
