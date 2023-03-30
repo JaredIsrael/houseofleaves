@@ -15,6 +15,9 @@ public class WorkManager : MonoBehaviour
 
     public GameObject sliderBar;
 
+    [SerializeField]
+    private MonologLines successScript;
+
     private AudioSource clickSource;
 
     public void Start()
@@ -94,6 +97,7 @@ public class WorkManager : MonoBehaviour
 
                 //Invoke task complete
                 WorkPuzzle.gameOver = true;
+                DialogManager.Instance.DisplayMonologLines(successScript);
 
                 //TO-DO: this is where user levels up
                 PassageGenerator.level++;

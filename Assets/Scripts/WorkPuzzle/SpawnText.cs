@@ -11,6 +11,8 @@ public class SpawnText : MonoBehaviour
     public Transform canvas;
     public GameObject workCanvas;
     public GameObject loseText;
+    [SerializeField] 
+    private MonologLines failureLines;
     public WordDisplay Spawn()
     {
         GameObject textObject;
@@ -62,6 +64,7 @@ public class SpawnText : MonoBehaviour
                 WorkManager.words.Clear();
 
                 workCanvas.SetActive(false);
+                DialogManager.Instance.DisplayMonologLines(failureLines);
             }
         }
     }
