@@ -6,6 +6,7 @@ public class PenguinMovement : MonoBehaviour
 {
     public Animator animator;
     public SpriteRenderer spRenderer;
+    private float speed = 1.5f;
 
     // Update is called once per frame
     void Update()
@@ -23,7 +24,7 @@ public class PenguinMovement : MonoBehaviour
             spRenderer.flipX = false;
         }
 
-        transform.position += horizontal * Time.deltaTime;
+        transform.position += horizontal * Time.deltaTime * speed;
 
     }
 }
