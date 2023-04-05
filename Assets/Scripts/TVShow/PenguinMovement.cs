@@ -11,6 +11,7 @@ public class PenguinMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+    
         animator.SetFloat("Horizontal", Input.GetAxis("Horizontal"));
 
         //penguin can move left/right (2D movement) using A/D/left key/right key
@@ -19,7 +20,8 @@ public class PenguinMovement : MonoBehaviour
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("penguin_walkleft"))
         {
             spRenderer.flipX = true;
-        } else
+        }
+        else
         {
             spRenderer.flipX = false;
         }

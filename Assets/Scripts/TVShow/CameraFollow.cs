@@ -9,10 +9,10 @@ public class CameraFollow : MonoBehaviour
 
     private void Start()
     {
-        offset = new Vector3(0f, 0.5f, -10f);
+        offset = new Vector3(0f, 1f, -10f);
     }
 
-    // Update is called once per frame
+    //camera follows penguin as it walks around scene
     void Update()
     {
         transform.position = penguin.transform.position + offset;
