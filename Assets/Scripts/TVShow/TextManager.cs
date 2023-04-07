@@ -5,7 +5,6 @@ using TMPro;
 
 public class TextManager : MonoBehaviour
 {
-    [SerializeField] private GameObject bubble;
     [SerializeField] private TextMeshProUGUI text;
     [SerializeField] private string[] dialog;
 
@@ -50,7 +49,7 @@ public class TextManager : MonoBehaviour
             StartCoroutine(TypeDialog());
         } else
         {
-            Destroy(bubble);
+            Destroy(transform.gameObject);
         }
 
     }
