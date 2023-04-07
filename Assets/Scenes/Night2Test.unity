@@ -373,7 +373,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 590962337}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -31.4, y: 2.5, z: 5}
+  m_LocalPosition: {x: -36.09, y: 2.5, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -799,7 +799,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1275507518}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.48, y: 2.5, z: 5}
+  m_LocalPosition: {x: -19.82, y: 2.5, z: 5}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1301,6 +1301,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1610393813}
   - component: {fileID: 1610393812}
+  - component: {fileID: 1610393814}
   m_Layer: 0
   m_Name: TestBubble
   m_TagString: Untagged
@@ -1368,7 +1369,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1610393811}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -30.5624, y: 3.1191, z: 5}
+  m_LocalPosition: {x: -35.2524, y: 3.1191, z: 5}
   m_LocalScale: {x: 1.5271738, y: 2.5699115, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1376,6 +1377,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1610393814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1610393811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a078c24e427f45e4b4f9005abf32caa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  penguin: {fileID: 590962338}
 --- !u!1 &1669821538
 GameObject:
   m_ObjectHideFlags: 0
