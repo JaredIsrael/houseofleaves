@@ -5,6 +5,7 @@ using TMPro;
 
 public class TextManager : MonoBehaviour
 {
+    [SerializeField] private GameObject bubble;
     [SerializeField] private TextMeshProUGUI text;
     [SerializeField] private string[] dialog;
 
@@ -15,6 +16,14 @@ public class TextManager : MonoBehaviour
     private void Start()
     {
         StartDialog();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Continue();
+        }
     }
 
     public void StartDialog()
@@ -29,5 +38,20 @@ public class TextManager : MonoBehaviour
             text.text += letter;
             yield return new WaitForSeconds(speed);
         }
+    }
+
+    private void Continue()
+    {
+        if (index < dialog.Length - 1)
+        {
+            index++;
+
+            text.text = string.Empty;
+            StartCoroutine(TypeDialog());
+        } else
+        {
+            Destroy(bubble);
+        }
+
     }
 }

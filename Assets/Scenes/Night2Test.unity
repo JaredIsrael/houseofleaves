@@ -908,9 +908,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34d2019d2f0384c4ead7d0e33726e42d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bubble: {fileID: 1610393811}
   text: {fileID: 2113547719}
   dialog:
   - Woah! It looks like I'm in my favorite show...
+  - I love it here!
 --- !u!4 &1440171412
 Transform:
   m_ObjectHideFlags: 0
@@ -1300,7 +1302,7 @@ GameObject:
   - component: {fileID: 1610393813}
   - component: {fileID: 1610393812}
   m_Layer: 0
-  m_Name: pixel_speech_bubble_welcome_button_f2u___by_i_zz_y_dc1e2tp-fullview
+  m_Name: TestBubble
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
