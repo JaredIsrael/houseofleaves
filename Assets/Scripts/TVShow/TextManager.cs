@@ -21,7 +21,14 @@ public class TextManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Continue();
+            if (text.text.Length < dialog[index].Length)
+            {
+                StopAllCoroutines();
+                text.text = dialog[index];
+            } else
+            {
+                Continue();
+            }
         }
     }
 
