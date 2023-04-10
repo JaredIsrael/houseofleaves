@@ -14,14 +14,14 @@ public class PenguinMovement : MonoBehaviour
     
         animator.SetFloat("Horizontal", Input.GetAxis("Horizontal"));
 
-        //penguin can move left/right (2D movement) using A/D/left key/right key
+        //penguin can move left/right (2D movement) using A/left arrow and D/right arrow
         Vector3 horizontal = new Vector3(Input.GetAxis("Horizontal"), 0.0f, 0.0f);
 
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("penguin_walkleft"))
         {
             spRenderer.flipX = true;
         }
-        else
+        else if (animator.GetCurrentAnimatorStateInfo(0).IsName("penguin_walkright"))
         {
             spRenderer.flipX = false;
         }
