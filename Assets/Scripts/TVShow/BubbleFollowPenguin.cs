@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BubbleFollow : MonoBehaviour
+public class BubbleFollowPenguin : MonoBehaviour
 {
     public Transform penguin;
     private Vector3 offset;

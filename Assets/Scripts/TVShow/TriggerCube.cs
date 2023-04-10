@@ -16,8 +16,6 @@ public class TriggerCube : MonoBehaviour
     //when penguin enters the trigger cube, bubble will appear
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Eagle talks here");
-
         bubble.SetActive(true);
         StartCoroutine(TypeDialog());
     }
@@ -63,6 +61,5 @@ public class TriggerCube : MonoBehaviour
         {//all dialog for bubble has been displayed
             Destroy(bubble);
         }
-
     }
 }
