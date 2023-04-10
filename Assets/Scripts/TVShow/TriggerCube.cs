@@ -13,6 +13,7 @@ public class TriggerCube : MonoBehaviour
 
     private float speed = 0.05f;
 
+    //when penguin enters the trigger cube, bubble will appear
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("Eagle talks here");
@@ -21,13 +22,9 @@ public class TriggerCube : MonoBehaviour
         StartCoroutine(TypeDialog());
     }
 
-    private void Start()
-    {
-        //StartCoroutine(TypeDialog());
-    }
-
     private void Update()
     {
+        //checks if the user has clicked the space bar to skip through text
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (text.text.Length < dialog[index].Length)
@@ -42,6 +39,7 @@ public class TriggerCube : MonoBehaviour
         }
     }
 
+    //co-routine to get a type-text style in the speech bubbles
     private IEnumerator TypeDialog()
     {
         foreach (char letter in dialog[index].ToCharArray())
@@ -51,17 +49,18 @@ public class TriggerCube : MonoBehaviour
         }
     }
 
+    //method to display all existing dialog in bubble, then destroy when done 
     private void Continue()
     {
         if (index < dialog.Length - 1)
-        {
+        {//there is still more text to display
             index++;
 
             text.text = string.Empty;
             StartCoroutine(TypeDialog());
         }
         else
-        {
+        {//all dialog for bubble has been displayed
             Destroy(bubble);
         }
 
