@@ -24,8 +24,8 @@ public class TriggerCube : MonoBehaviour
 
     private void Update()
     {
-        //checks if the user has clicked the space bar to skip through text
-        if (Input.GetKeyDown(KeyCode.Space))
+        //checks if the user has clicked the space bar to skip through text (while bubble is active)
+        if (Input.GetKeyDown(KeyCode.Space) && bubble.activeSelf)
         {
             if (text.text.Length < dialog[index].Length)
             {
