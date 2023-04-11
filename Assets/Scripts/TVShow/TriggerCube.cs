@@ -16,8 +16,12 @@ public class TriggerCube : MonoBehaviour
     //when penguin enters the trigger cube, bubble will appear
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        bubble.SetActive(true);
-        StartCoroutine(TypeDialog());
+        if (bubble != null)
+        {
+            PenguinMovement.jump = true;
+            bubble.SetActive(true);
+            StartCoroutine(TypeDialog());
+        }
     }
 
     private void Update()

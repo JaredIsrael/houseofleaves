@@ -7,10 +7,18 @@ public class PenguinMovement : MonoBehaviour
     public Animator animator;
     public SpriteRenderer spRenderer;
     private float speed = 1.5f;
+    public static bool jump;
+
+    private void Start()
+    {
+        jump = false;
+    }
 
     void Update()
     {
-    
+        animator.SetBool("Jump", jump);
+        jump = false;
+           
         animator.SetFloat("Horizontal", Input.GetAxis("Horizontal"));
 
         //penguin can move left/right (2D movement) using A/left arrow and D/right arrow
@@ -26,6 +34,5 @@ public class PenguinMovement : MonoBehaviour
         }
 
         transform.position += horizontal * Time.deltaTime * speed;
-
     }
 }
