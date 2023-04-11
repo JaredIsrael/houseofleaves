@@ -16,6 +16,7 @@ public class PenguinMovement : MonoBehaviour
 
     void Update()
     {
+        //penguin jumps when the bool is set true
         animator.SetBool("Jump", jump);
         jump = false;
            

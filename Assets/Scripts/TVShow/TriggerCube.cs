@@ -2,68 +2,129 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class TriggerCube : MonoBehaviour
 {
-    [SerializeField] private GameObject bubble;
-    [SerializeField] private TextMeshProUGUI text;
-    [SerializeField] private string[] dialog;
+    [SerializeField] private GameObject Pbubble;
+    [SerializeField] private TextMeshProUGUI Ptext;
+    [SerializeField] private string[] penDialog;
 
-    private int index;
+    [SerializeField] private GameObject Ebubble;
+    [SerializeField] private TextMeshProUGUI Etext;
+    [SerializeField] private string[] eagleDialog;
+
+
+    private int penIndex;
+    private int eagleIndex;
 
     private float speed = 0.05f;
+
+    private UnityEvent eagleTalk = new UnityEvent();
+
+    private void Start()
+    {
+        //new listener; used to determine when to start eagle response to penguin
+        eagleTalk.AddListener(StartEagleDialog);
+    }
 
     //when penguin enters the trigger cube, bubble will appear
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (bubble != null)
+        if (Pbubble != null)
         {
             PenguinMovement.jump = true;
-            bubble.SetActive(true);
-            StartCoroutine(TypeDialog());
+            Pbubble.SetActive(true);
+            StartCoroutine(TypePenguinDialog());
         }
     }
 
     private void Update()
     {
         //checks if the user has clicked the space bar to skip through text (while bubble is active)
-        if (Input.GetKeyDown(KeyCode.Space) && bubble.activeSelf)
+        if (Input.GetKeyDown(KeyCode.Space) && Pbubble.activeSelf)
         {
-            if (text.text.Length < dialog[index].Length)
+            if (Ptext.text.Length < penDialog[penIndex].Length)
             {
                 StopAllCoroutines();
-                text.text = dialog[index];
+                Ptext.text = penDialog[penIndex];
             }
             else
             {
-                Continue();
+                PenContinue();
+            }
+        } else if (Input.GetKeyDown(KeyCode.Space) && Ebubble.activeSelf)
+        {
+            if (Etext.text.Length < eagleDialog[eagleIndex].Length)
+            {
+                StopAllCoroutines();
+                Etext.text = eagleDialog[eagleIndex];
+            }
+            else
+            {
+                EagleContinue();
             }
         }
     }
 
-    //co-routine to get a type-text style in the speech bubbles
-    private IEnumerator TypeDialog()
+    //co-routine to get a text typing effect in penguin speech bubbles
+    private IEnumerator TypePenguinDialog()
     {
-        foreach (char letter in dialog[index].ToCharArray())
+        foreach (char letter in penDialog[penIndex].ToCharArray())
         {
-            text.text += letter;
+            Ptext.text += letter;
             yield return new WaitForSeconds(speed);
         }
     }
 
-    //method to display all existing dialog in bubble, then destroy when done 
-    private void Continue()
+    //co-routine to get a text typing effect in eagle speech bubbles
+    private IEnumerator TypeEagleDialog()
     {
-        if (index < dialog.Length - 1)
-        {//there is still more text to display
-            index++;
+        foreach (char letter in eagleDialog[eagleIndex].ToCharArray())
+        {
+            Etext.text += letter;
+            yield return new WaitForSeconds(speed);
+        }
+    }
 
-            text.text = string.Empty;
-            StartCoroutine(TypeDialog());
+    private void StartEagleDialog()
+    {
+        Ebubble.SetActive(true);
+        StartCoroutine(TypeEagleDialog());
+    }
+
+    //method to display all existing dialog in bubble, then destroy when done 
+    private void PenContinue()
+    {
+        if (penIndex < penDialog.Length - 1)
+        {//there is still more text to display
+            penIndex++;
+
+            Ptext.text = string.Empty;
+            StartCoroutine(TypePenguinDialog());
         }
         else
         {//all dialog for bubble has been displayed
-            Destroy(bubble);
+            Pbubble.SetActive(false);
+            //when penguin is done talking, start eagle
+            eagleTalk.Invoke();
+        }
+    }
+
+    //method to display all existing dialog in bubble, then destroy when done 
+    private void EagleContinue()
+    {
+        if (eagleIndex < eagleDialog.Length - 1)
+        {//there is still more text to display
+            eagleIndex++;
+
+            Etext.text = string.Empty;
+            StartCoroutine(TypeEagleDialog());
+        }
+        else
+        {//all dialog for bubble has been displayed
+            Destroy(Pbubble);
+            Destroy(Ebubble);
         }
     }
 }

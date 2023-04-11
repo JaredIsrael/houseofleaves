@@ -16,7 +16,7 @@ public class LeftCube : MonoBehaviour
         {
             bubble.SetActive(true);
 
-            //destroys bubble after 4 seconds, before any other text appears
+            //destroys bubble after set time, before any other text appears
             Destroy(bubble, 4.0f);
         }
     }
