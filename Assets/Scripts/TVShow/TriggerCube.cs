@@ -21,11 +21,13 @@ public class TriggerCube : MonoBehaviour
     private float speed = 0.05f;
 
     private UnityEvent eagleTalk = new UnityEvent();
+    private UnityEvent eagleFly = new UnityEvent();
 
     private void Start()
     {
         //new listener; used to determine when to start eagle response to penguin
         eagleTalk.AddListener(StartEagleDialog);
+        eagleFly.AddListener(StartEagleFly);
     }
 
     //when penguin enters the trigger cube, bubble will appear
@@ -35,54 +37,49 @@ public class TriggerCube : MonoBehaviour
         {
             PenguinMovement.jump = true;
             Pbubble.SetActive(true);
-            StartCoroutine(TypePenguinDialog());
+            StartCoroutine(TypeDialog(penDialog, penIndex, Ptext));
         }
     }
 
     private void Update()
     {
-        //checks if the user has clicked the space bar to skip through text (while bubble is active)
-        if (Input.GetKeyDown(KeyCode.Space) && Pbubble.activeSelf)
+       //avoids null reference errors after bubbles are removed from scene
+        if (Ebubble != null && Pbubble != null)
         {
-            if (Ptext.text.Length < penDialog[penIndex].Length)
+            //checks if the user has clicked the space bar to skip through text (while bubble is active)
+            if (Input.GetKeyDown(KeyCode.Space) && Pbubble.activeSelf)
             {
-                StopAllCoroutines();
-                Ptext.text = penDialog[penIndex];
+                if (Ptext.text.Length < penDialog[penIndex].Length)
+                {
+                    StopAllCoroutines();
+                    Ptext.text = penDialog[penIndex];
+                }
+                else
+                {
+                    PenContinue();
+                }
             }
-            else
+            else if (Input.GetKeyDown(KeyCode.Space) && Ebubble.activeSelf)
             {
-                PenContinue();
-            }
-        } else if (Input.GetKeyDown(KeyCode.Space) && Ebubble.activeSelf)
-        {
-            if (Etext.text.Length < eagleDialog[eagleIndex].Length)
-            {
-                StopAllCoroutines();
-                Etext.text = eagleDialog[eagleIndex];
-            }
-            else
-            {
-                EagleContinue();
+                if (Etext.text.Length < eagleDialog[eagleIndex].Length)
+                {
+                    StopAllCoroutines();
+                    Etext.text = eagleDialog[eagleIndex];
+                }
+                else
+                {
+                    EagleContinue();
+                }
             }
         }
     }
 
     //co-routine to get a text typing effect in penguin speech bubbles
-    private IEnumerator TypePenguinDialog()
+    private IEnumerator TypeDialog(string[] dialog, int index, TextMeshProUGUI text)
     {
-        foreach (char letter in penDialog[penIndex].ToCharArray())
+        foreach (char letter in dialog[index].ToCharArray())
         {
-            Ptext.text += letter;
-            yield return new WaitForSeconds(speed);
-        }
-    }
-
-    //co-routine to get a text typing effect in eagle speech bubbles
-    private IEnumerator TypeEagleDialog()
-    {
-        foreach (char letter in eagleDialog[eagleIndex].ToCharArray())
-        {
-            Etext.text += letter;
+            text.text += letter;
             yield return new WaitForSeconds(speed);
         }
     }
@@ -90,8 +87,15 @@ public class TriggerCube : MonoBehaviour
     private void StartEagleDialog()
     {
         Ebubble.SetActive(true);
-        StartCoroutine(TypeEagleDialog());
+        StartCoroutine(TypeDialog(eagleDialog, eagleIndex, Etext));
     }
+
+    private void StartEagleFly()
+    {
+        //TO-DO: create animation of eagle flying away from player
+    }
+
+    //TO-DO: combine continue methods into one
 
     //method to display all existing dialog in bubble, then destroy when done 
     private void PenContinue()
@@ -101,7 +105,7 @@ public class TriggerCube : MonoBehaviour
             penIndex++;
 
             Ptext.text = string.Empty;
-            StartCoroutine(TypePenguinDialog());
+            StartCoroutine(TypeDialog(penDialog, penIndex, Ptext));
         }
         else
         {//all dialog for bubble has been displayed
@@ -119,12 +123,15 @@ public class TriggerCube : MonoBehaviour
             eagleIndex++;
 
             Etext.text = string.Empty;
-            StartCoroutine(TypeEagleDialog());
+            StartCoroutine(TypeDialog(eagleDialog, eagleIndex, Etext));
         }
         else
-        {//all dialog for bubble has been displayed
+        {//all dialog for both bubbles has been displayed
             Destroy(Pbubble);
             Destroy(Ebubble);
+
+            //eagle flys away when interaction complete
+            eagleFly.Invoke();
         }
     }
 }
