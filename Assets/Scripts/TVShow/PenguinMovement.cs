@@ -8,10 +8,12 @@ public class PenguinMovement : MonoBehaviour
     public SpriteRenderer spRenderer;
     private float speed = 1.5f;
     public static bool jump;
+    public static bool move;
 
     private void Start()
     {
         jump = false;
+        move = true;
     }
 
     void Update()
@@ -34,6 +36,9 @@ public class PenguinMovement : MonoBehaviour
             spRenderer.flipX = false;
         }
 
-        transform.position += horizontal * Time.deltaTime * speed;
+        if (move)
+        {
+            transform.position += horizontal * Time.deltaTime * speed;
+        }
     }
 }

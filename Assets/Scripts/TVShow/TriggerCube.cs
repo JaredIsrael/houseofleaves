@@ -14,6 +14,7 @@ public class TriggerCube : MonoBehaviour
     [SerializeField] private TextMeshProUGUI Etext;
     [SerializeField] private string[] eagleDialog;
 
+    [SerializeField] private GameObject eagle;
 
     private int penIndex;
     private int eagleIndex;
@@ -35,6 +36,8 @@ public class TriggerCube : MonoBehaviour
     {
         if (Pbubble != null)
         {
+            //lock penguin movement until interaction is complete
+            PenguinMovement.move = false;
             PenguinMovement.jump = true;
             Pbubble.SetActive(true);
             StartCoroutine(TypeDialog(penDialog, penIndex, Ptext));
@@ -93,6 +96,26 @@ public class TriggerCube : MonoBehaviour
     private void StartEagleFly()
     {
         //TO-DO: create animation of eagle flying away from player
+        EagleMovement.fly = true;
+        StartCoroutine(MoveEagle(5f));
+    }
+
+    private IEnumerator MoveEagle(float time)
+    {
+        Vector3 startPosition = eagle.transform.position;
+        Vector3 updatedPosition = startPosition + (eagle.transform.right * 10);
+
+        float elapsedTime = 0;
+
+        while (elapsedTime < time)
+        {
+            eagle.transform.position = Vector3.Lerp(startPosition, updatedPosition, (elapsedTime / time));
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        //eagle has reached new spot, stop flying animation
+        EagleMovement.fly = false;
     }
 
     //TO-DO: combine continue methods into one
@@ -127,10 +150,9 @@ public class TriggerCube : MonoBehaviour
         }
         else
         {//all dialog for both bubbles has been displayed
-            Destroy(Pbubble);
-            Destroy(Ebubble);
+            Ebubble.SetActive(false);
 
-            //eagle flys away when interaction complete
+            //eagle flies away when interaction complete
             eagleFly.Invoke();
         }
     }

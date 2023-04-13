@@ -910,9 +910,11 @@ MonoBehaviour:
   Ebubble: {fileID: 1483484376}
   Etext: {fileID: 1606421421}
   eagleDialog:
-  - Welcome Ayumu! I've been waiting on you.
-  - Take a look around, doesn't it seem familiar?
+  - Welcome Ayumu! I've been waiting for you.
+  - Take a look around, doesn't this place seem familiar?
   - Think about it... You watch me on TV every day!!!!
+  - Well, I've got to go. Here's something for you in the meantime. See you soon!
+  eagle: {fileID: 1275507518}
 --- !u!61 &652089147
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1521,6 +1523,7 @@ GameObject:
   - component: {fileID: 1275507519}
   - component: {fileID: 1275507521}
   - component: {fileID: 1275507520}
+  - component: {fileID: 1275507522}
   m_Layer: 0
   m_Name: Eagle
   m_TagString: Untagged
@@ -1616,6 +1619,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1275507522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1275507518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 264c2dccc6b874a06b2560b16efa7a61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 1275507520}
+  spRenderer: {fileID: 1275507521}
 --- !u!1 &1311588815
 GameObject:
   m_ObjectHideFlags: 0
