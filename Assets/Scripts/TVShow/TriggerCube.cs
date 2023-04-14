@@ -36,9 +36,6 @@ public class TriggerCube : MonoBehaviour
     {
         if (Pbubble != null)
         {
-            //lock penguin movement until interaction is complete
-            PenguinMovement.move = false;
-            PenguinMovement.jump = true;
             Pbubble.SetActive(true);
             StartCoroutine(TypeDialog(penDialog, penIndex, Ptext));
         }

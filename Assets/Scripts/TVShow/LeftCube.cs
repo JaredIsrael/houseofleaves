@@ -10,8 +10,6 @@ public class LeftCube : MonoBehaviour
     //informs player that they can not move past this point
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        PenguinMovement.jump = true;
-
         if (bubble != null)
         {
             bubble.SetActive(true);
