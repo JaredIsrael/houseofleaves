@@ -41,7 +41,7 @@ public class PenguinController : MonoBehaviour
 
     private void Walk()
     {
-        walking = (walk.ReadValue<Vector2>().x > 0.1f || walk.ReadValue<Vector2>().x < -0.1f) ? true : false;
+        walking = (walk.ReadValue<Vector2>().x > 0.1f || walk.ReadValue<Vector2>().x < -0.1f);
         animator.SetBool("Walk", walking);
     }
 
@@ -97,11 +97,13 @@ public class PenguinController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //Debug.Log("Walk values: " + walk.ReadValue<Vector2>());
         transform.position += new Vector3(walk.ReadValue<Vector2>().x * speed, 0f, walk.ReadValue<Vector2>().y * speed);
         if (walk.ReadValue<Vector2>().x < 0)
         {
             spRenderer.flipX = true;
+        } else if (walk.ReadValue<Vector2>().x == 0) {
+            //return to idle state
+            animator.SetBool("Walk", false);
         }
         else
         {
