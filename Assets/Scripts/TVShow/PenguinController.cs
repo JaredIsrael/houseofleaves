@@ -27,10 +27,8 @@ public class PenguinController : MonoBehaviour
     private void OnEnable()
     {
         walk = penguinActions.Player.Walk;
+        walk.performed += PenguinWalk;
         walk.Enable();
-
-        penguinActions.Player.Walk.performed += PenguinWalk;
-        penguinActions.Player.Walk.Enable();
 
         penguinActions.Player.Jump.performed += PenguinJump;
         penguinActions.Player.Jump.Enable();
@@ -54,6 +52,8 @@ public class PenguinController : MonoBehaviour
             StartCoroutine(StartAction(jumping));
         }
     }
+
+    //TO-DO: make slide continuous (i.e., penguin slides as long as shift is held down)
 
     private void Slide()
     {
