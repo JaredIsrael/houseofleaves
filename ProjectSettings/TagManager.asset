@@ -7,6 +7,7 @@ TagManager:
   - PickUp
   - Table
   - Word
+  - Food
   layers:
   - Default
   - TransparentFX
@@ -41,6 +42,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 4266311215
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Terrain
+    uniqueID: 2857556777
     locked: 0
