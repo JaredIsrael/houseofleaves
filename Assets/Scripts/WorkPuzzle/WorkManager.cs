@@ -17,6 +17,9 @@ public class WorkManager : MonoBehaviour
 
     private AudioSource clickSource;
 
+    [SerializeField]
+    private WorkPuzzle wp;
+
     public void Start()
     {
         words = new List<Word>();
@@ -93,7 +96,7 @@ public class WorkManager : MonoBehaviour
                 FallTimer.stop = true;
 
                 //Invoke task complete
-                WorkPuzzle.gameOver = true;
+                wp.GameOver();
 
                 //TO-DO: this is where user levels up
                 PassageGenerator.level++;
