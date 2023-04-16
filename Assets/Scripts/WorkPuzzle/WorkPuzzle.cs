@@ -54,23 +54,20 @@ public sealed class WorkPuzzle : CompletableTask
         //input = StartCoroutine(GameObject.Find("WorkManager").GetComponent<WorkInput>().KeyTracking());
     }
 
-    private void Update()
+
+    public void GameOver()
     {
-        if (gameOver)
-        {//game is complete
-            TaskCompletedEvent.Invoke(this);
 
-            StopCoroutine(wordFall);
-            //StopCoroutine(input);
+        StopCoroutine(wordFall);
+        //StopCoroutine(input);
 
-            workCanvas.SetActive(false);
-            WorkManager.wordIsActive = false;
+        workCanvas.SetActive(false);
+        WorkManager.wordIsActive = false;
 
-            im.inputActions.Enable();
-            InputManager.UIActions.Enable();
-        }
+        im.inputActions.Enable();
+        InputManager.UIActions.Enable();
+        TaskCompletedEvent.Invoke(this);
+
     }
-
-    
 
 }
