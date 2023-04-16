@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
 
     public float speed = 7f;
     public bool crouching = false;
+    public bool moving = false;
     public bool cameraHeightChanged = false;
 
     private Vector2 keyboardInput;
@@ -41,8 +42,17 @@ public class PlayerController : MonoBehaviour
         {
             movement3D = Vector3.zero;
         }
-        controller.Move(movement3D * Time.deltaTime);
-        
+
+        if(keyboardInput.x == 0 & keyboardInput.y == 0)
+        {
+            moving = false;
+        }
+        else
+        {
+            moving = true;
+        }
+
+        controller.Move(movement3D * Time.deltaTime);    
     }
 
     public void ReadInput(Vector2 input)
@@ -96,7 +106,6 @@ public class PlayerController : MonoBehaviour
     public void MovePlayerToPoint(Vector3 playerGoalPosition, float duration)
     {
         StartCoroutine(MovePlayerToPositionEnumerator(playerGoalPosition, null, duration, false));
-
     }
 
     // Use coroutines in order to animate smoothly without having an update method
