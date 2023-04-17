@@ -10,7 +10,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private SpriteRenderer spRenderer;
     [SerializeField] private BoxCollider2D boxCollider;
     [SerializeField] private Animator animator;
-
     [SerializeField] private LayerMask jumpGround;
 
     private float horizontal;
@@ -29,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
             rigidBody.velocity = new Vector2(rigidBody.velocity.x, 14f);
         }
 
-        //slide state
+        //slide if the "shift" key is clicked AND the player is on the ground
         if ((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) && OnGround())
         {
             sliding = true;
