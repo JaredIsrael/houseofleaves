@@ -4969,7 +4969,6 @@ GameObject:
   - component: {fileID: 768732421}
   - component: {fileID: 768732424}
   - component: {fileID: 768732423}
-  - component: {fileID: 768732426}
   - component: {fileID: 768732425}
   - component: {fileID: 768732427}
   m_Layer: 0
@@ -5106,20 +5105,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 768732424}
---- !u!114 &768732426
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 768732420}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 185273040c95749b19f05de3377e1080, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 0}
   spRenderer: {fileID: 768732421}
+  animator: {fileID: 768732427}
 --- !u!95 &768732427
 Animator:
   serializedVersion: 5
