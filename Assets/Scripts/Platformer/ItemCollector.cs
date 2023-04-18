@@ -8,7 +8,14 @@ public class ItemCollector : MonoBehaviour
     [SerializeField] private TextMeshProUGUI watermelonText;
     [SerializeField] private AudioSource collectSound;
 
-    private int watermelonCount = 0;
+    private int watermelonCount;
+    private int noWatermelon;
+
+    private void Start()
+    {
+        watermelonCount = 0;
+        noWatermelon = GameObject.FindGameObjectsWithTag("Watermelon").Length;
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -17,7 +24,7 @@ public class ItemCollector : MonoBehaviour
             collectSound.Play();
             collision.gameObject.SetActive(false);
             watermelonCount++;
-            watermelonText.SetText("Watermelon: " + watermelonCount);
+            watermelonText.SetText("Watermelon: " + watermelonCount + "/" + noWatermelon);
         }
     }
 }

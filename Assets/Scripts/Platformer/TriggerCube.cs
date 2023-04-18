@@ -17,6 +17,7 @@ public class TriggerCube : MonoBehaviour
     [SerializeField] private TextMeshProUGUI Etext;
     [SerializeField] private string[] eagleDialog;
 
+    [SerializeField] private GameObject penguin;
     [SerializeField] private GameObject eagle;
 
     private int penIndex;
@@ -37,6 +38,9 @@ public class TriggerCube : MonoBehaviour
     //when penguin enters the trigger cube, bubble will appear
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //if player jumps into trigger, properly set position on ground
+        penguin.transform.position = new Vector3(4.13841f, 0.187476f, 0f);
+
         //diable collider (trigger) so speech bubbles dont appear again
         boxCollider.enabled = false;
 
