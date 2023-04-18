@@ -9,7 +9,7 @@ public class CameraFollow : MonoBehaviour
 
     private void Start()
     {
-        offset = new Vector3(0f, 3f, -12f);
+        offset = new Vector3(0f, 1f, -12f);
     }
 
     //camera follows penguin as it walks around scene

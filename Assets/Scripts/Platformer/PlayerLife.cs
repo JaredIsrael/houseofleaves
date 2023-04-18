@@ -8,11 +8,6 @@ public class PlayerLife : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private Rigidbody2D rigidBody;
 
-    private void Start()
-    {
-        
-    }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Trap"))
