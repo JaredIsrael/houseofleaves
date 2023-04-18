@@ -34,44 +34,38 @@ public class TriggerCube : MonoBehaviour
     //when penguin enters the trigger cube, bubble will appear
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (Pbubble != null)
-        {
-            Pbubble.SetActive(true);
-            StartCoroutine(TypeDialog(penDialog, penIndex, Ptext));
-        }
+        Pbubble.SetActive(true);
+        StartCoroutine(TypeDialog(penDialog, penIndex, Ptext));
     }
 
     private void Update()
     {
-       //avoids null reference errors after bubbles are removed from scene
-        if (Ebubble != null && Pbubble != null)
+        //checks if the user has clicked the space bar to skip through text (while bubble is active)
+        if (Input.GetKeyDown(KeyCode.Space) && Pbubble.activeSelf)
         {
-            //checks if the user has clicked the space bar to skip through text (while bubble is active)
-            if (Input.GetKeyDown(KeyCode.Space) && Pbubble.activeSelf)
+            if (Ptext.text.Length < penDialog[penIndex].Length)
             {
-                if (Ptext.text.Length < penDialog[penIndex].Length)
-                {
-                    StopAllCoroutines();
-                    Ptext.text = penDialog[penIndex];
-                }
-                else
-                {
-                    PenContinue();
-                }
+                StopAllCoroutines();
+                Ptext.text = penDialog[penIndex];
             }
-            else if (Input.GetKeyDown(KeyCode.Space) && Ebubble.activeSelf)
+            else
             {
-                if (Etext.text.Length < eagleDialog[eagleIndex].Length)
-                {
-                    StopAllCoroutines();
-                    Etext.text = eagleDialog[eagleIndex];
-                }
-                else
-                {
-                    EagleContinue();
-                }
+                PenContinue();
             }
         }
+        else if (Input.GetKeyDown(KeyCode.Space) && Ebubble.activeSelf)
+        {
+            if (Etext.text.Length < eagleDialog[eagleIndex].Length)
+            {
+                StopAllCoroutines();
+                Etext.text = eagleDialog[eagleIndex];
+            }
+            else
+            {
+                EagleContinue();
+            }
+        }
+        
     }
 
     //co-routine to get a text typing effect in penguin speech bubbles
