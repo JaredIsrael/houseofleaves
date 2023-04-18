@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private LayerMask jumpGround;
 
+    [SerializeField] private AudioSource jumpSound;
+
     private float horizontal;
     private bool sliding;
 
@@ -25,6 +27,10 @@ public class PlayerMovement : MonoBehaviour
         //jump if the "return" key is clicked AND the player is on the ground
         if (Input.GetKeyDown(KeyCode.Return) && OnGround())
         {
+            if (rigidBody.bodyType != RigidbodyType2D.Static)
+            {
+                jumpSound.Play();
+            }
             rigidBody.velocity = new Vector2(rigidBody.velocity.x, 14f);
         }
 
@@ -32,7 +38,8 @@ public class PlayerMovement : MonoBehaviour
         if ((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) && OnGround())
         {
             sliding = true;
-        } else
+        }
+        else
         {
             sliding = false;
         }
@@ -45,32 +52,38 @@ public class PlayerMovement : MonoBehaviour
     {
         AnimationState state;
 
-        //walk state
-        if (horizontal > 0f)
+        if (rigidBody.bodyType != RigidbodyType2D.Static)
         {
-            state = AnimationState.walk;
-            spRenderer.flipX = false;
-        }
-        else if (horizontal < 0f)
-        {
-            state = AnimationState.walk;
-            spRenderer.flipX = true;
-        }
-        else
+            //walk state
+            if (horizontal > 0f)
+            {
+                state = AnimationState.walk;
+                spRenderer.flipX = false;
+            }
+            else if (horizontal < 0f)
+            {
+                state = AnimationState.walk;
+                spRenderer.flipX = true;
+            }
+            else
+            {
+                state = AnimationState.idle;
+            }
+
+            //slide state
+            if (sliding)
+            {
+                state = AnimationState.slide;
+            }
+
+            //jump state
+            if (rigidBody.velocity.y > 0.1f)
+            {
+                state = AnimationState.jump;
+            }
+        } else
         {
             state = AnimationState.idle;
-        }
-
-        //slide state
-        if (sliding)
-        {
-            state = AnimationState.slide;
-        }
-
-        //jump state
-        if (rigidBody.velocity.y > 0.1f)
-        {
-            state = AnimationState.jump;
         }
 
         animator.SetInteger("State", ((int)state));

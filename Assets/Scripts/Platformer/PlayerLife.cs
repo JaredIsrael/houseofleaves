@@ -8,6 +8,8 @@ public class PlayerLife : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private Rigidbody2D rigidBody;
 
+    [SerializeField] private AudioSource deathSound;
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Trap"))
@@ -19,6 +21,7 @@ public class PlayerLife : MonoBehaviour
     //method disables player movement and plays death animation
     private void PlayerDie()
     {
+        deathSound.Play();
         rigidBody.bodyType = RigidbodyType2D.Static;
         animator.SetTrigger("Death");
     }
