@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    //TO-DO: configure to new input system
+    //!!TO-DO: configure to new input system!!
 
     [SerializeField] private Rigidbody2D rigidBody;
     [SerializeField] private SpriteRenderer spRenderer;

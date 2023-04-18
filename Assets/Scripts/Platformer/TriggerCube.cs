@@ -6,6 +6,7 @@ using UnityEngine.Events;
 
 public class TriggerCube : MonoBehaviour
 {
+    [SerializeField] private BoxCollider2D boxCollider;
     [SerializeField] private Rigidbody2D penguinRB;
 
     [SerializeField] private GameObject Pbubble;
@@ -36,6 +37,9 @@ public class TriggerCube : MonoBehaviour
     //when penguin enters the trigger cube, bubble will appear
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //diable collider (trigger) so speech bubbles dont appear again
+        boxCollider.enabled = false;
+
         //lock player movement
         penguinRB.bodyType = RigidbodyType2D.Static;
         Pbubble.SetActive(true);
@@ -92,13 +96,13 @@ public class TriggerCube : MonoBehaviour
     {
         //TO-DO: create animation of eagle flying away from player
         EagleMovement.fly = true;
-        StartCoroutine(MoveEagle(5f));
+        StartCoroutine(MoveEagle(10f));
     }
 
     private IEnumerator MoveEagle(float time)
     {
         Vector3 startPosition = eagle.transform.position;
-        Vector3 updatedPosition = startPosition + (eagle.transform.right * 10);
+        Vector3 updatedPosition = startPosition + (eagle.transform.right * 100);
 
         float elapsedTime = 0;
 
@@ -111,8 +115,6 @@ public class TriggerCube : MonoBehaviour
 
         //eagle has reached new spot, stop flying animation
         EagleMovement.fly = false;
-        //unlock player movement
-        penguinRB.bodyType = RigidbodyType2D.Dynamic;
     }
 
     //TO-DO: combine continue methods into one
@@ -151,6 +153,9 @@ public class TriggerCube : MonoBehaviour
 
             //eagle flies away when interaction complete
             eagleFly.Invoke();
+
+            //unlock player movement
+            penguinRB.bodyType = RigidbodyType2D.Dynamic;
         }
     }
 }

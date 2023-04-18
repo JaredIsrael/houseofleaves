@@ -983,7 +983,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 496981784}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.45, y: 2.46, z: 0}
+  m_LocalPosition: {x: 2.3, y: 2.46, z: 0}
   m_LocalScale: {x: 1.52717, y: 2.56991, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7187,6 +7187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5240269cd36b4b33b7f9a94245a1e1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boxCollider: {fileID: 1202696233}
   penguinRB: {fileID: 768732424}
   Pbubble: {fileID: 2077642922}
   Ptext: {fileID: 513494749}
@@ -106644,6 +106645,7 @@ GameObject:
   - component: {fileID: 1785329252}
   - component: {fileID: 1785329251}
   - component: {fileID: 1785329250}
+  - component: {fileID: 1785329253}
   m_Layer: 0
   m_Name: Eagle
   m_TagString: Untagged
@@ -106732,13 +106734,27 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1785329249}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.47, y: 0.31, z: 0}
+  m_LocalPosition: {x: 9.87, y: 0.31, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1785329253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1785329249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 264c2dccc6b874a06b2560b16efa7a61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 1785329250}
+  spRenderer: {fileID: 1785329251}
 --- !u!4 &1849056752 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7819246821111397240, guid: 72a45af0d3ba0409c9cee32cbe47bef2,
@@ -107084,7 +107100,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0409, y: 0.0814}
+  m_AnchoredPosition: {x: -0.08, y: 0.0814}
   m_SizeDelta: {x: 13.5093, y: 6.6032}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1947681730
