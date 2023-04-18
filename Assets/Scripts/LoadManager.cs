@@ -57,7 +57,7 @@ public class LoadManager : MonoBehaviour
     //Temporary function to display loading screen longer
     IEnumerator Waiting(string sceneName)
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3);
         StartCoroutine(Loading(sceneName));
     }
 
