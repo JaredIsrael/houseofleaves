@@ -94,7 +94,6 @@ public class TriggerCube : MonoBehaviour
 
     private void StartEagleFly()
     {
-        //TO-DO: create animation of eagle flying away from player
         EagleMovement.fly = true;
         StartCoroutine(MoveEagle(10f));
     }

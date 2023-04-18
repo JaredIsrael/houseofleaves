@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
 
     private enum AnimationState { idle, walk, jump, slide }
 
-    void Update()
+    private void Update()
     {
         horizontal = Input.GetAxisRaw("Horizontal");
         rigidBody.velocity = new Vector2(horizontal * 7f, rigidBody.velocity.y);
