@@ -6,6 +6,8 @@ using UnityEngine.Events;
 
 public class TriggerCube : MonoBehaviour
 {
+    [SerializeField] private Rigidbody2D penguinRB;
+
     [SerializeField] private GameObject Pbubble;
     [SerializeField] private TextMeshProUGUI Ptext;
     [SerializeField] private string[] penDialog;
@@ -34,6 +36,8 @@ public class TriggerCube : MonoBehaviour
     //when penguin enters the trigger cube, bubble will appear
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //lock player movement
+        penguinRB.bodyType = RigidbodyType2D.Static;
         Pbubble.SetActive(true);
         StartCoroutine(TypeDialog(penDialog, penIndex, Ptext));
     }
@@ -107,6 +111,8 @@ public class TriggerCube : MonoBehaviour
 
         //eagle has reached new spot, stop flying animation
         EagleMovement.fly = false;
+        //unlock player movement
+        penguinRB.bodyType = RigidbodyType2D.Dynamic;
     }
 
     //TO-DO: combine continue methods into one
