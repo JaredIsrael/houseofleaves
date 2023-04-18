@@ -9,6 +9,7 @@ TagManager:
   - Word
   - Food
   - Watermelon
+  - Trap
   layers:
   - Default
   - TransparentFX
