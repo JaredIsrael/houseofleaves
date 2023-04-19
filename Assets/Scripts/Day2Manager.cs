@@ -13,7 +13,7 @@ Author: Jared Israel
 
  */
 
-public class Day1Manager: MonoBehaviour
+public class Day2Manager : MonoBehaviour
 {
     [SerializeField]
     private BinaryQuestionLines WakeUpQuestion;
