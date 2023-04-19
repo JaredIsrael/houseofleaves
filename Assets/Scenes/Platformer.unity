@@ -7787,7 +7787,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1249671457}
   - component: {fileID: 1249671460}
-  - component: {fileID: 1249671459}
   - component: {fileID: 1249671458}
   m_Layer: 6
   m_Name: TalkTrigger2
@@ -7837,35 +7836,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1249671459
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1249671456}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5240269cd36b4b33b7f9a94245a1e1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boxCollider: {fileID: 1249671458}
-  penguinRB: {fileID: 768732424}
-  Pbubble: {fileID: 0}
-  Ptext: {fileID: 0}
-  penDialog:
-  - HEY! Do you know what's going on?
-  - What is this place, and why am I here?
-  Ebubble: {fileID: 0}
-  Etext: {fileID: 0}
-  eagleDialog:
-  - Ah Ayumu, welocme! I have been waiting for you!
-  - Think about it... you know this place very well...
-  - You only see this on TV every day!
-  - I have to go, but make sure to collect everything!
-  - Once you're done, come find me. See you soon!
-  penguin: {fileID: 768732420}
-  eagle: {fileID: 1785329249}
 --- !u!212 &1249671460
 SpriteRenderer:
   m_ObjectHideFlags: 0
