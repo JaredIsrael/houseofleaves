@@ -59,4 +59,9 @@ public class EnemyScript : MonoBehaviour
         }*/
     }
 
+    public void thrownObjectDetection(Vector3 position)
+    {
+        Debug.Log("I Heard Something Here: " + position);
+    }
+
 }

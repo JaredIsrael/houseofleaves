@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class ObjectHitsGround : MonoBehaviour
 {
+    private ThrowCollisionManager collisionManager;
+
     void OnCollisionEnter(Collision collisionInfo) 
     {
-        Debug.Log("Collision Detected");
-
-        //TODO: Trigger Enemy
+        collisionManager = GameObject.Find("ThrownObjectCollisionManager").GetComponent<ThrowCollisionManager>();
+        collisionManager.broadcast(collisionInfo.contacts[0].point);
 
         Destroy(this.gameObject);
     }

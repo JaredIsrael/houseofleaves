@@ -25,7 +25,6 @@ public sealed class ThrowableObject : CompletableTask
     {
         if(!oneObjectAdded)
         {
-            Debug.Log("Object Added");
             playerController.throwableObjects++;
             oneObjectAdded = true;
         }
