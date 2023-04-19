@@ -40,6 +40,12 @@ private Camera playerCam;
 					m_DefaultReticle = false;
 					m_UseReticle = true;
 				}
+				if(hit.collider.gameObject.tag == "LightSwitch")
+				{
+                m_DefaultReticle = true;
+              
+                m_UseReticle = false;
+            }
 			}else{
            // m_DefaultReticle = true;
             m_DefaultReticle = false;

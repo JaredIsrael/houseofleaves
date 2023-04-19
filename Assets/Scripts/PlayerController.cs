@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private CameraRotator cr;
 
+    public AudioSource walking;
     public float speed = 7f;
     public bool crouching = false;
     public bool cameraHeightChanged = false;
@@ -40,6 +41,14 @@ public class PlayerController : MonoBehaviour
         if (!canMove)
         {
             movement3D = Vector3.zero;
+        }
+     
+        if(movement3D.x != 0 || movement3D.z != 0)
+        {
+            if(walking.isPlaying == false && !crouching)
+            {
+                walking.Play();
+            }
         }
         controller.Move(movement3D * Time.deltaTime);
         

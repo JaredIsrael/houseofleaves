@@ -11,6 +11,7 @@ TagManager:
   - Door
   - Interact
   - InteractItem
+  - LightSwitch
   layers:
   - Default
   - TransparentFX
