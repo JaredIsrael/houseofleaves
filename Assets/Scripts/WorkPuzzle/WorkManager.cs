@@ -15,10 +15,10 @@ public class WorkManager : MonoBehaviour
 
     public GameObject sliderBar;
 
-    [SerializeField]
-    private MonologLines successScript;
-
     private AudioSource clickSource;
+
+    [SerializeField]
+    private WorkPuzzle wp;
 
     public void Start()
     {
@@ -96,8 +96,7 @@ public class WorkManager : MonoBehaviour
                 FallTimer.stop = true;
 
                 //Invoke task complete
-                WorkPuzzle.gameOver = true;
-                DialogManager.Instance.DisplayMonologLines(successScript);
+                wp.GameOver();
 
                 //TO-DO: this is where user levels up
                 PassageGenerator.level++;
