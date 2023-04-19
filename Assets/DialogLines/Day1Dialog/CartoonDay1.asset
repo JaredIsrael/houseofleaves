@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72ecc1baa12584f64b7b50911e90bbff, type: 3}
+  m_Name: CartoonDay1
+  m_EditorClassIdentifier: 
+  lines:
+  - 'Penni: "Are there any clues to what happened?"'
+  - 'Edie: "No, none so far. There''s nothing pointing to a kidnapping or anything
+    like that."'
+  - 'Penni: "Umm... you don''t think there''s any reason why she''d leave us right?"'
+  - 'Edie: "..."'
+  - '"...I can''t think of one. I guess she had some important business somewhere."'
+  - '"She''s probably out there doing good."'
+  - 'Penni: "We can''t just wait here though, what if she needs help?"'
+  - 'Edie: "Surely she would have asked for it then."'
+  - 'Penni: "B-but I know how hard that can be..."'
+  - 'Edie: "  .  .  .  "'
+  - '"Stop it."'
+  - '"Stop worrying."'
+  - '"Stop thinking about it."'
+  - '"It''s not our place."'
+  - 'Penni: "..."'
+  - '"Not our place to worry? Not our place to care?"'
+  - '"I wouldn''t even be angry if she left us behind."'
+  - '"I just want her safe..."'
+  - 'Edie: "For now, it seems like all we can do is wait."'
