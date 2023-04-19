@@ -10,9 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72ecc1baa12584f64b7b50911e90bbff, type: 3}
-  m_Name: LaundryTutorial
+  m_Name: DirtyTable
   m_EditorClassIdentifier: 
   lines:
-  - I need to sort some of my laundry. My clothes are starting to stink a bit...
-  - '[Laundry Task: Press ''F'' near the hampers to start the laundry task! Click
-    the hamper that matches the current clump of laundry!]'
+  - More trash to clean, more work to do...
+  - Blehhhhhhhhhh
