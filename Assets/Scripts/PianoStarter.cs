@@ -6,13 +6,20 @@ public class PianoStarter : MonoBehaviour
 {
     [SerializeField] Canvas pianoCanvas;
     [SerializeField] PianoController pianoController;
-    
     [SerializeField] InputManager inputManager;
+    [SerializeField] AudioSource hint;
+
+    private void Start()
+    {
+        hint.loop = true;
+        hint.Play();
+    }
 
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player"))
         {
+            hint.Stop();
             pianoCanvas.gameObject.SetActive(true);
             inputManager.TogglePlayerMovement();
             pianoController.SetUpContexts();
