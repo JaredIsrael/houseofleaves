@@ -41,6 +41,7 @@ public class EnemyScript : MonoBehaviour
             playerSound = 5;
         }
 
+        /*
         if(playerIsMoving)
         {
             if (playerSound / distanceFromPlayer < enemyHearingThreshold)
@@ -55,7 +56,7 @@ public class EnemyScript : MonoBehaviour
         else
         {
             Debug.Log("nope");
-        }
+        }*/
     }
 
 }
