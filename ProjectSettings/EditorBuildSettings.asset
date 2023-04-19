@@ -14,7 +14,7 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/PlayTestHouse.unity
     guid: c6279c936a382194c810edf591cecaff
   - enabled: 1
@@ -23,4 +23,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/NightOneScene.unity
     guid: c451d455cdf7d48c78b808d9e688d327
+  - enabled: 1
+    path: Assets/Scenes/Platformer.unity
+    guid: b7b335eead0cf4c49be132a88f9a3c70
+  - enabled: 1
+    path: Assets/Scenes/Day2House.unity
+    guid: 21bcca2df67704bf6bbcb846cbafa9a5
   m_configObjects: {}

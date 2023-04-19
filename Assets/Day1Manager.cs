@@ -28,11 +28,16 @@ public class Day1Manager: MonoBehaviour
     private SleepInteractable si;
     [SerializeField]
     private MonologLines sleepLines;
+    [SerializeField]
+    private AudioSource[] audioSources;
+
+    private int index;
 
     //public DialogSet dia
     // Start is called before the first frame update
     void Start()
     {
+        index = 0;
         StartCoroutine(FadeInFromBlackIntroDialog());
         ObjectivesManager.AllTasksCompletedEvent.AddListener(EnableSleep);
     }
@@ -50,7 +55,7 @@ public class Day1Manager: MonoBehaviour
         }
         blackScreen.gameObject.SetActive(false);
         DialogManager.Instance.DisplayBinaryQuestionLines(WakeUpQuestion, OnLeft, OnRight);
-
+        StartCoroutine(StartAmbientMusic());
     }
 
     private IEnumerator FadeOutToBlackAndSwitchScene()
@@ -104,5 +109,21 @@ public class Day1Manager: MonoBehaviour
     public void OnRightNoOp()
     {
         Debug.Log("Right was clicked!");
+    }
+
+    private IEnumerator StartAmbientMusic()
+    {
+        double offset = 0.01;
+        double length = audioSources[0].clip.length;
+        double time = AudioSettings.dspTime - offset;
+        audioSources[index].Play();
+
+        while (true)
+        {
+            yield return new WaitForSecondsRealtime((float)length);
+            time += length;
+            index = (index + 1) % audioSources.Length;
+            audioSources[index].PlayScheduled(time);
+        }
     }
 }

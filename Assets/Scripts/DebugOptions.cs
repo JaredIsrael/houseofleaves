@@ -14,4 +14,14 @@ public class DebugOptions : MonoBehaviour
     {
         SceneManager.LoadSceneAsync("NightOneScene");
     }
+
+    public void DayTwoLoad()
+    {
+        SceneManager.LoadSceneAsync("Day2House");
+    }
+
+    public void NightTwoLoad()
+    {
+        SceneManager.LoadSceneAsync("Platformer");
+    }
 }
