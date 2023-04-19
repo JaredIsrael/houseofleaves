@@ -7,6 +7,10 @@ TagManager:
   - PickUp
   - Table
   - Word
+  - Food
+  - Door
+  - Interact
+  - InteractItem
   layers:
   - Default
   - TransparentFX
