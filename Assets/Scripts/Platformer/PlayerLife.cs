@@ -10,6 +10,24 @@ public class PlayerLife : MonoBehaviour
 
     [SerializeField] private AudioSource deathSound;
 
+    [SerializeField] private GameObject talkTrigger1;
+    [SerializeField] private GameObject eagle;
+
+    private static bool sceneRestart = false;
+
+    public void Start()
+    {
+        //if the scene has been restarted (i.e., player died), do not repeat text interaction
+        if (sceneRestart)
+        {
+            //diable collider (trigger) so speech bubbles dont appear again
+            talkTrigger1.SetActive(false);
+
+            //set eagle to end position
+            eagle.transform.position = new Vector3(109.8048f, 0.31f, 0f);
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Trap"))
@@ -29,6 +47,7 @@ public class PlayerLife : MonoBehaviour
     //method restarts the scene (level) after dying
     private void RestartLevel()
     {
+        sceneRestart = true;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

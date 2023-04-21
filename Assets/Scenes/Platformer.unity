@@ -6445,6 +6445,8 @@ MonoBehaviour:
   animator: {fileID: 768732427}
   rigidBody: {fileID: 768732424}
   deathSound: {fileID: 768732432}
+  talkTrigger1: {fileID: 1202696229}
+  eagle: {fileID: 1785329249}
 --- !u!82 &768732430
 AudioSource:
   m_ObjectHideFlags: 0
