@@ -16,8 +16,15 @@ public class PlayerMovement : MonoBehaviour
 
     private float horizontal;
     private bool sliding;
+    private int layer;
 
     private enum AnimationState { idle, walk, jump, slide }
+
+    private void Start()
+    {
+        //for raycast on objects in Ground layer
+        layer = LayerMask.GetMask("Ground");
+    }
 
     private void Update()
     {
@@ -37,6 +44,10 @@ public class PlayerMovement : MonoBehaviour
         //slide if the "shift" key is clicked AND the player is on the ground
         if ((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) && OnGround())
         {
+            sliding = true;
+        }
+        else if (sliding && Physics2D.Raycast(transform.position, Vector2.up, 1, layer))
+        { //raycast - if there is an object above the player, they can't exit slide
             sliding = true;
         }
         else
