@@ -20,6 +20,8 @@ public class TriggerCube : MonoBehaviour
     [SerializeField] private GameObject penguin;
     [SerializeField] private GameObject eagle;
 
+    [SerializeField] private AudioSource bubbleSound;
+
     private int penIndex;
     private int eagleIndex;
 
@@ -41,11 +43,12 @@ public class TriggerCube : MonoBehaviour
         //if player jumps into trigger, properly set position on ground
         penguin.transform.position = new Vector3(4.13841f, 0.187476f, 0f);
 
-        //diable collider (trigger) so speech bubbles dont appear again
+        //disable collider (trigger) so speech bubbles dont appear again
         boxCollider.enabled = false;
 
         //lock player movement
         penguinRB.bodyType = RigidbodyType2D.Static;
+        bubbleSound.Play();
         Pbubble.SetActive(true);
         StartCoroutine(TypeDialog(penDialog, penIndex, Ptext));
     }
@@ -99,13 +102,13 @@ public class TriggerCube : MonoBehaviour
     private void StartEagleFly()
     {
         EagleMovement.fly = true;
-        StartCoroutine(MoveEagle(10f));
+        StartCoroutine(MoveEagle(20f));
     }
 
     private IEnumerator MoveEagle(float time)
     {
         Vector3 startPosition = eagle.transform.position;
-        Vector3 updatedPosition = startPosition + (eagle.transform.right * 100);
+        Vector3 updatedPosition = startPosition + (eagle.transform.right * 260);
 
         float elapsedTime = 0;
 
@@ -152,6 +155,7 @@ public class TriggerCube : MonoBehaviour
         }
         else
         {//all dialog for both bubbles has been displayed
+            bubbleSound.Play();
             Ebubble.SetActive(false);
 
             //eagle flies away when interaction complete

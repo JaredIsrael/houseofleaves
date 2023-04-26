@@ -48,7 +48,6 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (sliding && Physics2D.Raycast(transform.position, Vector2.up, 1, layer))
         { //raycast - if there is an object above the player, they can't exit slide
-            Debug.Log("hitting");
             sliding = true;
         }
         else

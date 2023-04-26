@@ -24,7 +24,7 @@ public class PlayerLife : MonoBehaviour
             talkTrigger1.SetActive(false);
 
             //set eagle to end position
-            eagle.transform.position = new Vector3(109.8048f, 0.31f, 0f);
+            eagle.transform.position = new Vector3(269.5972f, 1.5f, 0f);
         }
     }
 

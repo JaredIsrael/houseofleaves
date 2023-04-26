@@ -5,26 +5,26 @@ using TMPro;
 
 public class ItemCollector : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI watermelonText;
+    [SerializeField] private TextMeshProUGUI keyText;
     [SerializeField] private AudioSource collectSound;
 
-    private int watermelonCount;
-    private int noWatermelon;
+    private int keyCount;
+    private int noKey;
 
     private void Start()
     {
-        watermelonCount = 0;
-        noWatermelon = GameObject.FindGameObjectsWithTag("Watermelon").Length;
+        keyCount = 0;
+        noKey = GameObject.FindGameObjectsWithTag("Key").Length;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Watermelon"))
+        if (collision.gameObject.CompareTag("Key"))
         {
             collectSound.Play();
             collision.gameObject.SetActive(false);
-            watermelonCount++;
-            watermelonText.SetText("Watermelon: " + watermelonCount + "/" + noWatermelon);
+            keyCount++;
+            keyText.SetText("Keys: " + keyCount + "/" + noKey);
         }
     }
 }
