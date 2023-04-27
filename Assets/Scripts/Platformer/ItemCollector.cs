@@ -8,13 +8,18 @@ public class ItemCollector : MonoBehaviour
     [SerializeField] private TextMeshProUGUI keyText;
     [SerializeField] private AudioSource collectSound;
 
+    [SerializeField] private GameObject contDialog;
+    [SerializeField] private GameObject finalDialog;
+
     private int keyCount;
-    private int noKey;
+    private int noKeys;
 
     private void Start()
     {
+        contDialog.SetActive(true);
+        finalDialog.SetActive(false);
         keyCount = 0;
-        noKey = GameObject.FindGameObjectsWithTag("Key").Length;
+        noKeys = GameObject.FindGameObjectsWithTag("Key").Length;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -24,7 +29,12 @@ public class ItemCollector : MonoBehaviour
             collectSound.Play();
             collision.gameObject.SetActive(false);
             keyCount++;
-            keyText.SetText("Keys: " + keyCount + "/" + noKey);
+            keyText.SetText("Keys: " + keyCount + "/" + noKeys);
+            if (keyCount == noKeys)
+            {
+                contDialog.SetActive(false);
+                finalDialog.SetActive(true);
+            }
         }
     }
 }

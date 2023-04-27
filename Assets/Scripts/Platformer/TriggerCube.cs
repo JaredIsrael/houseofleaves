@@ -6,6 +6,9 @@ using UnityEngine.Events;
 
 public class TriggerCube : MonoBehaviour
 {
+    [SerializeField] private bool first;
+    [SerializeField] private bool final;
+
     [SerializeField] private BoxCollider2D boxCollider;
     [SerializeField] private Rigidbody2D penguinRB;
 
@@ -41,7 +44,14 @@ public class TriggerCube : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //if player jumps into trigger, properly set position on ground
-        penguin.transform.position = new Vector3(4.13841f, 0.187476f, 0f);
+        if (first)
+        {
+            penguin.transform.position = new Vector3(4.13841f, 0.187476f, 0f);
+        }
+        else
+        {
+            penguin.transform.position = new Vector3(262.7568f, 0.187476f, 0f);
+        } 
 
         //disable collider (trigger) so speech bubbles dont appear again
         boxCollider.enabled = false;
@@ -158,11 +168,23 @@ public class TriggerCube : MonoBehaviour
             bubbleSound.Play();
             Ebubble.SetActive(false);
 
-            //eagle flies away when interaction complete
-            eagleFly.Invoke();
+            if (final)
+            {
+                //TO-DO: night 2 complete; switch to next scene here!!!!!
+                //replace below 4 lines of code
+#if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;
+#endif
+                Application.Quit();
+            }
+            else
+            {
+                //eagle flies away when interaction complete
+                eagleFly.Invoke();
 
-            //unlock player movement
-            penguinRB.bodyType = RigidbodyType2D.Dynamic;
+                //unlock player movement
+                penguinRB.bodyType = RigidbodyType2D.Dynamic;
+            }
         }
     }
 }
