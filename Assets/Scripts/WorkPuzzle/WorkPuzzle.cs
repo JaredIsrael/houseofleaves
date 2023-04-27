@@ -19,6 +19,7 @@ public sealed class WorkPuzzle : CompletableTask
 
     public Coroutine wordFall;
     public Coroutine input;
+    public Coroutine progress;
 
     public static bool gameOver;
 
@@ -50,8 +51,7 @@ public sealed class WorkPuzzle : CompletableTask
         //starts the coroutine GenerateWord(), game starts as words begin falling
         wordFall = StartCoroutine(GameObject.Find("WorkManager").GetComponent<FallTimer>().GenerateWord());
 
-        //starts the coroutine that tracks the input user is typing
-        //input = StartCoroutine(GameObject.Find("WorkManager").GetComponent<WorkInput>().KeyTracking());
+        progress = StartCoroutine(GameObject.Find("Slider").GetComponent<ProgressHandler>().StartProgress());
     }
 
 
@@ -59,7 +59,7 @@ public sealed class WorkPuzzle : CompletableTask
     {
 
         StopCoroutine(wordFall);
-        //StopCoroutine(input);
+        StopCoroutine(progress);
 
         workCanvas.SetActive(false);
         WorkManager.wordIsActive = false;

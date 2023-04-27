@@ -14,7 +14,12 @@ public class ProgressHandler : MonoBehaviour
 
     public static float value;
 
-    IEnumerator Start()
+    public void Start()
+    {
+        StartCoroutine(StartProgress());
+    }
+
+    public IEnumerator StartProgress()
     {
         slider.value = 0.0f;
         value = 0.0f;
@@ -24,7 +29,6 @@ public class ProgressHandler : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
             UpdateSlider(value);
         }
-
     }
 
     void UpdateSlider(float value)

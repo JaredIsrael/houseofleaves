@@ -12,7 +12,7 @@ public class FallTimer : MonoBehaviour
     public WorkManager workManager;
 
     //time between the spawning of each word
-    public static float delay = 1f;
+    public static float delay = 3f;
     public static float nextTime = 0f;
 
     //boolean tracks whether or not the user has lost the game 
@@ -55,7 +55,7 @@ public class FallTimer : MonoBehaviour
             {
                 workManager.NewWord(passage);
                 nextTime = Time.time + delay;
-                delay *= .99f;
+                delay *= .999f;
             }
         }
     }
