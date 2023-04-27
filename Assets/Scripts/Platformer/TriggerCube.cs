@@ -171,7 +171,7 @@ public class TriggerCube : MonoBehaviour
             if (final)
             {
                 //TO-DO: night 2 complete; switch to next scene here!!!!!
-                //replace below 4 lines of code
+                //--replace below 4 lines of code--
 #if UNITY_EDITOR
                 UnityEditor.EditorApplication.isPlaying = false;
 #endif
