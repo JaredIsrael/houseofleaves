@@ -101,6 +101,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     //boolean method to determine if player is on the ground
+    //ground is considered any element in the scene added as terrain
     private bool OnGround()
     {
         return Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0f, Vector2.down, 0.1f, jumpGround);

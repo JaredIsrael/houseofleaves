@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//This script is used with any objects in the scene that move back and forth
+//between two points (waypoints).
+
 public class WaypointFollower : MonoBehaviour
 {
     [SerializeField] private GameObject[] waypoints;
