@@ -25,26 +25,27 @@ public class PassageGenerator : MonoBehaviour
 
     
     private static string[] passage1 = { "Today", "is", "our", "first", "day",
-        "of", "work.", "I've", "noticed" , "there", "are", "some", "strange",
-        "things","happening", "in", "this","house.", "It", "could", "all", "just",
+        "back", "to", "work.", "I've", "noticed" , "there", "are", "some", "strange",
+        "things","happening", "in", "this", "house.", "It", "could", "all", "just",
         "be", "in", "my", "head,", "but", "things", "don't", "seem", "right", "since",
         "that", "day..." };
-    
 
-    //private static string[] passage1 = { "Just", "four", "words", "here" };
+    private static string[] passage2 = { "Alright", "day", "two...", "It", "feels",
+        "like", "this", "house", "just", "keeps", "getting", "smaller.", "Maybe", "I",
+        "am", "going", "crazy.", "To", "be", "fair,", "I", "didn't", "get", "much",
+        "sleep", "last", "night.", "Hopefully", "tonight", "is", "better." };
 
-    private static string[] passage2 = { "Hello,", "this", "is", "a", "test.",
-        "You", "need", "to", "do", "some", "very", "boring", "work.",
-        "Make", "sure", "to", "complete", "your", "to-do", "list!" };
+    private static string[] passage3 = { "Keys", "keys", "keys!", "What", "is", "the",
+        "big", "deal?", "Ugh", "can", "not", "even", "focus", "on", "work", "anymore.",
+        "That", "door...", "do", "I", "really", "want", "to", "find", "the", "key...",
+        "do", "I", "even", "want", "to", "go", "in?" };
 
-    private static string[] passage3 = { "My", "name", "is", "Ayumu", "and",
-        "this", "is", "my", "game", "Dream", "Walker.", "You", "will",
-        "see", "my", "many", "nightmares!" };
+    private static string[] passage4 = { "Maybe", "I", "should", "have", "taken", "more",
+        "time", "off.", "That", "dream", "was", "the", "worst", "one", "yet.", "But", "again",
+        "with", "these", "keys!", "I", "can't", "go", "in", "that", "room...", "I", "shouldn't...",
+        "I", "think", "calling", "in", "sick", "tomorrow", "would", "be", "best." };
 
-    private static string[][] passageList = { passage1, passage2, passage3 };
-
-    //TO-DO: fill in with relevant passages that fit the days of the story.
-    // no longer choose at random, passage # corresponds to the day.
+    private static string[][] passageList = { passage1, passage2, passage3, passage4 };
 
     /*
      * This method chooses a random passage from the above list. This is the 

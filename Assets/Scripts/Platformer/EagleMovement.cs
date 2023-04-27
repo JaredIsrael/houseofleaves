@@ -8,13 +8,11 @@ public class EagleMovement : MonoBehaviour
     public SpriteRenderer spRenderer;
     public static bool fly;
 
-    // Start is called before the first frame update
     void Start()
     {
         fly = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
         animator.SetBool("Fly", fly);

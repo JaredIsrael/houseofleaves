@@ -6,6 +6,9 @@ using UnityEngine.Events;
 
 public class TriggerCube : MonoBehaviour
 {
+    [SerializeField] private bool first;
+    [SerializeField] private bool final;
+
     [SerializeField] private BoxCollider2D boxCollider;
     [SerializeField] private Rigidbody2D penguinRB;
 
@@ -19,6 +22,8 @@ public class TriggerCube : MonoBehaviour
 
     [SerializeField] private GameObject penguin;
     [SerializeField] private GameObject eagle;
+
+    [SerializeField] private AudioSource bubbleSound;
 
     private int penIndex;
     private int eagleIndex;
@@ -39,13 +44,21 @@ public class TriggerCube : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //if player jumps into trigger, properly set position on ground
-        penguin.transform.position = new Vector3(4.13841f, 0.187476f, 0f);
+        if (first)
+        {
+            penguin.transform.position = new Vector3(4.13841f, 0.187476f, 0f);
+        }
+        else
+        {
+            penguin.transform.position = new Vector3(262.7568f, 0.187476f, 0f);
+        } 
 
-        //diable collider (trigger) so speech bubbles dont appear again
+        //disable collider (trigger) so speech bubbles dont appear again
         boxCollider.enabled = false;
 
         //lock player movement
         penguinRB.bodyType = RigidbodyType2D.Static;
+        bubbleSound.Play();
         Pbubble.SetActive(true);
         StartCoroutine(TypeDialog(penDialog, penIndex, Ptext));
     }
@@ -99,13 +112,13 @@ public class TriggerCube : MonoBehaviour
     private void StartEagleFly()
     {
         EagleMovement.fly = true;
-        StartCoroutine(MoveEagle(10f));
+        StartCoroutine(MoveEagle(20f));
     }
 
     private IEnumerator MoveEagle(float time)
     {
         Vector3 startPosition = eagle.transform.position;
-        Vector3 updatedPosition = startPosition + (eagle.transform.right * 100);
+        Vector3 updatedPosition = startPosition + (eagle.transform.right * 260);
 
         float elapsedTime = 0;
 
@@ -152,13 +165,26 @@ public class TriggerCube : MonoBehaviour
         }
         else
         {//all dialog for both bubbles has been displayed
+            bubbleSound.Play();
             Ebubble.SetActive(false);
 
-            //eagle flies away when interaction complete
-            eagleFly.Invoke();
+            if (final)
+            {
+                //TO-DO: night 2 complete; switch to next scene here!!!!!
+                //--replace below 4 lines of code--
+#if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;
+#endif
+                Application.Quit();
+            }
+            else
+            {
+                //eagle flies away when interaction complete
+                eagleFly.Invoke();
 
-            //unlock player movement
-            penguinRB.bodyType = RigidbodyType2D.Dynamic;
+                //unlock player movement
+                penguinRB.bodyType = RigidbodyType2D.Dynamic;
+            }
         }
     }
 }

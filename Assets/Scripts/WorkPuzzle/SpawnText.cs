@@ -18,11 +18,12 @@ public class SpawnText : MonoBehaviour
         GameObject textObject;
         Vector3 position = new Vector3(Random.Range(90f, Screen.width-80f), Screen.height);
 
+        //TO-DO: create other level ideas.
         if (PassageGenerator.level % 2 == 0)
-        { //TO-DO: create other level ideas.
+        { //inverted text
             textObject = Instantiate(text, position, Quaternion.Euler(0,180,0), canvas);
         } else
-        {
+        { //normal text
             textObject = Instantiate(text, position, Quaternion.identity, canvas);
         }
         WordDisplay display = textObject.GetComponent<WordDisplay>();
@@ -36,12 +37,13 @@ public class SpawnText : MonoBehaviour
         {
             loseText.SetActive(true);
 
-            //TO-DO: get "return" to restart game after losing
+            //"return" to restart game after losing
             if (Input.GetKeyDown(KeyCode.Return))
             {
                 loseText.SetActive(false);
 
                 //reset variables
+                FallTimer.delay = 1.5f;
                 PassageGenerator.currentIndex = 0;
                 PassageGenerator.levelUp = false;
                 FallTimer.stop = false;
@@ -58,6 +60,7 @@ public class SpawnText : MonoBehaviour
                 InputManager.UIActions.Enable();
 
                 //reset variables
+                FallTimer.delay = 3f;
                 PassageGenerator.currentIndex = 0;
                 PassageGenerator.levelUp = false;
 

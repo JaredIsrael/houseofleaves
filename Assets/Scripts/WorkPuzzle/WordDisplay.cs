@@ -54,30 +54,5 @@ public class WordDisplay : MonoBehaviour
             }
             ProgressHandler.value = 0f;
         }
-
-        // The following keeps track of a list of words rather than each word having
-        // its own update. It works, but definitely not as smooth. Needs work.
-
-        /*
-        words = GameObject.FindGameObjectsWithTag("Word");
-        foreach(GameObject word in words)
-        {
-            if (word.transform.position.y > 0)
-            {
-                word.transform.Translate(0f, -speed * Time.deltaTime, 0f);
-                
-            }
-            else if (word.transform.position.y <= 0)
-            {
-                //could i now just do this to get the words to stop generating?
-                StopCoroutine(GameObject.Find("WorkManager").GetComponent<FallTimer>().GenerateWord());
-                FallTimer.stop = true;
-                foreach (GameObject deadWord in words)
-                {
-                    Destroy(deadWord);
-                }
-                Instantiate(loseText,GameObject.Find("WorkCanvas").transform);
-            }
-        }*/
     }
 }
