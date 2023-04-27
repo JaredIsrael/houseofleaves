@@ -10,7 +10,6 @@ public class ObjectHitsGround : MonoBehaviour
     {
         collisionManager = GameObject.Find("ThrownObjectCollisionManager").GetComponent<ThrowCollisionManager>();
         collisionManager.broadcast(collisionInfo.contacts[0].point);
-
         Destroy(this.gameObject);
     }
 }
