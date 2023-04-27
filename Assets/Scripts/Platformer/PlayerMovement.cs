@@ -28,34 +28,42 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        horizontal = Input.GetAxisRaw("Horizontal");
-        rigidBody.velocity = new Vector2(horizontal * 7f, rigidBody.velocity.y);
-
-        //jump if the "return" key is clicked AND the player is on the ground
-        if (Input.GetKeyDown(KeyCode.Return) && OnGround())
+        //outer if/else used to suppress Static rigidbody warnings in console 
+        if (rigidBody.bodyType != RigidbodyType2D.Static)
         {
-            if (rigidBody.bodyType != RigidbodyType2D.Static)
+            horizontal = Input.GetAxisRaw("Horizontal");
+            rigidBody.velocity = new Vector2(horizontal * 7f, rigidBody.velocity.y);
+
+            //jump if the "return" key is clicked AND the player is on the ground
+            if (Input.GetKeyDown(KeyCode.Return) && OnGround())
             {
-                jumpSound.Play();
+                if (rigidBody.bodyType != RigidbodyType2D.Static)
+                {
+                    jumpSound.Play();
+                }
+                rigidBody.velocity = new Vector2(rigidBody.velocity.x, 14f);
             }
-            rigidBody.velocity = new Vector2(rigidBody.velocity.x, 14f);
-        }
 
-        //slide if the "shift" key is clicked AND the player is on the ground
-        if ((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) && OnGround())
-        {
-            sliding = true;
-        }
-        else if (sliding && Physics2D.Raycast(transform.position, Vector2.up, 1, layer))
-        { //raycast - if there is an object above the player, they can't exit slide
-            sliding = true;
+            //slide if the "shift" key is clicked AND the player is on the ground
+            if ((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) && OnGround())
+            {
+                sliding = true;
+            }
+            else if (sliding && Physics2D.Raycast(transform.position, Vector2.up, 1, layer))
+            { //raycast - if there is an object above the player, they can't exit slide
+                sliding = true;
+            }
+            else
+            {
+                sliding = false;
+            }
+
+            UpdateAnimationState();
         }
         else
         {
-            sliding = false;
+            animator.SetInteger("State", ((int)AnimationState.idle));
         }
-
-        UpdateAnimationState();
     }
 
     //method that switches between animator states
@@ -63,6 +71,7 @@ public class PlayerMovement : MonoBehaviour
     {
         AnimationState state;
 
+        //outer if/else used to suppress Static rigidbody warnings in console 
         if (rigidBody.bodyType != RigidbodyType2D.Static)
         {
             //walk state
