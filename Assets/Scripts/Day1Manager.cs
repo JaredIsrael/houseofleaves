@@ -29,6 +29,7 @@ public class Day1Manager: MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Cursor.visible = false;
         StartCoroutine(FadeInFromBlackIntroDialog());
         ObjectivesManager.AllTasksCompletedEvent.AddListener(EnableSleep);
     }
