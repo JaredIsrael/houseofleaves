@@ -7,11 +7,12 @@ public class EnemyNavigation : MonoBehaviour
 {
     NavMeshAgent enemy;
 
-    float speed = 2;
-    float walkRadius = 10;
+    [SerializeField] float speed = 0.5f;
+    [SerializeField] float walkRadius = 5f;
 
     Renderer ren;
     public bool investigating = false;
+    public bool locationChosen = false;
 
     void Start()
     {
@@ -23,10 +24,12 @@ public class EnemyNavigation : MonoBehaviour
 
     void Update()
     {
-        if(!investigating && enemy.remainingDistance <= enemy.stoppingDistance)
+        if (!investigating && enemy.remainingDistance <= enemy.stoppingDistance)
         {
-            ren.material.color = Color.gray;
-            StartCoroutine(newDestination());
+            if (!locationChosen)
+            {
+                StartCoroutine(newDestination());
+            }
         }
     }
 
@@ -36,7 +39,7 @@ public class EnemyNavigation : MonoBehaviour
         Vector3 randomPosition = Random.insideUnitSphere * walkRadius;
         randomPosition += this.transform.position;
 
-        if(NavMesh.SamplePosition(randomPosition, out NavMeshHit hit, walkRadius, 1))
+        if (NavMesh.SamplePosition(randomPosition, out NavMeshHit hit, walkRadius, 1))
         {
             finalPosition = hit.position;
         }
@@ -56,15 +59,17 @@ public class EnemyNavigation : MonoBehaviour
 
     IEnumerator newDestination()
     {
-        yield return new WaitForSeconds(1);
+        locationChosen = true;
 
+        yield return new WaitForSeconds(1);
         enemy.SetDestination(randomNavMeshLocation());
+
+        locationChosen = false;
     }
 
     IEnumerator heardSomething(Vector3 position)
     {
         enemy.SetDestination(position);
-        ren.material.color = Color.red;
         enemy.isStopped = false;
 
         yield return new WaitForSeconds(5);

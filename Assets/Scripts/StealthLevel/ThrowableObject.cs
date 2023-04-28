@@ -11,14 +11,17 @@ Purpose: TBD
 
 public sealed class ThrowableObject : CompletableTask
 {
-    [SerializeField] private ThrowableObjectInteractable interactable;
+    [SerializeField] private ThrowableObjectInteractable[] interactables;
     [SerializeField] PlayerController playerController;
 
     bool oneObjectAdded = false;
 
     void Start()
     {
-        interactable.InteractedWith.AddListener(ObjectPickUp);
+        for(int i = 0; i < interactables.Length; i++)
+        {
+            interactables[i].InteractedWith.AddListener(ObjectPickUp);
+        }
     }
 
     private void ObjectPickUp()
