@@ -13,14 +13,10 @@ Author: Jared Israel
 
  */
 
-public class Day2Manager : MonoBehaviour
+public class Day4Manager : MonoBehaviour
 {
     [SerializeField]
-    private BinaryQuestionLines WakeUpQuestion;
-    [SerializeField]
-    private MonologLines monoLines;
-    [SerializeField]
-    private BinaryQuestionLines questions2;
+    private MonologLines OpeningLines;
     [SerializeField]
     private Image blackScreen;
     private float FADE_TIME = 3.5f;
@@ -49,7 +45,7 @@ public class Day2Manager : MonoBehaviour
             yield return null;
         }
         blackScreen.gameObject.SetActive(false);
-        DialogManager.Instance.DisplayBinaryQuestionLines(WakeUpQuestion, OnLeft, OnRight);
+        DialogManager.Instance.DisplayMonologLines(OpeningLines);
 
     }
 
@@ -65,7 +61,7 @@ public class Day2Manager : MonoBehaviour
             blackScreen.color = screenColor;
             yield return null;
         }
-        LoadManager.Instance.LoadSceneBackground("Platformer");
+        LoadManager.Instance.LoadSceneBackground("NightOneScene");
 
     }
 
@@ -82,27 +78,8 @@ public class Day2Manager : MonoBehaviour
         DialogManager.Instance.DisplayMonologLines(sleepLines);
     }
 
-    public void GoToNight2()
+    public void GoToNight1()
     {
         StartCoroutine(FadeOutToBlackAndSwitchScene());
-    }
-
-    public void OnLeft()
-    {
-        DialogManager.Instance.DisplayMonologLines(monoLines);
-    }
-    public void OnRight()
-    {
-        DialogManager.Instance.DisplayBinaryQuestionLines(questions2, OnLeftNoOp, OnRightNoOp);
-    }
-
-    public void OnLeftNoOp()
-    {
-        Debug.Log("Left was clicked!");
-    }
-
-    public void OnRightNoOp()
-    {
-        Debug.Log("Right was clicked!");
     }
 }

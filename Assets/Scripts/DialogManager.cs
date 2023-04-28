@@ -52,6 +52,8 @@ public class DialogManager : MonoBehaviour
 
     public delegate void DialogChoiceFunc();
 
+    private Queue<ScriptableObject> linesQueue;
+
     private void Awake()
     {
         if (Instance == null)
@@ -62,6 +64,7 @@ public class DialogManager : MonoBehaviour
             dialogPanel.gameObject.SetActive(false);
             choiceButtons.alpha = 0f;
             choiceButtons.gameObject.SetActive(false);
+            linesQueue = new Queue<ScriptableObject>();
         }
         else
         {

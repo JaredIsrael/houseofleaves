@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
+
 
 /*
 
@@ -34,6 +36,19 @@ public class ObjectivesManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    // called second
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        AllTasksCompletedEvent = new UnityEvent();
+        TaskAddedEvent = new UnityEvent<CompletableTask>();
+        currentTasks = new List<CompletableTask>();
     }
 
     public void AddObjective(CompletableTask newTask)
