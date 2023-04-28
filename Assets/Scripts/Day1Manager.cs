@@ -61,7 +61,7 @@ public class Day1Manager: MonoBehaviour
             blackScreen.color = screenColor;
             yield return null;
         }
-        LoadManager.Instance.LoadSceneBackground("NightOneScene");
+        QuickLoader.Instance.QuickLoadSceneAsync("NightOneScene");
 
     }
 

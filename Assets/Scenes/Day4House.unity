@@ -28728,7 +28728,7 @@ MonoBehaviour:
   LaundryItem: {fileID: 4053301887200119473, guid: d5e31a12fbf404456b3cf71bc94e626d,
     type: 3}
   ItemInstanPoint: {fileID: 1106406469}
-  pc: {fileID: 0}
+  pc: {fileID: 958210954}
 --- !u!4 &458535414
 Transform:
   m_ObjectHideFlags: 0
@@ -42414,7 +42414,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4be2c3fe57e20446c821894554aba1bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PickUpScreen: {fileID: 1665922811}
 --- !u!1 &775921559
 GameObject:
   m_ObjectHideFlags: 0
@@ -68093,7 +68092,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4be2c3fe57e20446c821894554aba1bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PickUpScreen: {fileID: 1193661196}
 --- !u!4 &1116853970
 Transform:
   m_ObjectHideFlags: 0

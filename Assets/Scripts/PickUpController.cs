@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 /*
 
@@ -17,7 +19,6 @@ Author: Jared Israel
 
 public class PickUpController : MonoBehaviour
 {
-    [SerializeField] Canvas PickUpScreen;
     public static PickUpController Instance;
 
     private List<Interactable> canBePickedUpList;
@@ -30,14 +31,22 @@ public class PickUpController : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
             // Pickup screen will be reused in different scenes
-            DontDestroyOnLoad(PickUpScreen);
             canBePickedUpList = new List<Interactable>();
         }
         else
         {
             Destroy(gameObject);
         }
-        PickUpScreen.gameObject.SetActive(false);
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        canBePickedUpList = new List<Interactable>();
     }
 
     public void AddToPickUpList(Interactable item)
