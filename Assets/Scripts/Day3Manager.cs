@@ -21,7 +21,7 @@ public class Day3Manager : MonoBehaviour
     private Image blackScreen;
     private float FADE_TIME = 3.5f;
     [SerializeField]
-    private SleepInteractable si;
+    private SleepInteractable3 si;
     [SerializeField]
     private MonologLines sleepLines;
 

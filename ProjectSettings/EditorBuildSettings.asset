@@ -32,4 +32,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Platformer.unity
     guid: b7b335eead0cf4c49be132a88f9a3c70
+  - enabled: 1
+    path: Assets/Scenes/Day3House.unity
+    guid: 5f514acb96d2a4866a26d4e7385e4cd5
+  - enabled: 1
+    path: Assets/Scenes/StealthNight.unity
+    guid: 221edb14f1e3fa64083ca68100552f62
   m_configObjects: {}

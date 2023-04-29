@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.48089564, g: 0.4705677, b: 0.43683332, a: 1}
+  m_IndirectSpecularColor: {r: 0.48066103, g: 0.4705018, b: 0.43668658, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -55952,7 +55952,15 @@ MonoBehaviour:
   cr: {fileID: 958210955}
   speed: 5
   crouching: 0
+  moving: 0
   cameraHeightChanged: 0
+  usingFlashlight: 0
+  previousFlashlightInput: 0
+  flashlight: {fileID: 0}
+  throwableObjects: 0
+  previousThrowableObjectInput: 0
+  objectToThrow: {fileID: 0}
+  throwPoint: {fileID: 0}
 --- !u!114 &958210955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98296,7 +98304,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1684464038}
-  - component: {fileID: 1684464037}
+  - component: {fileID: 1684464039}
   m_Layer: 0
   m_Name: Day1Manager
   m_TagString: Untagged
@@ -98304,22 +98312,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1684464037
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1684464036}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d3d70e41068548819e2c11a0d76680c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OpeningLines: {fileID: 11400000, guid: ca9312470bbd3554c8e1f24db667f8db, type: 2}
-  blackScreen: {fileID: 946473759}
-  si: {fileID: 1806405754}
-  sleepLines: {fileID: 11400000, guid: 8d7af88ea4813c34391030f91d15a65d, type: 2}
 --- !u!4 &1684464038
 Transform:
   m_ObjectHideFlags: 0
@@ -98335,6 +98327,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 38
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1684464039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1684464036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e22f4823eb701460b9cb6492f208e69a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OpeningLines: {fileID: 11400000, guid: ca9312470bbd3554c8e1f24db667f8db, type: 2}
+  blackScreen: {fileID: 946473759}
+  si: {fileID: 0}
+  sleepLines: {fileID: 11400000, guid: 8d7af88ea4813c34391030f91d15a65d, type: 2}
 --- !u!4 &1684922944 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2432904925950184502, guid: 5bec60f4b2bc22b4fa1dcca2ca18225f,
@@ -104185,7 +104193,7 @@ MonoBehaviour:
   InteractedWith:
     m_PersistentCalls:
       m_Calls: []
-  dm: {fileID: 1684464037}
+  dm: {fileID: 0}
 --- !u!135 &1806405755
 SphereCollider:
   m_ObjectHideFlags: 0
