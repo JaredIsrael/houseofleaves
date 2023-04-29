@@ -61,7 +61,7 @@ public class Day3Manager : MonoBehaviour
             blackScreen.color = screenColor;
             yield return null;
         }
-        LoadManager.Instance.LoadSceneBackground("NightThreeScene");
+        QuickLoader.Instance.QuickLoadSceneAsync("StealthNight");
 
     }
 

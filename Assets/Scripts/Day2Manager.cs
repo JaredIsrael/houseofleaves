@@ -25,7 +25,7 @@ public class Day2Manager : MonoBehaviour
     private Image blackScreen;
     private float FADE_TIME = 3.5f;
     [SerializeField]
-    private SleepInteractable si;
+    private SleepInteractable2 si;
     [SerializeField]
     private MonologLines sleepLines;
 
@@ -49,7 +49,7 @@ public class Day2Manager : MonoBehaviour
             yield return null;
         }
         blackScreen.gameObject.SetActive(false);
-        DialogManager.Instance.DisplayBinaryQuestionLines(WakeUpQuestion, OnLeft, OnRight);
+        DialogManager.Instance.DisplayMonologLines(monoLines);
 
     }
 
@@ -65,7 +65,7 @@ public class Day2Manager : MonoBehaviour
             blackScreen.color = screenColor;
             yield return null;
         }
-        LoadManager.Instance.LoadSceneBackground("Platformer");
+        QuickLoader.Instance.QuickLoadSceneAsync("Platformer");
 
     }
 
