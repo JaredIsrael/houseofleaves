@@ -21,7 +21,17 @@ public class PlayerController : MonoBehaviour
 
     public float speed = 7f;
     public bool crouching = false;
+    public bool moving = false;
     public bool cameraHeightChanged = false;
+
+    public bool usingFlashlight = false;
+    public bool previousFlashlightInput = false;
+    [SerializeField] private GameObject flashlight;
+
+    public int throwableObjects = 0;
+    public bool previousThrowableObjectInput = false;
+    [SerializeField] GameObject objectToThrow;
+    [SerializeField] GameObject throwPoint;
 
     private Vector2 keyboardInput;
     private float gravity;
@@ -41,8 +51,17 @@ public class PlayerController : MonoBehaviour
         {
             movement3D = Vector3.zero;
         }
-        controller.Move(movement3D * Time.deltaTime);
-        
+
+        if(keyboardInput.x == 0 & keyboardInput.y == 0)
+        {
+            moving = false;
+        }
+        else
+        {
+            moving = true;
+        }
+
+        controller.Move(movement3D * Time.deltaTime);    
     }
 
     public void ReadInput(Vector2 input)
@@ -81,6 +100,43 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void ReadFlashlightInput(bool flashlightInput)
+    {
+        if(!previousFlashlightInput && flashlightInput)
+        {
+            usingFlashlight = !usingFlashlight;
+            flashlight.SetActive(usingFlashlight);
+        }
+
+        previousFlashlightInput = flashlightInput;
+    }
+
+    public void ReadThrowableObjectInput(bool throwableObjectInput)
+    {
+        if(throwableObjectInput && !previousThrowableObjectInput)
+        {
+            if(throwableObjects > 0)
+            {
+                Throw();
+                throwableObjects--;
+            }
+            previousThrowableObjectInput = true;
+        }
+        else if(!throwableObjectInput && previousThrowableObjectInput)
+        {
+            previousThrowableObjectInput = false;
+        }
+    }
+
+    public void Throw()
+    {
+        GameObject projectile = Instantiate(objectToThrow, throwPoint.transform.position, cam.transform.rotation);
+        Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
+        projectileRb.AddForce(cam.transform.forward * 10 + transform.up, ForceMode.Impulse);
+
+        //TO-DO: Add throw cooldown
+    }
+
     /*
 
     These methods are used to move the player smoothly to a point, one has an
@@ -96,7 +152,6 @@ public class PlayerController : MonoBehaviour
     public void MovePlayerToPoint(Vector3 playerGoalPosition, float duration)
     {
         StartCoroutine(MovePlayerToPositionEnumerator(playerGoalPosition, null, duration, false));
-
     }
 
     // Use coroutines in order to animate smoothly without having an update method
