@@ -104,7 +104,6 @@ public class PlayerController : MonoBehaviour
     {
         if(!previousFlashlightInput && flashlightInput)
         {
-            Debug.Log("Flashlight On: " + flashlightInput);
             usingFlashlight = !usingFlashlight;
             flashlight.SetActive(usingFlashlight);
         }
