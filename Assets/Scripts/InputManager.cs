@@ -18,6 +18,7 @@ public class InputManager : MonoBehaviour
     private Vector2 mouseInput;
     private bool crouch;
     private bool pickUp;
+    private bool flashlight;
     private bool throwObject;
     private bool paused;
     private bool reset;
@@ -37,6 +38,7 @@ public class InputManager : MonoBehaviour
     {
         playerController.ReadInput(keyboardInput);
         playerController.ReadCrouchInput(crouch);
+        playerController.ReadFlashlightInput(flashlight);
         playerController.ReadThrowableObjectInput(throwObject);
         rotator.ReadInput(mouseInput);
         gameStateManager.ReadPauseInput(paused, exit);
@@ -62,6 +64,7 @@ public class InputManager : MonoBehaviour
         inputActions.Player.MouseX.performed += ctx => mouseInput.x = ctx.ReadValue<float>();
         inputActions.Player.MouseY.performed += ctx => mouseInput.y = ctx.ReadValue<float>();
         inputActions.Player.Crouch.performed += ctx => crouch = ctx.ReadValueAsButton();
+        inputActions.Player.Flashlight.performed += ctx => flashlight = ctx.ReadValueAsButton();
         inputActions.Player.ThrowObject.performed += ctx => throwObject = ctx.ReadValueAsButton();
         inputActions.Player.PickUp.performed += ctx => pickUp = ctx.ReadValueAsButton();
         inputActions.Player.PickUp.started += ctx => PickUpController.Instance.TryPickupItems();
@@ -78,6 +81,7 @@ public class InputManager : MonoBehaviour
         inputActions.Player.MouseX.performed -= ctx => mouseInput.x = ctx.ReadValue<float>();
         inputActions.Player.MouseY.performed -= ctx => mouseInput.y = ctx.ReadValue<float>();
         inputActions.Player.Crouch.performed -= ctx => crouch = ctx.ReadValueAsButton();
+        inputActions.Player.Flashlight.performed += ctx => flashlight = ctx.ReadValueAsButton();
         inputActions.Player.ThrowObject.performed += ctx => throwObject = ctx.ReadValueAsButton();
         inputActions.Player.PickUp.performed -= ctx => pickUp = ctx.ReadValueAsButton();
         inputActions.Player.PickUp.started -= ctx => PickUpController.Instance.TryPickupItems();

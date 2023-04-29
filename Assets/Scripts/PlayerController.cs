@@ -24,6 +24,10 @@ public class PlayerController : MonoBehaviour
     public bool moving = false;
     public bool cameraHeightChanged = false;
 
+    public bool usingFlashlight = false;
+    public bool previousFlashlightInput = false;
+    [SerializeField] private GameObject flashlight;
+
     public int throwableObjects = 0;
     public bool previousThrowableObjectInput = false;
     [SerializeField] GameObject objectToThrow;
@@ -94,6 +98,18 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void ReadFlashlightInput(bool flashlightInput)
+    {
+        if(!previousFlashlightInput && flashlightInput)
+        {
+            Debug.Log("Flashlight On: " + flashlightInput);
+            usingFlashlight = !usingFlashlight;
+            flashlight.SetActive(usingFlashlight);
+        }
+
+        previousFlashlightInput = flashlightInput;
     }
 
     public void ReadThrowableObjectInput(bool throwableObjectInput)
