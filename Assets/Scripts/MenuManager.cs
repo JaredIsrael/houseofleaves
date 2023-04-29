@@ -8,6 +8,8 @@ public class MenuManager : MonoBehaviour
     private Canvas menuCanvas;
     [SerializeField]
     private Canvas optionsCanvas;
+    [SerializeField]
+    private Canvas debugCanvas;
 
     public void SwitchToOptionsCanvas()
     {
@@ -19,5 +21,11 @@ public class MenuManager : MonoBehaviour
     {
         menuCanvas.gameObject.SetActive(true);
         optionsCanvas.gameObject.SetActive(false);
+    }
+
+    public void SwitchToDebugCanvas()
+    {
+        menuCanvas.gameObject.SetActive(false);
+        debugCanvas.gameObject.SetActive(true);
     }
 }

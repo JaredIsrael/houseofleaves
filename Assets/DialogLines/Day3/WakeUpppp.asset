@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72ecc1baa12584f64b7b50911e90bbff, type: 3}
+  m_Name: WakeUpppp
+  m_EditorClassIdentifier: 
+  lines:
+  - Ughhhh... my heads not any better...
+  - Did I sleep through the night?
+  - I'm not... sure??
+  - ...
+  - Keys? Did they mean there's one to Mom's room?
+  - I can't think of any other locks worth a damn.
+  - ...but who would have hidden a key around? Mom?
+  - Maybe she left a spare lying around somewhere.
+  - ...
+  - It's hard to even think about going in there.
+  - With the door closed it's easy enough to pretend she's still here.
+  - And what if there's no sign of her in there?
+  - No way to bring her home...
+  - .  .  .

@@ -91,7 +91,6 @@ public class CookingPuzzle : CompletableTask
         {
             if (ingredients[currentIngredient-1] != null && ingredients[currentIngredient - 1].GetComponentInChildren<CookingIngredient>().target != null)
             {
-                Debug.Log("FIALEd");
                 ingredients[currentIngredient-1].gameObject.SetActive(false);
                 failed = true;
             }
@@ -111,7 +110,7 @@ public class CookingPuzzle : CompletableTask
         CookingIngredient ingredient = ingredients[currentIngredient];
         ingredient.ShowTarget(true);
         ingredient.transform.position = leftIngredientPos.position;
-        ingredient.transform.rotation = Quaternion.Euler(0, 180, 0);
+        ingredient.transform.rotation = Quaternion.Euler(0, 90, 0);
         ingredient.MoveToPosition(rightIngredientPos);
     }
 
