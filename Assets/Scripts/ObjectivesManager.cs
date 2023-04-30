@@ -47,7 +47,7 @@ public class ObjectivesManager : MonoBehaviour
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         AllTasksCompletedEvent = new UnityEvent();
-        TaskAddedEvent = new UnityEvent<CompletableTask>();
+        // TaskAddedEvent = new UnityEvent<CompletableTask>();
         currentTasks = new List<CompletableTask>();
     }
 

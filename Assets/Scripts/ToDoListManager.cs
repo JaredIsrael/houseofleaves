@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 /*
 
@@ -66,8 +68,29 @@ public class ToDoListManager : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        isListRaised = false;
+        foreach (TMP_Text text in ObjectiveTexts)
+        {
+            text.text = "";
+            text.fontStyle = FontStyles.Normal;
+            text.gameObject.SetActive(false);
+        }
+        Debug.Log("Clearning tasks");
+        currentTasks = new List<string>();
+        // ObjectivesManager.TaskAddedEvent.AddListener(AddTask);
+    }
+
+
     private void AddTask(CompletableTask newTask)
     {
+        Debug.Log("Adding task");
         currentTasks.Add("- "+newTask.description);
         RenderObjectives();
         // Listen for the completion event on the task the OM just told us to track
@@ -77,6 +100,7 @@ public class ToDoListManager : MonoBehaviour
 
     private void CompleteTask(CompletableTask completedTask)
     {
+        Debug.Log("Crossing out task");
         for (int i = 0; i < currentTasks.Count; i++)
         {
             if (ObjectiveTexts[i].text == "- "+completedTask.description)
