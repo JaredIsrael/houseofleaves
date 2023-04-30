@@ -53,6 +53,7 @@ public class DialogManager : MonoBehaviour
     public delegate void DialogChoiceFunc();
 
     private Queue<ScriptableObject> linesQueue;
+    private bool speaking = false;
 
     private void Awake()
     {
@@ -74,18 +75,27 @@ public class DialogManager : MonoBehaviour
 
     public void DisplayMonologLines(MonologLines monologLines)
     {
-        if (panelFade != null)
+        if (speaking == true)
         {
-            StopCoroutine(panelFade);
+            linesQueue.Enqueue(monologLines);
         }
         else
         {
+            speaking = true;
+            if (panelFade != null)
+            {
+                StopCoroutine(panelFade);
+                panelFade = null;
+            }
+            else
+            {
+                StartCoroutine(ChangePanelVisibility(true));
+            }
+            if (monologLines.lines.Length <= 0) return;
+            dialogPanel.gameObject.SetActive(true);
             StartCoroutine(ChangePanelVisibility(true));
+            StartCoroutine(SlowDisplayMonolog(monologLines.lines));
         }
-        if (monologLines.lines.Length <= 0) return;
-        dialogPanel.gameObject.SetActive(true);
-        StartCoroutine(ChangePanelVisibility(true));
-        StartCoroutine(SlowDisplayMonolog(monologLines.lines));
     }
 
     // Hardcode keyboard space bar is easy to get working, but should be remapped later
@@ -123,12 +133,27 @@ public class DialogManager : MonoBehaviour
         }
         doneDisplayingText = true;
         toggleSound.Play();
-        StartCoroutine(ChangePanelVisibility(false));
+        panelFade = ChangePanelVisibility(false);
+        StartCoroutine(panelFade);
+        DoneSpeaking();
+    }
 
+    private void DoneSpeaking()
+    {
+        speaking = false;
+        if (linesQueue.Count > 0)
+        {
+            ScriptableObject lines = linesQueue.Dequeue();
+            if(lines.GetType() == typeof(MonologLines))
+            {
+                DisplayMonologLines((MonologLines)lines);
+            }
+        }
     }
 
     public void DisplayBinaryQuestionLines(BinaryQuestionLines bqLines, DialogChoiceFunc left, DialogChoiceFunc right)
     {
+        speaking = true;
         if (panelFade != null)
         {
             StopCoroutine(panelFade);
