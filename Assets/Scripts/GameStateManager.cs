@@ -15,8 +15,11 @@ Author:
 
 public class GameStateManager : MonoBehaviour
 {
+    [SerializeField] PlayerController player;
     [SerializeField] GameObject pauseScreen;
-    private int pauseHits;
+
+    public bool usingPause = false;
+    public bool previousPauseInput = false;
 
     void Start()
     {
@@ -25,29 +28,29 @@ public class GameStateManager : MonoBehaviour
 
     public void ReadPauseInput(bool paused, bool exit)
     {
-        if (paused)
+        if (!previousPauseInput && paused)
         {
-            pauseHits++;
+            usingPause = !usingPause;
+            pauseScreen.SetActive(usingPause);
         }
-        if (exit)
-        { //user clicks Q to quit game
-            ReadExitInput();
-        }
-        if (pauseHits % 2 == 1)
+
+        if (usingPause)
         {
-            Time.timeScale = 0;
-            pauseScreen.SetActive(true);
-        } else
-        {
-            if (Time.timeScale != 1)
-            {
-                Time.timeScale = 1;
-            }
-            if (pauseScreen.activeInHierarchy == true)
-            {
-                pauseScreen.SetActive(false);
+            player.StopMovement();
+            player.LockCamera();
+
+            if (exit)
+            { //user clicks Q to quit game
+                ReadExitInput();
             }
         }
+        else
+        {
+            player.ToggleMovement();
+            player.UnLockCamera();
+        }
+
+        previousPauseInput = paused;
     }
 
     public void ReadResetInput(bool reset)

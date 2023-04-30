@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.48089564, g: 0.4705677, b: 0.43683332, a: 1}
+  m_IndirectSpecularColor: {r: 0.4808945, g: 0.47056732, b: 0.43683243, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -30801,7 +30801,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d69837bece2564683af3063758224182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 958210954}
   pauseScreen: {fileID: 1478093808}
+  usingPause: 0
+  previousPauseInput: 0
 --- !u!4 &498700576
 Transform:
   m_ObjectHideFlags: 0
@@ -55952,7 +55955,15 @@ MonoBehaviour:
   cr: {fileID: 958210955}
   speed: 5
   crouching: 0
+  moving: 0
   cameraHeightChanged: 0
+  usingFlashlight: 0
+  previousFlashlightInput: 0
+  flashlight: {fileID: 0}
+  throwableObjects: 0
+  previousThrowableObjectInput: 0
+  objectToThrow: {fileID: 0}
+  throwPoint: {fileID: 0}
 --- !u!114 &958210955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105552,7 +105563,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d69837bece2564683af3063758224182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   pauseScreen: {fileID: 714222227}
+  usingPause: 0
+  previousPauseInput: 0
 --- !u!4 &1837817791
 Transform:
   m_ObjectHideFlags: 0
