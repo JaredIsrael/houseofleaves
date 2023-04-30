@@ -54529,7 +54529,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 3000, y: 2000}
+  m_SizeDelta: {x: 8000, y: 8000}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &946473759
 MonoBehaviour:
@@ -55254,7 +55254,15 @@ MonoBehaviour:
   cr: {fileID: 958210955}
   speed: 5
   crouching: 0
+  moving: 0
   cameraHeightChanged: 0
+  usingFlashlight: 0
+  previousFlashlightInput: 0
+  flashlight: {fileID: 0}
+  throwableObjects: 0
+  previousThrowableObjectInput: 0
+  objectToThrow: {fileID: 0}
+  throwPoint: {fileID: 0}
 --- !u!114 &958210955
 MonoBehaviour:
   m_ObjectHideFlags: 0
