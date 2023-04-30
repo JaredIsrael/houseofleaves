@@ -22,6 +22,7 @@ public class LaundryItem : MonoBehaviour
 
     private void Start()
     {
+        this.transform.rotation = Quaternion.Euler(0, 130f, 0);
         int rand = Random.Range(0, 5);
         switch (rand)
         {
@@ -74,6 +75,7 @@ public class LaundryItem : MonoBehaviour
             transform.position = Vector3.Slerp(startPos,goalPosition, percentComplete);
             yield return null;
         }
+        this.gameObject.SetActive(false);
     }
 
     IEnumerator ShakeAnimateEnumerator()

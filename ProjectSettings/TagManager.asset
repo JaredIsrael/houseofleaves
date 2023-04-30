@@ -12,6 +12,9 @@ TagManager:
   - Interact
   - InteractItem
   - LightSwitch
+  - Watermelon
+  - Trap
+  - Key
   layers:
   - Default
   - TransparentFX
@@ -19,7 +22,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Ground
   - 
   - 
   - 
@@ -46,6 +49,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 4266311215
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Terrain
+    uniqueID: 2857556777
     locked: 0

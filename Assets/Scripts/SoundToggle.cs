@@ -24,10 +24,12 @@ public class SoundToggle : MonoBehaviour
         if (isSoundOn)
         {
             soundText.text = "Off";
+            AudioListener.volume = 1 - AudioListener.volume;
         }
         else
         {
             soundText.text= "On";
+            AudioListener.volume = 1 + AudioListener.volume;
         }
     }
 }

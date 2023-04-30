@@ -49,6 +49,7 @@ public class LaundryPuzzle : CompletableTask
 
     void BeginPuzzle()
     {
+        Cursor.visible = true;
         pt.startTimer(PUZZLE_TIME_LIMIT);
         switch (difficultyLevel)
         {
@@ -211,6 +212,7 @@ public class LaundryPuzzle : CompletableTask
 
     void TimeRunOut()
     {
+        Cursor.visible = false;
         completed = true;
         interactable.MoveBackToInitialPosition();
         pt.DisableTimer();
@@ -219,6 +221,7 @@ public class LaundryPuzzle : CompletableTask
 
     void OnGameWin()
     {
+        Cursor.visible = false;
         completed = true;
         interactable.MoveBackToInitialPosition();
         pt.DisableTimer();

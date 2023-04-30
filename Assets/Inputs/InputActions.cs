@@ -108,6 +108,24 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""initialStateCheck"": false
                 }
+                {
+                    ""name"": ""ThrowObject"",
+                    ""type"": ""Button"",
+                    ""id"": ""6ead111e-1914-48cc-a238-ab6afed53dcc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=2)"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Flashlight"",
+                    ""type"": ""Button"",
+                    ""id"": ""2f9e22ae-313b-4205-8651-799630e73bed"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=2)"",
+                    ""initialStateCheck"": false
+                }
             ],
             ""bindings"": [
                 {
@@ -231,6 +249,17 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
+                 {
+                    ""name"": """",
+                    ""id"": ""80138f6c-a17f-4cab-a1fe-fdedaa1211d9"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ThrowObject"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
                 {
                     ""name"": """",
                     ""id"": ""f34e52f0-2925-4ad7-9047-9e494e2eeab7"",
@@ -252,6 +281,17 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""action"": ""Use"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1b151113-cce2-4278-8d5b-2e262ddf2cf0"",
+                    ""path"": ""<Keyboard>/v"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Flashlight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -269,6 +309,8 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         m_Player_Grab = m_Player.FindAction("Grab", throwIfNotFound: true);
         m_Player_Throw = m_Player.FindAction("Throw", throwIfNotFound: true);
         m_Player_Use = m_Player.FindAction("Use", throwIfNotFound: true);
+        m_Player_ThrowObject = m_Player.FindAction("ThrowObject", throwIfNotFound: true);
+        m_Player_Flashlight = m_Player.FindAction("Flashlight", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -337,6 +379,8 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Grab;
     private readonly InputAction m_Player_Throw;
     private readonly InputAction m_Player_Use;
+    private readonly InputAction m_Player_ThrowObject;
+    private readonly InputAction m_Player_Flashlight;
     public struct PlayerActions
     {
         private @InputActions m_Wrapper;
@@ -350,6 +394,8 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         public InputAction @Grab => m_Wrapper.m_Player_Grab;
         public InputAction @Throw => m_Wrapper.m_Player_Throw;
         public InputAction @Use => m_Wrapper.m_Player_Use;
+        public InputAction @ThrowObject => m_Wrapper.m_Player_ThrowObject;
+        public InputAction @Flashlight => m_Wrapper.m_Player_Flashlight;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -386,6 +432,12 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 @Use.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUse;
                 @Use.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUse;
                 @Use.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUse;
+                @ThrowObject.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnThrowObject;
+                @ThrowObject.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnThrowObject;
+                @ThrowObject.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnThrowObject;
+                @Flashlight.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFlashlight;
+                @Flashlight.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFlashlight;
+                @Flashlight.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFlashlight;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -417,6 +469,12 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 @Use.started += instance.OnUse;
                 @Use.performed += instance.OnUse;
                 @Use.canceled += instance.OnUse;
+                @ThrowObject.started += instance.OnThrowObject;
+                @ThrowObject.performed += instance.OnThrowObject;
+                @ThrowObject.canceled += instance.OnThrowObject;
+                @Flashlight.started += instance.OnFlashlight;
+                @Flashlight.performed += instance.OnFlashlight;
+                @Flashlight.canceled += instance.OnFlashlight;
             }
         }
     }
@@ -432,5 +490,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         void OnGrab(InputAction.CallbackContext context);
         void OnThrow(InputAction.CallbackContext context);
         void OnUse(InputAction.CallbackContext context);
+        void OnThrowObject(InputAction.CallbackContext context);
+        void OnFlashlight(InputAction.CallbackContext context);
     }
 }
