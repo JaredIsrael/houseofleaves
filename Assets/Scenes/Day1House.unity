@@ -44899,6 +44899,7 @@ MonoBehaviour:
   im: {fileID: 958210958}
   workCanvas: {fileID: 633499383}
   loseText: {fileID: 1552548574}
+  day: 1
 --- !u!4 &825095907
 Transform:
   m_ObjectHideFlags: 0
@@ -77931,6 +77932,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   workManager: {fileID: 1346063087}
+  speed: 6
 --- !u!114 &1346063085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77945,6 +77947,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 5102631874732955101, guid: 5a871afab70c34aea97a8e982f35826c, type: 3}
   im: {fileID: 958210958}
+  speed: 6
   canvas: {fileID: 633499384}
   workCanvas: {fileID: 633499383}
   loseText: {fileID: 1552548574}
