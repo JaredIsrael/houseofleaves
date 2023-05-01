@@ -84,13 +84,13 @@ MonoBehaviour:
   active: 1
   widthPixelation:
     m_OverrideState: 1
-    m_Value: 400
+    m_Value: 512
   heightPixelation:
     m_OverrideState: 1
-    m_Value: 300
+    m_Value: 256
   colorPrecision:
     m_OverrideState: 1
-    m_Value: 256
+    m_Value: 16
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
