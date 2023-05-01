@@ -9,6 +9,7 @@ public class LightSwitchController: MonoBehaviour {
 	public bool isOn = true;
 	public void lightChange()
 	{
+		Debug.Log(lightObj.name);
 		if (isOn)
 		{
             isOn = false;
