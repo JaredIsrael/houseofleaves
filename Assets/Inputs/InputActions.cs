@@ -107,7 +107,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                }
+                },
                 {
                     ""name"": ""ThrowObject"",
                     ""type"": ""Button"",
@@ -249,7 +249,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
-                 {
+                {
                     ""name"": """",
                     ""id"": ""80138f6c-a17f-4cab-a1fe-fdedaa1211d9"",
                     ""path"": ""<Keyboard>/e"",
