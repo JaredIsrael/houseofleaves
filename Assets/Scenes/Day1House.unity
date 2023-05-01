@@ -9946,6 +9946,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2300002, guid: 094627802cc8b7849aed1eb1a64bbe75, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d56e8bb3b0cab44d5a454dbd0d555b86, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 094627802cc8b7849aed1eb1a64bbe75, type: 3}
 --- !u!1001 &97841754
@@ -80413,7 +80417,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 845eb7466a06e42a49b2cdd5de005369, type: 2}
+  - {fileID: 2100000, guid: ddeea5270904c4fe5ab21de279048c01, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -103025,7 +103029,7 @@ MonoBehaviour:
   priority: 0
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: a6560a915ef98420e9faacc1c7438823, type: 2}
+  sharedProfile: {fileID: 11400000, guid: 7bbe35cdf5d69e14abbb03eccedaa5bd, type: 2}
 --- !u!4 &1817079329
 Transform:
   m_ObjectHideFlags: 0
@@ -103057,7 +103061,11 @@ MonoBehaviour:
   priority: 0
   blendDistance: 0
   weight: 1
+<<<<<<< Updated upstream
   sharedProfile: {fileID: 11400000, guid: 7bbe35cdf5d69e14abbb03eccedaa5bd, type: 2}
+=======
+  sharedProfile: {fileID: 11400000, guid: a6560a915ef98420e9faacc1c7438823, type: 2}
+>>>>>>> Stashed changes
 --- !u!4 &1818272990 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3529263316264705873, guid: e282280263592284b8c7c955e3517805,
