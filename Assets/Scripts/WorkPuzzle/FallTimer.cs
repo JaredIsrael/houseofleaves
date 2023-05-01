@@ -9,10 +9,11 @@ using UnityEngine;
 
 public class FallTimer : MonoBehaviour
 {
-    public WorkManager workManager;
+    [SerializeField] public WorkManager workManager;
+    [SerializeField] public float speed;
 
     //time between the spawning of each word
-    public static float delay = 3f;
+    public static float delay;
     public static float nextTime = 0f;
 
     //boolean tracks whether or not the user has lost the game 
@@ -22,29 +23,11 @@ public class FallTimer : MonoBehaviour
 
     private void Start()
     {
+        delay = speed;
         stop = false;
         passage = PassageGenerator.GetPassage();
     }
 
-    private void Update()
-    {/*
-        if (Time.time >= nextTime && !stop)
-        {
-            workManager.NewWord(passage);
-            nextTime = Time.time + delay;
-            delay *= .99f;
-        }
-        */
-
-        //TO-DO: one passage per session. Instead, level up, then game is complete.
-        //Store the current level so the player can start next level on the next day. 
-        if (PassageGenerator.levelUp)
-        { //player has completed level, choose another passage to type
-            passage = PassageGenerator.GetPassage();
-            PassageGenerator.levelUp = false;
-        }
-    }
-    
     //turned first part of update into coroutine
     public IEnumerator GenerateWord()
     {

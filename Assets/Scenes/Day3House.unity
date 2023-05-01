@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.48066103, g: 0.4705018, b: 0.43668658, a: 1}
+  m_IndirectSpecularColor: {r: 0.48084643, g: 0.4705695, b: 0.43682444, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -44673,6 +44673,7 @@ MonoBehaviour:
   im: {fileID: 958210958}
   workCanvas: {fileID: 633499383}
   loseText: {fileID: 1552548574}
+  day: 3
 --- !u!4 &825095907
 Transform:
   m_ObjectHideFlags: 0
@@ -77354,6 +77355,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   workManager: {fileID: 1346063087}
+  speed: 5
 --- !u!114 &1346063085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77368,6 +77370,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 5102631874732955101, guid: 5a871afab70c34aea97a8e982f35826c, type: 3}
   im: {fileID: 958210958}
+  speed: 5
   canvas: {fileID: 633499384}
   workCanvas: {fileID: 633499383}
   loseText: {fileID: 1552548574}

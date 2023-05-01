@@ -18,12 +18,9 @@ using UnityEngine;
 public class PassageGenerator : MonoBehaviour
 {
     public static int currentIndex = 0;
-    public static int level = 1;
-    public static bool levelUp = false;
     private static string nextWord;
     private FallTimer fallTimer;
 
-    
     private static string[] passage1 = { "Today", "is", "our", "first", "day",
         "back", "to", "work.", "I've", "noticed" , "there", "are", "some", "strange",
         "things","happening", "in", "this", "house.", "It", "could", "all", "just",
@@ -47,6 +44,12 @@ public class PassageGenerator : MonoBehaviour
 
     private static string[][] passageList = { passage1, passage2, passage3, passage4 };
 
+    private void Start()
+    {
+        currentIndex = 0;
+    }
+
+
     /*
      * This method chooses a random passage from the above list. This is the 
      * passage that the user will have to type during the game.
@@ -54,8 +57,8 @@ public class PassageGenerator : MonoBehaviour
     public static string[] GetPassage()
     {
         //chooses passage from the list that corresponds to the level
-        string[] passage = passageList[level-1];
-
+        string[] passage = passageList[WorkPuzzle.level - 1];
+       
         return passage;
     }
 
