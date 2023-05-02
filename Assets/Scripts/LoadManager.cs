@@ -33,7 +33,7 @@ public class LoadManager : MonoBehaviour
 
    public void LoadSceneBackground(string sceneName)
     {
-        loadingCanvas.enabled = true;
+        //loadingCanvas.enabled = true;
 
         //StartCoroutine(DisplayImages());
         StartCoroutine(Waiting(sceneName));
