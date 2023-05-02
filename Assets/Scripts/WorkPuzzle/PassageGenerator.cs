@@ -18,12 +18,9 @@ using UnityEngine;
 public class PassageGenerator : MonoBehaviour
 {
     public static int currentIndex = 0;
-    public static int level = 1;
-    public static bool levelUp = false;
     private static string nextWord;
     private FallTimer fallTimer;
 
-    
     private static string[] passage1 = { "Today", "is", "our", "first", "day",
         "back", "to", "work.", "I've", "noticed" , "there", "are", "some", "strange",
         "things","happening", "in", "this", "house.", "It", "could", "all", "just",
@@ -31,21 +28,28 @@ public class PassageGenerator : MonoBehaviour
         "that", "day..." };
 
     private static string[] passage2 = { "Alright", "day", "two...", "It", "feels",
-        "like", "this", "house", "just", "keeps", "getting", "smaller.", "Maybe", "I",
+        "like", "this", "house", "got", "smaller", "over", "night.", "Maybe", "I",
         "am", "going", "crazy.", "To", "be", "fair,", "I", "didn't", "get", "much",
         "sleep", "last", "night.", "Hopefully", "tonight", "is", "better." };
 
-    private static string[] passage3 = { "Keys", "keys", "keys!", "What", "is", "the",
-        "big", "deal?", "Ugh", "can", "not", "even", "focus", "on", "work", "anymore.",
-        "That", "door...", "do", "I", "really", "want", "to", "find", "the", "key...",
-        "do", "I", "even", "want", "to", "go", "in?" };
+    private static string[] passage3 = { "What", "is", "the", "big", "deal", "about",
+        "this", "key?", "Ugh", "can", "not", "even", "focus", "on", "work", "anymore.",
+        "Do", "I", "even", "want", "to", "find", "the", "key...", "do", "I", "even", "want",
+        "to", "go", "in?", "I", "do", "miss", "her...", "want", "to", "remember..."};
 
     private static string[] passage4 = { "Maybe", "I", "should", "have", "taken", "more",
-        "time", "off.", "That", "dream", "was", "the", "worst", "one", "yet.", "But", "again",
-        "with", "these", "keys!", "I", "can't", "go", "in", "that", "room...", "I", "shouldn't...",
-        "I", "think", "calling", "in", "sick", "tomorrow", "would", "be", "best." };
+        "time", "off.", "I", "think", "calling", "in", "sick", "tomorrow", "would", "be", "for",
+        "the", "best.", "That", "dream", "was", "the", "worst", "one", "yet.", "But", "now",
+        "I", "have", "the", "key!", "No...", "I", "can't", "go", "in", "her", "room...", "I",
+        "shouldn't..." };
 
     private static string[][] passageList = { passage1, passage2, passage3, passage4 };
+
+    private void Start()
+    {
+        currentIndex = 0;
+    }
+
 
     /*
      * This method chooses a random passage from the above list. This is the 
@@ -54,8 +58,8 @@ public class PassageGenerator : MonoBehaviour
     public static string[] GetPassage()
     {
         //chooses passage from the list that corresponds to the level
-        string[] passage = passageList[level-1];
-
+        string[] passage = passageList[WorkPuzzle.level - 1];
+       
         return passage;
     }
 
