@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6533852647139717266}
   - component: {fileID: 1085393000328332753}
   - component: {fileID: 4120805752673169196}
-  - component: {fileID: 3800008004256663849}
+  - component: {fileID: -5374560135248092544}
   m_Layer: 0
   m_Name: ThrowingBottle
   m_TagString: Untagged
@@ -150,7 +150,7 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300002, guid: 695cb951c9e5b2e4ebc1baccb673fbb2, type: 3}
---- !u!82 &3800008004256663849
+--- !u!82 &-5374560135248092544
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -161,8 +161,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 2bcbd74be58b0e942904853b4bc11b95, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_PlayOnAwake: 0
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0

@@ -10,6 +10,7 @@ public class ObjectHitsGround : MonoBehaviour
     void Start()
     {
         source = this.GetComponent<AudioSource>();
+        source.Play();
     }
 
     void OnCollisionEnter(Collision collisionInfo)
