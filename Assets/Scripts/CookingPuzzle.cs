@@ -108,6 +108,7 @@ public class CookingPuzzle : CompletableTask
     private void AnimateCurrentIngredient()
     {
         CookingIngredient ingredient = ingredients[currentIngredient];
+        ingredient.gameObject.SetActive(true);
         ingredient.ShowTarget(true);
         ingredient.transform.position = leftIngredientPos.position;
         ingredient.transform.rotation = Quaternion.Euler(0, 90, 0);

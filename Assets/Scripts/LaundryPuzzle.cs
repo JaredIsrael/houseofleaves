@@ -62,6 +62,9 @@ public class LaundryPuzzle : CompletableTask
             case 3:
                 totalItems = 15;
                 break;
+            case 4:
+                totalItems = 20;
+                break;
             default:
                 totalItems = 5;
                 break;
@@ -213,9 +216,11 @@ public class LaundryPuzzle : CompletableTask
     void TimeRunOut()
     {
         Cursor.visible = false;
-        completed = true;
+        completed = false;
+        currentItem.SetActive(false);
         interactable.MoveBackToInitialPosition();
         pt.DisableTimer();
+        interactable.ResetInteract();
         Debug.Log("Ran out of time");
     }
 

@@ -32,6 +32,8 @@ public class TriggerCube : MonoBehaviour
 
     private UnityEvent eagleTalk = new UnityEvent();
     private UnityEvent eagleFly = new UnityEvent();
+    [SerializeField]
+    private ScreenFader sf;
 
     private void Start()
     {
@@ -172,7 +174,7 @@ public class TriggerCube : MonoBehaviour
             {
                 //TO-DO: night 2 complete; switch to next scene here!!!!!
                 //--replace below 4 lines of code--
-                QuickLoader.Instance.QuickLoadSceneAsync("Day3House");
+                sf.FadeOut();
             }
             else
             {
