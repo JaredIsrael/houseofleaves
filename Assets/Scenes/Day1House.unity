@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.48084643, g: 0.4705695, b: 0.43682444, a: 1}
+  m_IndirectSpecularColor: {r: 0.4808945, g: 0.47056732, b: 0.43683243, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -30256,7 +30256,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d69837bece2564683af3063758224182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 958210954}
   pauseScreen: {fileID: 1478093808}
+  usingPause: 0
+  previousPauseInput: 0
 --- !u!4 &498700576
 Transform:
   m_ObjectHideFlags: 0
@@ -42092,7 +42095,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 775921559}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4, y: 37, z: 12}
+  m_LocalPosition: {x: 123.6, y: 10.98, z: 125.15532}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -44357,7 +44360,6 @@ MonoBehaviour:
   im: {fileID: 958210958}
   workCanvas: {fileID: 633499383}
   loseText: {fileID: 1552548574}
-  day: 1
 --- !u!4 &825095907
 Transform:
   m_ObjectHideFlags: 0
@@ -54530,7 +54532,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 8000, y: 8000}
+  m_SizeDelta: {x: 3000, y: 2000}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &946473759
 MonoBehaviour:
@@ -76393,7 +76395,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   workManager: {fileID: 1346063087}
-  speed: 6
 --- !u!114 &1346063085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76408,7 +76409,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 5102631874732955101, guid: 5a871afab70c34aea97a8e982f35826c, type: 3}
   im: {fileID: 958210958}
-  speed: 6
   canvas: {fileID: 633499384}
   workCanvas: {fileID: 633499383}
   loseText: {fileID: 1552548574}
@@ -103696,7 +103696,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d69837bece2564683af3063758224182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 958210954}
   pauseScreen: {fileID: 714222227}
+  usingPause: 0
+  previousPauseInput: 0
 --- !u!4 &1837817791
 Transform:
   m_ObjectHideFlags: 0

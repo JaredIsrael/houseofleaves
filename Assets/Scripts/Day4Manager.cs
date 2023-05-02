@@ -21,7 +21,7 @@ public class Day4Manager : MonoBehaviour
     private Image blackScreen;
     private float FADE_TIME = 3.5f;
     [SerializeField]
-    private SleepInteractable4 si;
+    private SleepInteractable si;
     [SerializeField]
     private MonologLines sleepLines;
 
@@ -61,7 +61,7 @@ public class Day4Manager : MonoBehaviour
             blackScreen.color = screenColor;
             yield return null;
         }
-        QuickLoader.Instance.QuickLoadSceneAsync("Maze");
+        LoadManager.Instance.LoadSceneBackground("NightOneScene");
 
     }
 

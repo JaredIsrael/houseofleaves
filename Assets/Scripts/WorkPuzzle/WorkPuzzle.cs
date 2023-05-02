@@ -17,15 +17,11 @@ public sealed class WorkPuzzle : CompletableTask
     [SerializeField]
     private GameObject loseText;
 
-    [SerializeField]
-    public int day;
-
     public Coroutine wordFall;
     public Coroutine input;
     public Coroutine progress;
 
     public static bool gameOver;
-    public static int level;
 
     void Start()
     {
@@ -34,7 +30,6 @@ public sealed class WorkPuzzle : CompletableTask
         TaskCompletedEvent = new UnityEvent<CompletableTask>();
         ObjectivesManager.Instance.AddObjective(this);
         interactable.InteractedWith.AddListener(BeginPuzzle);
-        level = day;
     }
 
     void BeginPuzzle()

@@ -8,37 +8,23 @@ public class SpawnText : MonoBehaviour
     public GameObject text;
     [SerializeField]
     private InputManager im;
-    [SerializeField] private float speed;
     public Transform canvas;
     public GameObject workCanvas;
     public GameObject loseText;
     [SerializeField] 
     private MonologLines failureLines;
-    private bool invert = false;
-
     public WordDisplay Spawn()
     {
         GameObject textObject;
         Vector3 position = new Vector3(Random.Range(90f, Screen.width-80f), Screen.height);
 
-        if (WorkPuzzle.level < 3)
-        { //days 1 and 2; normal text (just change speed)
+        //TO-DO: create other level ideas.
+        if (PassageGenerator.level % 2 == 0)
+        { //inverted text
+            textObject = Instantiate(text, position, Quaternion.Euler(0,180,0), canvas);
+        } else
+        { //normal text
             textObject = Instantiate(text, position, Quaternion.identity, canvas);
-        } else if (WorkPuzzle.level == 3)
-        { //day 3; inverted text
-            textObject = Instantiate(text, position, Quaternion.Euler(0, 180, 0), canvas);
-        }
-        else
-        { //day 4; alternates between normal and inverted text
-            if (invert)
-            {
-                textObject = Instantiate(text, position, Quaternion.Euler(0, 180, 0), canvas);
-                invert = !invert;
-            } else
-            {
-                textObject = Instantiate(text, position, Quaternion.identity, canvas);
-                invert = !invert;
-            }
         }
         WordDisplay display = textObject.GetComponent<WordDisplay>();
 
@@ -57,9 +43,9 @@ public class SpawnText : MonoBehaviour
                 loseText.SetActive(false);
 
                 //reset variables
-                FallTimer.delay = 2f;
-                FallTimer.nextTime = 0f;
+                FallTimer.delay = 1.5f;
                 PassageGenerator.currentIndex = 0;
+                PassageGenerator.levelUp = false;
                 FallTimer.stop = false;
                 WorkPuzzle.gameOver = false;
             }
@@ -74,9 +60,9 @@ public class SpawnText : MonoBehaviour
                 InputManager.UIActions.Enable();
 
                 //reset variables
-                FallTimer.delay = speed;
-                FallTimer.nextTime = 0f;
+                FallTimer.delay = 3f;
                 PassageGenerator.currentIndex = 0;
+                PassageGenerator.levelUp = false;
 
                 WorkManager.words.Clear();
 
