@@ -48,4 +48,9 @@ public class LaundryPuzzleInteractable : PickUpSphere
         pc.ToggleMovement();
         pc.UnLockCamera();
     }
+
+    public void ResetInteract()
+    {
+        hasBeenInteractedWith = false;
+    }
 }

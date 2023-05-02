@@ -63,9 +63,6 @@ public class GameStateManager : MonoBehaviour
     //exit game state
     public void ReadExitInput()
     {
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#endif
-        Application.Quit();
+        SceneManager.LoadSceneAsync("MenuScene");
     }
 }

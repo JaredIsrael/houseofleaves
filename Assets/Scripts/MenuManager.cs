@@ -11,6 +11,11 @@ public class MenuManager : MonoBehaviour
     [SerializeField]
     private Canvas debugCanvas;
 
+    private void Start()
+    {
+        Cursor.visible = true;
+    }
+
     public void SwitchToOptionsCanvas()
     {
         menuCanvas.gameObject.SetActive(false);
@@ -21,6 +26,7 @@ public class MenuManager : MonoBehaviour
     {
         menuCanvas.gameObject.SetActive(true);
         optionsCanvas.gameObject.SetActive(false);
+        debugCanvas.gameObject.SetActive(false);
     }
 
     public void SwitchToDebugCanvas()

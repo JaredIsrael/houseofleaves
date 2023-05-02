@@ -5,8 +5,15 @@ using UnityEngine;
 public class ObjectHitsGround : MonoBehaviour
 {
     private ThrowCollisionManager collisionManager;
+    private GameObject glassShatter;
 
-    void OnCollisionEnter(Collision collisionInfo) 
+    void Start()
+    {
+        glassShatter = GameObject.Find("GlassShatter");
+        glassShatter.GetComponent<AudioSource>().Play();
+    }
+
+    void OnCollisionEnter(Collision collisionInfo)
     {
         collisionManager = GameObject.Find("ThrownObjectCollisionManager").GetComponent<ThrowCollisionManager>();
         collisionManager.broadcast(collisionInfo.contacts[0].point);

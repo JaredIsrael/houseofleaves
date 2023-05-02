@@ -2,17 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class EnemyNavigation : MonoBehaviour
 {
     NavMeshAgent enemy;
 
-    [SerializeField] float speed = 0.5f;
-    [SerializeField] float walkRadius = 5f;
+    [SerializeField] float speed = 20f;
+    [SerializeField] float walkRadius = 8f;
 
     Renderer ren;
     public bool investigating = false;
     public bool locationChosen = false;
+
+    public bool restartLevel = false;
+    [SerializeField] private float FADE_TIME = .5f;
+    [SerializeField] private Image blackScreen;
 
     void Start()
     {
@@ -76,5 +81,30 @@ public class EnemyNavigation : MonoBehaviour
 
         enemy.speed = speed;
         investigating = false;
+    }
+
+    void OnTriggerEnter(Collider collision)
+    {
+        if (collision.gameObject.name.Equals("Player") && !restartLevel)
+        {
+            restartLevel = true;
+            StartCoroutine(FadeOutToBlackAndSwitchScene());
+        }
+    }
+
+    private IEnumerator FadeOutToBlackAndSwitchScene()
+    {
+
+        blackScreen.gameObject.SetActive(true);
+        float startTime = Time.time;
+        while (Time.time - startTime < FADE_TIME)
+        {
+            Color screenColor = blackScreen.color;
+            screenColor.a = ((Time.time - startTime) / FADE_TIME);
+            blackScreen.color = screenColor;
+            yield return null;
+        }
+        QuickLoader.Instance.QuickLoadSceneAsync("StealthNight");
+
     }
 }
