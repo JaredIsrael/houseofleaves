@@ -87,7 +87,6 @@ public class EnemyNavigation : MonoBehaviour
     {
         if (collision.gameObject.name.Equals("Player") && !restartLevel)
         {
-            Debug.Log("Restart Level");
             restartLevel = true;
             StartCoroutine(FadeOutToBlackAndSwitchScene());
         }
