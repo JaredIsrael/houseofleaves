@@ -14,6 +14,8 @@ public class EnemyNavigation : MonoBehaviour
     public bool investigating = false;
     public bool locationChosen = false;
 
+    public bool restartLevel = false;
+
     void Start()
     {
         ren = this.GetComponent<Renderer>();
@@ -76,5 +78,14 @@ public class EnemyNavigation : MonoBehaviour
 
         enemy.speed = speed;
         investigating = false;
+    }
+
+    void OnTriggerEnter(Collider collision)
+    {
+        if(collision.gameObject.name.Equals("Player") && !restartLevel)
+        {
+            Debug.Log("Restart Level");
+            restartLevel = true;
+        }
     }
 }
