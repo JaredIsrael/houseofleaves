@@ -7,12 +7,14 @@ public class EnemyNavigation : MonoBehaviour
 {
     NavMeshAgent enemy;
 
-    [SerializeField] float speed = 0.5f;
-    [SerializeField] float walkRadius = 5f;
+    [SerializeField] float speed = 20f;
+    [SerializeField] float walkRadius = 8f;
 
     Renderer ren;
     public bool investigating = false;
     public bool locationChosen = false;
+
+    public bool restartLevel = false;
 
     void Start()
     {
@@ -76,5 +78,14 @@ public class EnemyNavigation : MonoBehaviour
 
         enemy.speed = speed;
         investigating = false;
+    }
+
+    void OnTriggerEnter(Collider collision)
+    {
+        if (collision.gameObject.name.Equals("Player") && !restartLevel)
+        {
+            Debug.Log("Restart Level");
+            restartLevel = true;
+        }
     }
 }
