@@ -7,7 +7,7 @@ public class EnemyDetection : MonoBehaviour
     [SerializeField] private GameObject player;
     PlayerController playerController;
 
-    private double enemyHearingThreshold = 1;
+    private double enemyHearingThreshold = .9;
 
     private double walkingVolume = 10;
     private double crouchingVolume = 5;
