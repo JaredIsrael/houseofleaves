@@ -19,5 +19,6 @@ public sealed class KeyInteractable : PickUpSphere
     {
         InteractedWith.Invoke();
         this.gameObject.SetActive(false);
+        QuickLoader.Instance.QuickLoadSceneAsync("Day4House");
     }
 }

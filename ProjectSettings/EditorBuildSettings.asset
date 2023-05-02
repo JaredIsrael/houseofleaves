@@ -26,4 +26,22 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Day2House.unity
     guid: 21bcca2df67704bf6bbcb846cbafa9a5
+  - enabled: 1
+    path: Assets/Scenes/Day4House.unity
+    guid: 7a0e403fc8cc145d19f17fe394aeff00
+  - enabled: 1
+    path: Assets/Scenes/Platformer.unity
+    guid: b7b335eead0cf4c49be132a88f9a3c70
+  - enabled: 1
+    path: Assets/Scenes/Day3House.unity
+    guid: 5f514acb96d2a4866a26d4e7385e4cd5
+  - enabled: 1
+    path: Assets/Scenes/StealthNight.unity
+    guid: 221edb14f1e3fa64083ca68100552f62
+  - enabled: 1
+    path: Assets/Scenes/Maze.unity
+    guid: fcf0bd81a97afee438537675504834cb
+  - enabled: 1
+    path: Assets/Scenes/Day5House.unity
+    guid: 737d440ba0ef74a2d95d267a5f477f7f
   m_configObjects: {}
