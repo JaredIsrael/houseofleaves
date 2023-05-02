@@ -62,6 +62,9 @@ public class LaundryPuzzle : CompletableTask
             case 3:
                 totalItems = 15;
                 break;
+            case 4:
+                totalItems = 20;
+                break;
             default:
                 totalItems = 5;
                 break;
