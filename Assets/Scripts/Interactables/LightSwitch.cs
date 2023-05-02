@@ -17,7 +17,7 @@ public class LightSwitch : MonoBehaviour {
 	
 	}
 	
-	void FixedUpdate () {
+	void Update () {
 		if(Input.GetMouseButtonDown(0)){
 
                 tryLightSwitch();

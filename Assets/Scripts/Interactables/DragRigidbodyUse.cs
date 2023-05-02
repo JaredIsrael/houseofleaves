@@ -64,7 +64,7 @@ public class DragRigidbodyUse : MonoBehaviour {
 		objectHeld = null;
 	}
 	
-	void FixedUpdate () {
+	void Update () {
 		if(Input.GetMouseButton(0)){
 			if(!isObjectHeld){
 				tryPickObject();
