@@ -21,6 +21,7 @@ public class MenuManager : MonoBehaviour
     {
         menuCanvas.gameObject.SetActive(true);
         optionsCanvas.gameObject.SetActive(false);
+        debugCanvas.gameObject.SetActive(false);
     }
 
     public void SwitchToDebugCanvas()
