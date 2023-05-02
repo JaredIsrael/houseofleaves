@@ -20,6 +20,7 @@ public class PianoStarter : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             hint.Stop();
+            Cursor.visible = true;
             pianoCanvas.gameObject.SetActive(true);
             inputManager.TogglePlayerMovement();
             pianoController.SetUpContexts();
@@ -40,6 +41,7 @@ public class PianoStarter : MonoBehaviour
                 StartCoroutine(WaitToEnable(5, collider));
             }
         }
+        Cursor.visible = false;
         pianoCanvas.gameObject.SetActive(false);
         pianoController.DeleteContexts();
         pianoController.inputActions.Disable();
