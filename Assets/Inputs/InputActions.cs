@@ -224,8 +224,8 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""94012a56-517d-4a9c-9294-1f0abd6f2980"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""id"": ""1b151113-cce2-4278-8d5b-2e262ddf2cf0"",
+                    ""path"": ""<Keyboard>/v"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

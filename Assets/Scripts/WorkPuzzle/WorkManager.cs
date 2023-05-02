@@ -99,9 +99,7 @@ public class WorkManager : MonoBehaviour
                 wp.GameOver();
 
                 //TO-DO: this is where user levels up
-                PassageGenerator.level++;
                 PassageGenerator.currentIndex = 0;
-                PassageGenerator.levelUp = true;
             }
         }
     }

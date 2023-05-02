@@ -172,10 +172,7 @@ public class TriggerCube : MonoBehaviour
             {
                 //TO-DO: night 2 complete; switch to next scene here!!!!!
                 //--replace below 4 lines of code--
-#if UNITY_EDITOR
-                UnityEditor.EditorApplication.isPlaying = false;
-#endif
-                Application.Quit();
+                QuickLoader.Instance.QuickLoadSceneAsync("Day3House");
             }
             else
             {
