@@ -15,22 +15,22 @@ MonoBehaviour:
   active: 0
   screenBendX:
     m_OverrideState: 1
-    m_Value: 3
+    m_Value: 1
   screenBendY:
     m_OverrideState: 1
-    m_Value: 3
+    m_Value: 1
   vignetteAmount:
     m_OverrideState: 1
-    m_Value: 0.98
+    m_Value: 0
   vignetteSize:
     m_OverrideState: 1
-    m_Value: 2.06
+    m_Value: 0
   vignetteRounding:
     m_OverrideState: 1
-    m_Value: 5.26
+    m_Value: 0
   vignetteSmoothing:
     m_OverrideState: 1
-    m_Value: 0.2
+    m_Value: 0
   scanlinesDensity:
     m_OverrideState: 1
     m_Value: 200
@@ -42,10 +42,10 @@ MonoBehaviour:
     m_Value: 250
   chromaticRed:
     m_OverrideState: 1
-    m_Value: {x: 0.002, y: -0.002}
+    m_Value: {x: 0, y: 0}
   chromaticGreen:
     m_OverrideState: 1
-    m_Value: {x: -0.002, y: 0.002}
+    m_Value: {x: 0, y: 0}
   chromaticBlue:
     m_OverrideState: 1
     m_Value: {x: 0, y: 0}
@@ -64,13 +64,13 @@ MonoBehaviour:
   active: 1
   widthPixelation:
     m_OverrideState: 1
-    m_Value: 256
+    m_Value: 512
   heightPixelation:
     m_OverrideState: 1
-    m_Value: 180
+    m_Value: 512
   colorPrecision:
     m_OverrideState: 1
-    m_Value: 256
+    m_Value: 32
 --- !u!114 &-758010384845797820
 MonoBehaviour:
   m_ObjectHideFlags: 3
