@@ -42504,7 +42504,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 775921559}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 123.6, y: 10.98, z: 125.15532}
+  m_LocalPosition: {x: 4, y: 37, z: 12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -77985,7 +77985,7 @@ MonoBehaviour:
   canvas: {fileID: 633499384}
   workCanvas: {fileID: 633499383}
   loseText: {fileID: 1552548574}
-  failureLines: {fileID: 0}
+  failureLines: {fileID: 11400000, guid: db32c85e1d089bf4fafe35e245529891, type: 2}
 --- !u!114 &1346063086
 MonoBehaviour:
   m_ObjectHideFlags: 0
