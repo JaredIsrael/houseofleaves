@@ -19,7 +19,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private CameraRotator cr;
 
-    public float speed = 7f;
+    [SerializeField]
+    public float baseSpeed = 7.0f;
+    public float speed;
     public bool crouching = false;
     public bool moving = false;
     public bool cameraHeightChanged = false;
@@ -88,7 +90,7 @@ public class PlayerController : MonoBehaviour
         {
             if(!Physics.Raycast(cam.transform.position, Vector3.up, 1f))
             {
-                speed = 7f;
+                speed = baseSpeed;
                 controller.height = 2f;
 
                 if (cameraHeightChanged)
