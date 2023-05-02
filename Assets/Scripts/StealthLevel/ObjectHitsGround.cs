@@ -5,12 +5,12 @@ using UnityEngine;
 public class ObjectHitsGround : MonoBehaviour
 {
     private ThrowCollisionManager collisionManager;
-    private AudioSource source;
+    private GameObject glassShatter;
 
     void Start()
     {
-        source = this.GetComponent<AudioSource>();
-        source.Play();
+        glassShatter = GameObject.Find("GlassShatter");
+        glassShatter.GetComponent<AudioSource>().Play();
     }
 
     void OnCollisionEnter(Collision collisionInfo)
