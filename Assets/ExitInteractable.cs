@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
-using TMPro;
+
 public class ExitInteractable : PickUpSphere
 {
 
@@ -11,8 +10,6 @@ public class ExitInteractable : PickUpSphere
     private float FADE_TIME = 3.5f;
     [SerializeField]
     private Image blackScreen;
-    [SerializeField]
-    private TextMeshProUGUI text;
 
     public override void InteractWith()
     {
@@ -22,26 +19,20 @@ public class ExitInteractable : PickUpSphere
     private IEnumerator FadeOutToBlack()
     {
 
-        blackScreen.gameObject.transform.parent.gameObject.SetActive(true);
+        blackScreen.gameObject.SetActive(true);
         float startTime = Time.time;
         while (Time.time - startTime < FADE_TIME)
         {
             Color screenColor = blackScreen.color;
             screenColor.a = ((Time.time - startTime) / FADE_TIME);
-            text.alpha = ((Time.time - startTime) / FADE_TIME);
             blackScreen.color = screenColor;
             yield return null;
         }
 
-        StartCoroutine(End());
-
-
-    }
-
-    private IEnumerator End()
-    {
-        yield return new WaitForSeconds(20f);
-        SceneManager.LoadScene("MenuScene");
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
+        Application.Quit();
 
     }
 }

@@ -3850,7 +3850,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.3
   m_Center: {x: 0, y: -9.313226e-10, z: 0.0000000037252903}
---- !u!114 &216116243
+--- !u!114 &216116239
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3859,7 +3859,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 216116235}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3e2ad0288f0d451ebd3bf84fd63e710, type: 3}
+  m_Script: {fileID: 11500000, guid: 8d3f37186865a452aa1fb7da3cae7e63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   CanInteractEnterEvent:
@@ -11003,7 +11003,6 @@ MonoBehaviour:
   cam: {fileID: 1841637509}
   canMove: 1
   cr: {fileID: 611426813}
-  baseSpeed: 7
   speed: 5
   crouching: 0
   moving: 0
