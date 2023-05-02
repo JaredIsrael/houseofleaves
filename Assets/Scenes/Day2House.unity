@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.48066103, g: 0.4705018, b: 0.43668658, a: 1}
+  m_IndirectSpecularColor: {r: 0.48099098, g: 0.47080904, b: 0.43695462, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -79558,6 +79558,8 @@ GameObject:
   - component: {fileID: 1390484072}
   - component: {fileID: 1390484071}
   - component: {fileID: 1390484070}
+  - component: {fileID: 1390484074}
+  - component: {fileID: 1390484073}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -79664,6 +79666,44 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &1390484073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1390484068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e2e3e8bcd344ecc83c390aac75b2c04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeProfile: {fileID: 11400000, guid: 7bbe35cdf5d69e14abbb03eccedaa5bd, type: 2}
+  isEnabled: 1
+  widthPixelation: 256
+  heightPixelation: 256
+  colorPrecision: 256
+--- !u!114 &1390484074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1390484068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 433faa8b758afed4f9295b193c697276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ColorEmulationMode: 3
+  _FullscreenColorDepth: {x: 256, y: 256, z: 256}
+  _FullscreenDitherDepth: {x: 32, y: 32, z: 32}
+  _DitheringMatrixSize: 2
+  _InterlacingSize: 1
+  _PostProcessShader: {fileID: 4800000, guid: 56d52fd5b7c6911468179e5a7359ce0e, type: 3}
+  _PostProcessShaderAccurate: {fileID: 4800000, guid: 2ebed186567d3c244a87538744a62920,
+    type: 3}
+  _InterlacingShader: {fileID: 4800000, guid: 03ebd34214b41ef459d7ee6753b062be, type: 3}
 --- !u!1001 &1392219403
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -104617,6 +104657,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1817079329}
   - component: {fileID: 1817079328}
+  - component: {fileID: 1817079330}
   m_Layer: 0
   m_Name: Global Volume
   m_TagString: Untagged
@@ -104656,6 +104697,23 @@ Transform:
   m_Father: {fileID: 1388842551}
   m_RootOrder: 32
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1817079330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1817079327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: 7bbe35cdf5d69e14abbb03eccedaa5bd, type: 2}
 --- !u!4 &1818272990 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3529263316264705873, guid: e282280263592284b8c7c955e3517805,
