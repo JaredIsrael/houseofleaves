@@ -24,6 +24,7 @@ public class TriggerCube : MonoBehaviour
     [SerializeField] private GameObject eagle;
 
     [SerializeField] private AudioSource bubbleSound;
+    [SerializeField] private ScreenFader sf;
 
     private int penIndex;
     private int eagleIndex;
@@ -172,7 +173,7 @@ public class TriggerCube : MonoBehaviour
             {
                 //TO-DO: night 2 complete; switch to next scene here!!!!!
                 //--replace below 4 lines of code--
-                QuickLoader.Instance.QuickLoadSceneAsync("Day3House");
+                sf.FadeOut();
             }
             else
             {

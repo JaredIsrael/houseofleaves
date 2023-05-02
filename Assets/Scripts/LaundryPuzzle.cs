@@ -213,9 +213,13 @@ public class LaundryPuzzle : CompletableTask
     void TimeRunOut()
     {
         Cursor.visible = false;
-        completed = true;
+        currentItem.gameObject.SetActive(false);
+        completed = false;
+        StopAllCoroutines();
         interactable.MoveBackToInitialPosition();
         pt.DisableTimer();
+        interactable.ResetInteract();
+        
         Debug.Log("Ran out of time");
     }
 
